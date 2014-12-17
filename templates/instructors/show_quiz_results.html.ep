@@ -1,0 +1,29 @@
+% layout 'instructor';
+% title 'Quiz results';
+
+<h1> <%== $description %></h1>
+% foreach my $r (@$results) {
+    <div>
+        <b>
+            Question # <%= $r->{number} %> :
+            % if ( $r->{is_correct} ) {
+                <span class='green_msg'>correct</span>
+            % } else {
+                <span class='red_msg'>incorrect</span>
+            % }
+        </b>
+        <br />
+
+        <%= $r->{question_text} %> <br />
+
+        <br />
+
+        Student answer: "<%= $r->{student_answer} %>" <br />
+        Correct answer: "<%= $r->{short_answer} %>" <br />
+        Explanation:  "<%== $r->{long_answer} %>" <br />
+        <br />
+        <br />
+    </div>
+% }
+
+<!-- PAGE: instructors/show_quiz_results.html.ep  -->

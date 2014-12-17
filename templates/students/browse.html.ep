@@ -1,0 +1,78 @@
+% layout 'student';
+% title 'Browse quizzes';
+
+<section>
+
+<script>
+    $(document).ready(function() {
+        var typingTimer;
+        var doneTypingInterval = 1000;
+
+        $('#query').keyup(function(){
+            if (!typingTimer) {
+                typingTimer = setTimeout(doneTyping, doneTypingInterval);
+            }
+        });
+
+        $('#query').keydown(function() {
+            clearTimeout(typingTimer);
+            typingTimer = null;
+        });
+
+        function doneTyping () {
+            clearTimeout(typingTimer);
+            $('#results').html('');
+
+            var value;
+            if (value = $('#query').val()) {
+                $.get('<%= url_for('students_browse_ajax') %>?query=' + value,
+                    function(result) {
+                        if (result.quizzes) {
+                            $('#results').html('');
+                            var count = 1;
+                            for (var i = 0; i < result.quizzes.length; i++) {
+                                var quiz = result.quizzes[i];
+                                $('#results').append(
+                                    '<h3>' + count + '. ' + quiz.author + ' (' + quiz.email + ')</h3>' +
+                                    '<div>' + quiz.title + '</div>' +
+                                    '<a href="' + quiz.browse_url + '">Browse this quiz (no answers will be recorded)</a>'
+                                );
+                                count++;
+                            }
+                        }
+                        else {
+                            $('#results').html('No matches');
+                        }
+                    },
+                    'json'
+                );
+            }
+        }
+    });
+</script>
+
+%= form_for 'students_browse', method => 'POST' => begin
+
+<div>
+<input id="query" name="query" />
+<input type="submit" value="Search" />
+</div>
+
+%= end;
+
+<div id="results">
+% if (my $matches = stash('quizzes')) {
+    <h2>Matches (<%= scalar @{$matches} %>)</h2>
+
+    % my $count = 1;
+    % foreach my $match (@{$matches}) {
+        <h3><%= $count++ %>. <%= $match->{author} %> (<%= $match->{email} %>)</h3>
+        <div><%= $match->{title} %></div>
+        <a href="<%= url_for('students_show_quiz', instructor_id => $match->{instructor_id}, quiz_id => $match->{quiz_id} ) %>?browse=1">Browse this quiz (no answers will be recorded)</a>
+    % }
+
+    <p>Only first 100 matches are shown.</p>
+% }
+</div>
+
+</section>

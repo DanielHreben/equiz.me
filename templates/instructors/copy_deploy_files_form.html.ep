@@ -1,0 +1,34 @@
+% layout 'instructor';
+% title 'Copy deploy files';
+
+<script>
+$(document).ready(function() {
+    $("input[name=directory]").click(function() {
+        var checkBoxes = $(this).parent().find("input[name=file]");
+        checkBoxes.each(function() {
+            $(this).prop("checked", !$(this).prop("checked"));
+        });
+    });
+});
+</script>
+
+<section>
+
+% if (my $notice = flash('um_notice')) {
+    <span style="color:red"><%= $notice %></span>
+% }
+
+<%= form_for 'instructors_copy_deploy_files' => { user_id => stash("user_id") } =>  begin %>
+% foreach my $leave (@$tree) {
+    <div>
+    <input type="checkbox" name="directory" /> <%= $leave->{directory} %>
+    % foreach my $file (sort @{$leave->{files}}) {
+        <div>&nbsp; <input type="checkbox" name="file" value="<%= "$leave->{directory}/$file" %>" /> <%= $file %></div>
+    % }
+    </div>
+% }
+
+    <input type="submit" value="Copy" />
+<% end %>
+
+</section>

@@ -1,0 +1,40 @@
+<h2>Admin Panel</h2>
+
+<table width="100%">
+    <tr>
+        <td>
+            Id
+        </td>
+        <td>
+            Type
+        </td>
+        <td>
+            Activated by admin
+        </td>
+        <td>
+            Activated by himself
+        </td>
+        <td>
+            Last login
+        </td>
+    </tr>
+    % foreach my $user (@$users) {
+    <tr>
+        <td>
+            <%= $user->{user_id} %>
+        </td>
+        <td>
+            <%= $user->{type} %>
+        </td>
+        <td>
+            <%= $user->{_is_activated_by_admin} %>
+        </td>
+        <td>
+            <%= $user->{_is_activated_by_user} %>
+        </td>
+        <td>
+            <%= $user->{last_login} %>
+        </td>
+    </tr>
+    % }
+</table>

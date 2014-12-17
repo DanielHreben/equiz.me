@@ -1,0 +1,150 @@
+::EQVERSION:: 1.0 -- not used.
+
+################################################################
+::NAME::  Welch, Chapter 4.
+
+::INSTRUCTOR:: -- not used
+
+::CREATED:: April 2011 by Welch Team -- not used
+
+::VERSION:: 1.0 -- not used
+
+::AREA:: Finance / Corporate Finance / Capital Budgeting Rules
+
+::SHARING:: ok
+
+::INTRODUCTION::
+
+<div style="color:darkred">
+
+<h4>Quiz Status</h4>
+
+<p> Checked for Wording: Not Yet.</p>
+
+<p> Checked for Correct Answer: Not Yet.</p>
+
+<p> Checked for Comprehensive Chapter Coverage: Not Yet.</p>
+
+</div>
+
+::PS::
+
+<p>Don't forget to click the submit button below when you are done (Use of spreadsheets is recommended).</p>
+
+################################################################
+
+::START::
+
+:N: Q04.1
+:Q: What is the IRR of a 1-period project that requires a $1000 investment
+     today and pays ${$xt1000} next period? (Report IRR a decimal. i.e. 10% IRR = .1)
+:I: $x= 1+rseq(1,15)/100;  $xt1000=$x*1000;$ANS=$x-1
+:L: The IRR is simply ${$xt1000}/$1000 - 1 = {$ANS} 
+:T: 1
+:E: 
+
+
+
+
+:N: Q04.2
+:Q: What is the IRR of a project that has cash flows of $-{$x}, $50, $100,
+and $150 in subsequent years? (Report IRR a decimal. i.e. 10% IRR = .1)
+:I: $x= rseq(100, 300, 25); $IRR= irr(-1*$x, 50, 100, 150)
+:S: $IRR
+:L: Use a spreadsheet to answer this question. It is IRR = {$IRR}
+:T: 3
+:E: 
+
+
+
+:N: Q04.3
+:Q: What is the IRR of a project that has cash flows of $-{$x10}, ${$x9},
+    and ${$x9} in subsequent years? (Report IRR a decimal. i.e. 10% IRR = .1)
+:I: $x= rseq(100, 300, 50); $x10=10*$x; $x9=9*$x; $ANS=0.5
+:L: The IRR = 50%
+:T: 3
+:E: 
+
+
+
+:N: Q04.4
+:Q: Your naive CEO must decide whether or not to accept your project
+    proposal.  You expect the project to yield cash flows of $-{$x} (upfront
+    cost), $100000, $400000, $700000, and $1000000 in subsequent years.
+    Your CEO must choose between your project and another that has an IRR of
+    6%, and he will decide based solely on comparison of IRR.  Will your CEO
+    adopt your project?
+:I: $x= rseq(15,21)*100000; $IRR= irr(-$x, 100000, 400000, 700000, 1000000); $adopt= ($IRR>0.06) ? 1 : 2
+:C: Yes, the CEO will adopt it|No, the CEO will not adopt it
+:S: $IRR
+:L: Using spreadsheets, compare the IRR of this project to 6%. 
+    You should find that the project will be {$IRR} (accepted if 1, rejected if 2)
+:T: 4
+:E: 
+
+
+
+:N: Q04.5
+:Q: A project has an initial negative cash flow followed by cash flows of
+    ${$xp200}, ${$x}, and ${$xp200} in subsequent years.  What is the
+    smallest possible initial negative cash flow (that is, the most negative
+    or biggest cash outflow) that allows for meaningful IRR analysis
+    (i.e. so there exists an IRR solution!)?  (Your answer should be a
+    negative)
+
+:I: $x= rseq(1,10)*100; $xp200=$x+200; $ANS=-1*(3*$x+400)
+:L: We need the sum of all cash flows to be positive for there to be a meaningful IRR solution. 
+    Thus, the range of initial negative cash flows, C, must be such that C is greater or equal to {$ANS}.
+:T: 4
+:E: 
+
+
+:N: Q04.6
+:Q: What is the YTM of a 3 year zero-coupon bond that costs ${$x} today and will pay ${$z} in three years? (Report IRR a decimal)
+:I: $x= rseq(1000, 2000, 100); $y= rseq(1.05,1.15,0.01); $z=$x*$y^3
+:S: $y
+:L: The YTM is simply [${$z}/${$x}] ^ (1/3) = {$y} 
+:T: 2
+:E: 
+
+
+:N: Q04.7
+:Q: An annual coupon bond pays an ${$x} coupon in 1 year, and repays $10000 in 2 years. 
+    If the bond costs $10000 today, what is the YTM of the bond? (Report YTM a decimal.)
+:I: $x= rseq(500, 2000, 500); $YTM= irr(-10000, $x, 10000)
+:S: $YTM
+:L: Using spreadsheet analysis, obtain YTM = {$YTM}
+:T: 4
+:E: 
+
+
+:N: Q04.8
+:Q: A project has cash flows of -$2000, $1000, ${$x1}, ${$x2} in subsequent
+years. What is the IRR of this project? (Report IRR a decimal. i.e. 10% IRR = .1)
+:I:  $x= rseq(0, 500, 100); $x1=$x+1000; $x2=2*$x+1000;; $ANS= irr(-2000,1000,$x1,$x2)
+:L: Using spreadsheet analysis, obtain IRR = {$ANS}
+:T: 4
+:E: 
+
+
+:N: Q04.9
+:Q: A project has annual cash flows of $500, -$350, and -${$x}, beginning
+    immediately.  What is the NPV of these cash flows, and should you invest
+    in this project if the prevailing interest rate is 5%? (Report the NPV
+    as your answer)
+:I: $x= rseq(150, 220, 10); $YTM= irr(500,-350,-$x); $NPV = 500 + (-350)/1.05 + (-$x)/1.05^2; $ANS = ($NPV>0) ? 1 : 2;
+:C: Yes, Invest|No, Do not Invest.
+:L: Using spreadsheet analysis, NPV = {$ANS}. If this is positive, do it!
+:T: 4
+:E: 
+
+
+:N: Q04.10
+:Q: What is the IRR of a project that costs ${$x} today and will pay cash
+flows of ${$y} next year and the year after. (Report IRR a decimal. i.e. 10% IRR = .1)
+:I: $x= rseq(500,5000,500); $y=0.5*$x;  $ANS=0
+:L: The IRR is 0%.
+:T: 1
+:E: 
+
+::END::

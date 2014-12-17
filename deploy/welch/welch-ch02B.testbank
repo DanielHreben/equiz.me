@@ -1,0 +1,193 @@
+::EQVERSION:: 1.0 -- not used.
+
+################################################################
+::NAME::  Welch, Chapter 2, Quiz A.
+
+::INSTRUCTOR:: -- not used
+
+::CREATED:: April 2011 by Welch Team -- not used
+
+::VERSION:: 1.0 -- not used
+
+::AREA:: Finance / Corporate Finance /  Present Value
+
+::SHARING:: ok
+
+::INTRODUCTION::
+
+<div style="color:darkred">
+
+<h4>Quiz Status</h4>
+
+<p> Checked for Wording: Not Yet.</p>
+
+<p> Checked for Correct Answer: Not Yet.</p>
+
+<p> Checked for Comprehensive Chapter Coverage: Not Yet.</p>
+
+</div>
+
+::PS::
+
+<p>Don't forget to click the submit button below when you are done.</p>
+
+################################################################
+
+::START::
+
+:N: Q02.11
+:Q: You are offered a 30 year CD with an APY of {$x}%.  If another CD
+   offered simple, non-compounding interest rates, what rate would give you
+   an identical 30 year rate of return? (Report interest rate as a decimal. i.e. 10% interest rate = .1)
+:I: $x= rseq(4, 8); $xdec=$x/100; $eq1=(1+$xdec)^30-1; $ANS= $eq1/30 
+:L: The compounded APY return is (1+{$xdec})^30-1={$eq1} .  Thus, to obtain
+   an equivalent simple 30-year interest rate, divide by 30 to obtain
+   {$eq1}/30={$ANS}
+:T: 2
+:E: 
+
+
+
+:N: Q02.12
+:Q: How many years will it take to turn 1 dollar into 8 dollars if you invest the dollar at {$x}% APY?
+:I: $x=rseq(1, 25); $xdec=$x/100;  $k= 2.079441542/(ln(1+.01*$x)); $ANS=log(8)/log(1+$xdec);
+:L: You must solve $1*(1+{$xdec})^k = $8 for the correct value of k.  Divide
+   by $1 to obtain (1+{$xdec})^k = $8/$1 = 8 .  (Note how the units
+   disappeared!)  Now, take natural logs, k * ln(1+{$xdec}) = ln(8).  Solve
+   for k to find k = ln(8)/ln(1+{$xdec})={$ANS} years.
+
+:T: 3
+:E: 
+
+
+
+:N: Q02.13
+:Q: An investment paid you a return of {$x}% at the end of year 1, -{$x}% at
+   the end of year 2, and {$x2}% at the end of year 3.  What is the total
+   rate of return for the 3 year period? (Report rate of return as a decimal. i.e. 10% rate of return = .1)
+:I:  $x= pr(10, 20, 30); $x2= 2*$x; $xdec=$x/100; $x2dec=$x2/100; 
+     $ANS= (1+$x/100)*(1-$x/100)*(1+$x2/100)-1
+:L: The total rate of return will be (1+{$xdec})(1-{$xdec})(1+{$x2dec}) - 1 = {$ANS}
+:T: 2
+:E: 
+
+
+
+:N: Q02.14
+:Q: A stock is guaranteed to exactly double your investment in {$x} years. 
+   How long will it take to quadruple your investment?
+:I: $x=rseq(5,25); $ANS=2*$x;
+:L: For any quantity invested, if the stock doubles in {$x} years, it will
+   double again in another {$x} years.  Doubling your investment twice will
+   quadruple the original investment, thus it will take 2*{$x}={$ANS} years.
+
+:T: 2
+:E: 
+
+
+
+:N: Q02.15
+:Q: A stock is guaranteed to exactly double your investment in {$x}
+years. How long will it take to quintuple (5 times) your investment?
+:I: $x= rseq(5, 25); $rim1= exp(log(2)/$x)-1; $fa= log(5)*$x/log(2);
+:S: $fa
+:L: First, solve for the interest rate, r, given the doubling time, {$x}
+   years. Doubling is a rate of return of 100%, so (1+r) is 2.  Now solve
+   (1+r)^{$x} = 1+100% = 2.  This is accomplished by taking natural
+   logarithms: {$x} * ln(1+r) = ln(2) .  Divide by {$x}, ln(1+r) =(1/{$x})*
+   ln(2); take the exponent and subtract 1, r = e^ (ln(2)/{$x}) -1 =
+   {$rim1}.  Now, using this annual interest rate (r), proceed to solve for
+   the number of years (t) that are needed to quintuple the investment by
+   solving (1+r)^t = (1+{$rim1})^t = 5 for t.  Again, apply the log trick to
+   both sides, and solve for t: t = ln(5)/ln(1+{$rim1}) = {$fa} .  (All the
+   time units in this question are in years.)
+:T: 4
+:E: 
+
+
+
+:N: Q02.16
+:Q: What is the 2 year discount factor if the interest rate is {$x}% for both years?
+:I: $x= rseq(4, 16); $ANS= (1+$x/100)**-2;
+:L: The discount factor is 1 / (1+{$x}%)^t. 
+   Thus, the 2 year factor is 1 / (1+{$x}%)^2 or (1+{$x}%)^(-2) = {$ANS}
+:T: 2
+:E: 
+
+
+
+:N: Q02.17
+:Q: What is the present value of a $1000 return in 2 years if the prevailing interest rate is {$x}%?
+:I: $x= rseq(4, 16); $ANS= 1000/(1+$x/100)**2;
+:L: Discount the cash flow by the discount factor, 1 / (1+{$x}%)^2, yielding PV = $1000 / (1+{$x}%)^2 = ${$ANS}
+:T: 2
+:E: 
+
+
+
+:N: Q02.18
+:Q: What must the prevailing interest rate be if you are indifferent between a $1000 
+    return in two years and a ${$alt} return in 1 year? (Report interest rate as a decimal. i.e. 10% interest rate = .1)
+:I: $x= rseq(10, 200); $alt=1000-$x; $ANS= (1000/(1000-$x))-1;
+:L: If you are indifferent between the two, the PV of both cash flows must
+   be equal.  The present value of the first option is $1000/(1+r)^2.  The
+   present value of the second option is ${$alt}/(1+r). Set the two
+   equations equal to one another, $1000/(1+r)^2=${$alt}/(1+r).  Cross
+   multiplying yields $1000*(1+r) = ${$alt}*(1+r)^2. Divide by (1+r)*${$alt}
+   and solve for r.  The solution is r= = $1000/${$alt} - 1= {$ANS}
+:T: 3
+:E: 
+
+
+
+:N: Q02.19
+
+:Q: A project will yield cash flows of $10,000 in each of the next 5 years,
+   first payment in 1 year. The prevailing interest rate is {$x}%.  How much
+   would you be willing to pay to invest in this project (i.e, what is the
+   NPV of the cash flows!)
+:I: $x= rseq(5,20,1); $ANS= pv($x/100, 0, 10000, 10000, 10000, 10000, 10000)
+:L: First compute the sum of the five discounted cash flows. Each cash flow
+   will have NPV of $10000 / (1+{$x}%)^t for values of t = 1, 2, 3, 4 and 5.
+   Computing this summation: $10,000/(1+{$x}%)^1 + $10,000/(1+{$x}%)^2 +
+   $10,000/(1+{$x}%)^3 + $10,000/(1+{$x}%)^4 + $10,000/(1+{$x}%)^5 = ${$ANS}.
+:T: 4
+:E: 
+
+
+
+:N: Q02.20
+:Q: A stock costs $25 today. It will pay two dividends of ${$x} in 6 months
+   and in 1 year.  If the prevailing interest rate is 5%, what must the
+   stock price be equal to or greater than at the end of 1 year to make this
+   a good investment (i.e. NPV = 0)
+:I: $x= rseq(.25, .75, .05); $NPV= -25+$x/(1+0.05)^(0.5)+$x/(1+0.05)^(1);
+    $ANS= 26.25 - 2.024690153*$x
+:L: The cash flows of investing in the stock today and holding it for one
+    year are: -$25 for purchasing the stock today, ${$x} in 6 month (first
+    dividend payment), ${$x} in one year (second dividend payment) and FV
+    which is the stock price in one year.  Therefore the NPV of this project
+    is, NPV= -$25 +${$x}/(1+0.05)^(0.5) + ${$x}/(1+0.05)^(1)+
+    FV/(1+0.05)^(1).  The FV that makes the NPV equal to zero is the FV for
+    which you will be indifferent to buying the stock or not.  Any FV above
+    this indifference-FV will be a good investment. Solve for the
+    indifference-FV by setting the NPV=0. The answer is ${$ANS}.
+:T: 6
+:E: 
+
+
+:N: Q02.21
+:Q: You are a student looking to rent an apartment during your senior year.
+   The apartment requires a 12 month lease. The terms of the lease require
+   you to pay $1000 upfront when you move in (first month's rent plus
+   security deposit).  You then must pay $500 monthly at the end of each
+   month, except at the end of the 12th month when you receive your $500
+   security deposit back.  What is the NPV of this lease to you (in absolute
+   value) if the prevailing interest rate is {$x}%?
+:I: $x= pr(4, 5, 6); $npv= ($x==4) ? 5912.71 : ($x==5) ? 5891.70 : 5871.00;
+:S: $npv
+:L: We recommend that you use a spreadsheet to solve problems that are as long as this one; we did.
+:T: 6
+:E: 
+
+::END::

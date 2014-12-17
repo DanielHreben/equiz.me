@@ -1,0 +1,98 @@
+% layout 'student';
+% title 'Student\'s Home';
+
+<section> <!-- PAGE: students/show_home.html.ep  -->
+
+% unless (user_data->{instructor_id}) {
+    <b>Please first choose your default instructor in your <a href="<%= url_for('user_update_form') %>">account settings</a></b>
+% }
+
+% if (my $notice = flash('um_notice')) {
+    <span style="color:red"><%= $notice %></span>
+% }
+
+      % if ($message) {
+
+	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/base/jquery-ui.css">
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		var $dialog = $('<div></div>')
+			.html('<span style="font-size:small"> <%= $message %> </span>')
+			.dialog({
+				autoOpen: true,
+				title: 'Instructor Message'
+			});
+		$('#opener').click(function() {
+			$dialog.dialog('open');
+			// prevent the default action, e.g., following a link
+			return false;
+		});
+	});
+	</script>
+
+      % }
+
+
+<ul>
+
+% if (user_data->{instructor_id}) {
+
+      <li>You have set <b><%= $default_instructor_name %></b> as your instructor 
+        % if ( $instructor_instructorsite ) {
+            (<a href="http://<%= $instructor_instructorsite %>"><%=$instructor_instructorsite %></a>)
+        % }
+        , with course <b><%= $instructor_course %></b> 
+        % if ( $instructor_coursesite ) {
+          (<a href="http://<%= $instructor_coursesite %>"><%= $instructor_coursesite %></a>).
+        % }
+        (You can change your instructor in your 'setings'.)
+      </li>
+   
+      <li> Your instructor has posted <%= $numquizzes %> public quizzes:
+   
+   % if ($numquizzes>0) {
+   
+      <table>
+	<tr>
+         % my $i=0; foreach my $quiz ( sort @$quizzes ) {
+
+           <td style="padding:5px">
+             "<a href="<%= url_for('students_show_quiz', instructor_id => user_data->{instructor_id}, quiz_id => $quiz->{quiz_id} ) %>" ><%= $quiz->{name} %></a>" (<% if ($quiz->{is_submitted}) { %>submitted<% } else { %>not finished<%}%>)
+
+               % if ( $is_enabled_leaderboard ) {
+                 <br /> <span style="font-size:small;padding-left:2em"> <a href="<%= url_for('students_show_quiz_leaderboard', instructor_id => user_data->{instructor_id}, quiz_id => $quiz ) %>" > 
+                   leaderboard 
+               </a> </span>
+               % }
+
+           </td>  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+
+	 % if (((++$i)%3)==0) {
+	   </tr> <tr>
+         % }
+
+
+         % }
+        </tr>
+     </table>
+
+   %}
+   <br /> (In the next version, we will show you here how well you did.  for now, you have to use the 'past results' button above.)
+
+   </li>   
+%}
+
+<li> You can also browse <a href="<%= url_for('students_show_instructors') %>">quizzes</a> from any instructor in the system.</li>
+</ul>
+
+<!--
+    <li> You can <a href="<%= url_for('students_show_results') %>">view your past quiz results.</a> </li>
+
+    <li> Change your <a href="<%= url_for('user_update_form') %>">account settings</a> (incl. setting of instructor). </li>
+   
+<p>  </p>
+-->
+
+</section> <!-- PAGE: students/show_home.html.ep  -->

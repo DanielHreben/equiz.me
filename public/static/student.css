@@ -1,0 +1,13 @@
+/* body { background-color: #EAECEA; } */
+
+h1.quizname {line-height:100%}
+
+div.show_quiz_answers { padding:10px; margin-top:20px }
+
+div.show_quiz_answers table { border: 1px solid black; border-spacing:5px }
+
+div.show_quiz_answers table tr { padding:3px; }
+
+div.show_quiz_answers table th { text-align:left; }
+
+.upgrade-notice {color:red}

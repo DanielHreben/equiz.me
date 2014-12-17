@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8" />
+
+<title><%= title %></title>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/static/jspager.js"></script>
+<script type="text/javascript" src="/static/testbank.js"></script>
+<script type="text/javascript" src="/static/chosen.jquery.js"></script>
+<link href="/static/jspager.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="/static/chosen.css" media="screen" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $("select.searchable").chosen();
+  $("select.searchable").chosen({allow_single_deselect:true});
+});
+</script>
+
+<link href="/static/main.css" media="screen" rel="stylesheet" type="text/css" />
+
+<link href="/static/student.css" media="screen" rel="stylesheet" type="text/css" />
+
+%= equiz_css stash('instructor_id') if stash('is_include_instructor_css')
+
+</head>
+
+<body>
+
+    % if (stash('old_browser')) {
+    <div class="upgrade-notice"><h1>Please upgrade your browser</h1></div>
+    % }
+
+    <%= include '/students/menu' if user_data %>
+
+    <hr />
+
+    <%= include 'msg' %> 
+
+    <%= content %>
+
+    <hr />
+    
+<footer>
+
+<!--
+<aside>
+    % if ( current_route() ) {
+        <a target="_blank" href="/static/help.html#<%= current_route %>" >Help/FAQ</a> 
+	    |
+        <a target="_blank" href="/static/legal.html#<%= current_route %>" >Legal</a>
+    % }
+    
+    % unless ( user_data ) {
+        | For the instructor login page, click <a href="<%= url_for('auth_create_form', user_type=> 'instructor') %>">here</a>
+    %}
+
+<hr />
+</aside>
+-->    
+    
+<p><a href="/static/release-schedule.html" style="color:darkred; text-size:small">Release Status, Schedule and Future Plans</a></p>
+
+
+<p>Some email services, such as gmx.de or web.de have blocked our confirmation email.  In this case, please register through a free U.S. yahoo or gmail account, instead.</p>
+
+</footer>
+
+</body>
+</html>
+
+<!-- student.html.ep -->

@@ -1,0 +1,11 @@
+% title 'Quiz Preview';
+
+<script>
+    $(document).ready(start_watching_answers);
+</script>
+
+
+%== $quiz_html
+
+
+<!-- PAGE: instructors/show_quiz.html.ep  -->

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Help</title>
+	<link href="/static/main.css" media="screen" rel="stylesheet" type="text/css" />
+	
+	<style type="text/css" >.help_title {font-weight: bold;} dt { padding-top:1em; font-weight:bold }</style>
+</head>
+
+
+<body>
+
+<header>
+  <table class="hdr">
+    <tr>
+      <td> <span class='gravatar'> <img src='/static/equizavatar.jpg' alt='Gravatar' height='80' width='80' /> </span> &nbsp;&nbsp; </td>
+      <td> <span class="hdruid"> All Students </span>
+          <br />&nbsp;<br />
+          <span class="hdrfid"> HELP </span> </td>
+    </tr>
+    <tr> <td colspan="2"> <span class="gravatarbottom">Equiz.Me</span>
+           <br />&nbsp;</td>
+    </tr>
+  </table>
+</header>
+
+ <hr />
+
+    <p><span class="message">Most of all, I need suggestions what to include here.  The system seems so obvious <i>to me</i> that I find it hard to think of help questions.</span></p>
+
+
+
+	<ul>
+		<li><a href='#students_show_home'>Home Screen</a></li>
+		<li><a href='#students_show_instructors'>'List Instructors' Screen</a></li>
+		<li><a href='#students_show_results'>Results Screen</a></li>
+		<li><a href='#answering'>Answering</a></li>
+	</ul>
+	
+	<h2>FAQ</h2>
+
+	<dl>
+	  <dt>What are the legal conditions to use Equiz.Me?</dt>
+
+	  <dd> See <a href="/static/legal.html" >Legals.</a> Primarily, they ask for 3 things: that you won't spoof your identity; that you won't intentionally break in; and that you are not primarily registering to reverse-engineer the system.  In addition, this page also contains a description of what the standard use license is for questions in the system, unless an instructor wants to make his questions more proprietary.  We want to make sharing questions easy.  There is no reason why hundreds of instructors need to write the same "Algebra 1" quiz.  However, for really proprietary material, instructors have the option to override the standard license, and/or not to share quizzes. </th> 
+
+
+
+	  <dt>Who created Equiz.Me and why?</dt>
+
+	 <dd>Primarily, <a href="http://www.ivo-welch.info">Ivo Welch</a>, a
+	   professor at UCLA.  He needed an easy to use system for writing
+	   quizzes where each student gets different numbers.  He couldn't
+	   find one&mdash;at any price.  (There were more sophisticated
+	   systems with steeper learning curves by expensive vendors.)
+	   Because Ivo also needed this for his
+	   free <a href="http://book.ivo-welch.info">corporate finance</a>
+	   text book, and because the extra effort involved to make the quiz
+	   system general was very little, he created Equiz.Me.</dd>
+
+
+
+	  <dt>Who does the programming for Equiz.Me?</dt> <dd>Almost all of
+	    it was done by <a target='_blank'
+	    href='http://webbylab.com/en'>WebbyLab</a>.  They do primarily
+	    perl-related work (which is how this system was written).  We
+	    can recommend WebbyLab very highly.  Pleasure to work with.</dd>
+
+
+	  <dt>What is the required precision in quiz answers?</dt>
+
+ <dd> The normal rounding rule that determines whether a student's
+numerical answer is considered correct is "smart precision," which is as follows:
+	  <ul>
+	    <li> if the (absolute) answer is greater than 10, it is enough
+	      if the distance between the given and perfect correct answer
+	      is less than 1.  For example, if the answer is -110, then
+	      -109.5 is still acceptable.  -108.9 is not. </li>
+	    <li> if the answer is between 1 and 10, it is enough if the
+	      distance between the given and perfect correct answer is less
+	      than 0.1.  For example, if the answer is -8, then -8.05 is
+	      still acceptable.  -7.85 is not.</li>
+	    <li> Otherwise, the distance between the given and perfect
+	      correct answer must be less than 0.01.  For example, if the
+	      answer is 0.12, 0.115 is acceptable. 0.10 is not.</li>
+	   </ul>
+	  It is indeterminate what happens if a student is exactly at the
+	  border.  (This has to do with how computers handle binary
+	  numbers.)  The above rule turns out to work <i>very</i> well in
+	  almost all cases.
+
+	<p>Nevertheless, instructors can also use the <tt>:P:</tt> tag to
+	  require a different level of accuracy for student answers to
+	  questions.
+
+	<p> Note that it is important to impress upon students that they
+	  should carry full accuracy in intermediate calculations.  (It
+	     is easy to construct examples where intermediate rounding
+	     creates havoc in the final answer.)
+
+
+
+	  <dt>I calculated the formula correctly, but my final answer is different.  Why?</dt>
+
+	  <dd>You must carry intermediate calculations with the full number
+	    of digits.  If you do not, you may well get the wrong result.
+	    For instance, in a perpetuity calculation, instead
+	    of <code>$100/0.13567... ~ $737.08</code>, if you first round
+	    the interest rate to <code>$100/0.136 ~ $735.29</code>, which is
+	    too far off to be considered a correct result.  Watch out!</dd>
+
+
+	  <dt>How do student quizzes look like?</dt>
+
+	  <dd>Try a <a href="sample-quiz.html">sample quiz</a>.  Note that this is
+	  not a real quiz, just a sample page markup.</dd>
+
+
+	  <dt>How does the instructor system look like?  Is it really easy?</dt>
+
+	  <dd>Yes, it is unbelievably easy for what it does&mdash;but to see
+	  it, you will have to agree to some short and reasonable
+	    <a href="legal.html">legalese</a> (primarily that you are going
+	    to use your real name, that you are not going to try to break
+	    in, and that you are not registering to reverse engineer the
+	    system), and register as an instructor.  Usually, you then get
+	    approved within 24 hours.  If it is not clear from your
+	    credentials that you are an instructor, please send an email
+	    to <a href="mailto:ivo.welch@anderson.ucla.edu">Ivo
+	    Welch</a> explaining the circumstances.</dd>
+
+
+	  <dt>Can an instructor use the system to teach a course on
+	  something not Welch-book related?</dt>
+
+	  <dd>Absolutely, yes.  In fact, the whole point of this system was
+	    to make it easy to administer many different kinds of classes.
+	    You can use the system to teach a course based on other finance
+	    textbooks (including direct competitors), too.  There
+	    are <i>no</i> restrictions here whatsoever.  (The only advantage
+	    that this system provides for the Welch book is that the quizzes
+	    for the Welch book are easily downloaded.</dd>
+
+	  <dt>Do I have to be a university instructor to register as an instructor?</dt>
+
+	  <dd>No.  You can be a school instructor or even a professional
+	    instructor.  However, you must be an instructor.</dd>
+
+
+	  <dt>Password/Authentication Trouble?</dt>
+
+	  <dd>Make sure you look into your spam mailbox, too.  This is by
+	    far the most common reason why emails have gone missing.  The
+	    authentication email can be resent, too, by clicking on "Remind
+	    Password", too.  Finally, the original registration email also
+	    gives you a fallback password (URL), which contains a lot of
+	    characters is unrememberable and which is unchangeable.  Store
+	    this email in a safe place&mdash;print it and delete it from
+	    your email.  Make sure your email mailbox is not compromised.</dd>
+
+	  <dt>Registration Trouble?</dt>
+
+	  <dd>Check your spam folder.  Again!  (Some German and other email services
+	    block us.)  <b>Important:</b> Try setting up a free gmail or yahoo email
+	    account to register.  You can later delete the account again.</dd>
+
+
+	  <dt>Can a user (instructor or student) register for multiple accounts?</dt>
+
+	  <dd>Yes.  The way to do this now is to use a "throw-away" email
+	  address as a secondary.  For example <tt>first.last+a1@gmail.com</tt>,
+	    <tt>first.last+a2@gmail.com</tt>, etc., all go
+	    to <tt>first.last@gmail.com</tt>.  The only reason why we are
+	    checking for duplicate emails is that we can sometimes remind
+	    you that you already have an account.</dd>
+
+
+	  <dt>Can an instructor administer different courses?</dt>
+
+	<dd>Yes.  Just register under two different email addresses.  You
+	can also use a throwaway email address for your second account.
+	(Just remember that you may forget it more easily than your main
+	email address.)   For example <tt>first.last+a1@gmail.com</tt>,
+	    <tt>first.last+a2@gmail.com</tt>, etc., all go
+	    to <tt>first.last@gmail.com</tt>.  The only reason why we are
+	    checking for duplicate emails is that we can sometimes remind
+	    you that you already have an account.</dd>
+
+
+
+	  <dt>Can an instructor restrict the number of attempts to solve a quiz?</dt>
+
+	  <dd>Yes and no.  The instructor receives data on <i>all</i>
+	    attempts.  It is up to the instructor to base the grade on the
+	    first, best, or last attempt.  However, I encourage allowing
+	    repeated attempts.  Frankly, homeworks and quizzes are not good
+	    grading devices.  Cheating on all dimensions is simply too easy.
+	    A student could hire someone else to do the homework or look
+	    over another student's questions (even though their own numbers
+	    will be different).  They can also take similar tests, often
+	    from another instructor using the same system.
+
+	</dd>
+
+	<dt>Can an instructor restrict who can answer questions?</dt>
+
+	<dd>There is a password feature on each quiz. 
+
+	<p>Coming Soon: classlist restrictions.  Instructors upload a list
+	of students, and only these students can take the quiz.</p>
+
+	</dd>
+
+
+
+
+	  <dt>Can an instructor restrict a submission deadline?</dt>
+
+	  <dd>Yes and no.  The instructor receives data on <i>all</i>
+	    attempts, including the date of submission.  It is up to the
+	    instructor to accept grades after a cutoff time.<br />
+	    <span style="font-size:small">Instructors&mdash;if this is an important feature, please let me
+	    know.  My own preference is to leave the quiz up.  You can always
+	    decide later to accept hardship submissions, e.g., because a student's
+	    notebook computer was stolen or the student was in the hospital.</span>
+	  </dd>
+
+
+
+	  <dt>Can student answers be timed?</dt>
+
+	  <dd>The instructor receives information when a quiz was served and
+	  when it was completed.</dd>
+
+
+
+	  <dt>Will the score files be available until deleted by the professor?</dt>
+
+	  <dd>This is indeed the plan.  However, a website can go down.  It
+	    can be hacked.  Our advise is to download the grade file after
+	    every quiz was due. (In version 3 or 4, we will allow this to
+	    happen automatically&mdash;i.e., we will allow an instructor to
+	    set a date when a quiz is due, and the results of that quiz will
+	    be mailed at that time to the instructor's email address.)</dd>
+
+
+
+	  <dt>When will accounts be deleted?</dt>
+
+	  <dd>If your account contains nothing but the standard quizzes, we
+	    may delete it at our discretion to reduce clutter.  If your
+	    account shows evidence of some activity, e.g., your own quiz,
+	    then it is our current plan to keep accounts for one year since
+	    last activity.  If you want to maintain your account, just log
+	    in at least once a year.</dd>
+
+
+
+	  <dt>Why did some of my .testbank files (or my sample.quiz file)
+	  just get deleted?</dt>
+
+	  <dd>On occasion, we may update template files, such as the
+	    sample.quiz file or the tutorial.testbank file.  When we do so,
+	    we may delete user's replicas of these older template files,
+	    even though they are located in their home directory.  We do not
+	    delete files that were changed by the user. This way, the user
+	    has a good hint that a better/newer version of the file exists,
+	    and (s)he should just redownload it.  To avoid automatic
+	    deletion, just change a character in your template file.</dd>
+
+
+	  <dt>Can I delete my account myself?</dt>
+
+	  <dd>In version X, we hope to have this as a feature.  Right now, even
+	    the administrator does not have this function yet.</dd>
+
+
+	  <dt>Can students access the submitted versions of the homework to
+	  prepare for exams?</dt>
+
+	  <dd>The quizzes themselves remain available as long as the instructor
+	    keeps them posted.  They can also be repeated.  We are working on
+	    making the student's own past answers available to the student.  It is
+	    not yet there, but will be soon.</dd>
+
+
+	</dl>
+
+
+
+	<h2>Context-Sensitive Help</h2>
+
+	<a class='help_title' name="students_show_home">Home Screen</a>
+	<p> 
+		Some help here Some help here Some help here 
+		Some help here Some help here Some help here 
+	</p>
+	
+	<a class='help_title' name="students_show_instructors">Instructors List Screen</a>
+	<p> 
+		Some help here Some help here Some help here 
+		Some help here Some help here Some help here 
+	</p>
+	
+	<a class='help_title' name="students_show_results">Results Screen</a>
+	<p> 
+			Some help here Some help here Some help here 
+		Some help here Some help here Some help here 
+	 </p>
+	
+</body>
+</html>

@@ -1,0 +1,50 @@
+% layout 'student';
+% title 'Search';
+
+<section>
+
+%= form_for 'students_search', method => 'POST' => begin
+
+<p>
+in
+% my $type = param('type') // 'quiz';
+<input type="radio" name="type" value="quiz"        <%== 'checked="checked"' if $type eq 'quiz'        %>/> quizzes
+<input type="radio" name="type" value="instructors" <%== 'checked="checked"' if $type eq 'instructors' %>/> instructors
+</p>
+
+<div>
+<input name="query" />
+<input type="submit" value="Search" />
+</div>
+
+%= end;
+
+% if (my $questions = stash('questions')) {
+    <h2>Matches (<%= scalar @{$questions} %>)</h2>
+
+    % my $count = 1;
+    % foreach my $match (@{$questions}) {
+        <h3><%= $count++ %>. <%= $match->{author} %> (<%= $match->{email} %>)</h3>
+        <pre style="width=80%;color:#000;overflow:auto;background-color:#fff"><%== $match->{question} %></pre>
+    % }
+
+    <div>Only first 100 matches are shown.</div>
+% }
+% elsif (my $instructors = stash('instructors')) {
+    <h2>Matches (<%= scalar @{$instructors} %>)</h2>
+
+    % my $count = 1;
+    % foreach my $match (@{$instructors}) {
+        <h3><%== $count++ %>. <%== $match->{name} %></h3>
+        <p>
+        Email: <%== $match->{email} %><br />
+        Institution: <%== $match->{institution} %><br />
+
+        <a href="<%= url_for('students_set_instructor') %>?instructor_id=<%= $match->{id} %>">Set as default instructor</a>
+        </p>
+    % }
+
+    <div>Only first 100 matches are shown.</div>
+% }
+
+</section>

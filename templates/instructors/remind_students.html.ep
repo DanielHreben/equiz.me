@@ -1,0 +1,54 @@
+% layout 'instructor';
+% title 'Remind students';
+
+% if (my $message = stash('message')) {
+    <div><%= $message %></div>
+% }
+
+<section>
+
+<h2>Not registered</h2>
+
+%= form_for 'remind_students', method => 'POST' => begin
+    <input type="hidden" name="type" value="register" />
+
+% foreach my $student (@$not_registered) {
+    <div><input type="checkbox" name="email" value="<%= $student->{email} %>" />
+    <%= $student->{email} %></div>
+% }
+
+<br />
+<input type="submit" value="Remind to register" />
+% end
+
+<h2>Registered</h2>
+
+%= form_for 'remind_students', method => 'POST' => begin
+    <input type="hidden" name="type" value="quiz" />
+
+% foreach my $student (@$registered) {
+    <div>
+    % if (@{$student->{quizzes}} && !$student->{unsubscribed}) {
+        <input type="checkbox" name="email" value="<%= $student->{email} %>" />
+    % } else {
+        &nbsp;
+        &nbsp;
+    % }
+
+    <%= $student->{email} %>
+
+    % if ($student->{unsubscribed}) {
+        (unsubscribed from email notifications)
+    % }
+    ,
+
+    not finished quizzes: <%= @{$student->{quizzes}} ? join(', ', @{$student->{quizzes}}) : 'none' %>
+
+    </div>
+% }
+
+<br />
+<input type="submit" value="Remind to finish quizzes" />
+% end
+
+</section>

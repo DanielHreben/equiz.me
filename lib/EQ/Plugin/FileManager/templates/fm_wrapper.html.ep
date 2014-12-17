@@ -1,0 +1,4 @@
+
+<div id='fm_html'>
+<%== $fm_html %>
+</div>

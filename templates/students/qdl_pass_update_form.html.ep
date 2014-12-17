@@ -1,0 +1,24 @@
+% layout 'student';
+% title 'set instructor password';
+
+
+<p> Instructor "<%= $instructor_id %>" password protection </p>
+
+ %= form_for students_qdl_pass_update => (method => 'post') => begin
+ 	<table>
+ 		<tr>
+ 			<td>Enter password to see quizzes: </td>
+ 			<td><input type='text' name='qdl_pass' /></td>
+ 		</tr>
+		<tr>
+ 			<td></td>
+ 			<td><input type='submit' value='Submit' /></td>
+ 		</tr>
+     
+
+    </table>
+    
+ % end
+
+
+<!-- PAGE: students/qdl_pass_update_form.html.ep  -->

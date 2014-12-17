@@ -1,0 +1,49 @@
+% title 'Quiz results';
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        var table = $("table.show_csv_table");
+        if (table.length) {
+            if (table.find('tr').length > 1 )
+                table.addClass('tablesorter').tablesorter();
+        }
+    });
+</script>
+
+
+
+<h1> <%= $file %></h1>
+
+<table class='show_csv_table'>
+
+<thead>
+    <tr>
+        % foreach my $column (@$hrow) {
+             <th> <%= $column %> </th>
+        % }
+    </tr>
+</thead>
+
+<tbody>
+
+% foreach my $row (@$rows) {
+    <tr>
+        % my $file = shift @$row;
+        % foreach my $column (@$row) {
+             <td> <%= $column %> </td>
+        % }
+    </tr>
+% }
+</tbody>
+</table>
+
+<hr />
+
+<p style="font-size:small">The table is sortable.  Individual student
+quizzes with results are stored (and linked in the first column).
+The Start and Finish times are in readable format in columns 2
+and 3.  To download these results to a spreadsheet, click on the .csv file,
+select the rows, and copy them into a spreadsheet file.</p>
+
+
+<!-- PAGE: instructors/show_csv_variable.html.ep  -->

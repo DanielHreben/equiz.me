@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Instructor Layout -->
+
+<head>
+<meta charset="utf-8" />
+
+<title>Non Functional Sample Quiz</title>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/static/testbank.js"></script>
+
+<!-- table sorting is used for csv files and directory -->
+<link href="/static/tablesorter/style.css" media="screen" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/static/tablesorter/jquery.tablesorter.js"></script>
+
+<!-- paging is used in quiz displays -->
+<script type="text/javascript" src="/static/jspager.js"></script>
+<link href="/static/jspager.css" media="screen" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $(window).keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+});
+</script>
+
+
+<link href="/static/main.css" media="screen" rel="stylesheet" type="text/css" />
+
+<link href="/static/instructor.css" media="screen" rel="stylesheet" type="text/css" />
+
+
+
+
+<!-- start inserting users own equiz.css file -->
+<link href="/static/equiz.css" media="screen" rel="stylesheet" type="text/css" /><style type="text/css">
+
+/* equiz.css: to change defaults in your quizzes, you can view the page
+  source and make your own (obvious) styling changes; and you can take look
+  at http://www.equiz.me/static/equiz.css at the predefinitions for you. */
+
+/* for example, use h1 { color:green } */
+
+</style>
+<!-- end inserting users own equiz.css file -->
+
+
+
+
+</head>
+
+<body>
+
+    
+<header><!-- PAGE: instructors/menu.html.ep  -->
+  <table class="hdr">
+    <tr>
+      <td> <span class='gravatar'> <img src='http://www.gravatar.com/avatar/03a19f0819f4670a63f582eb5b1cb971?s=80&r=PG&d=http%3A%2F%2Fwww.equiz.me%2Fstatic%2Fimg%2Fequizavatar.jpg' alt='Gravatar' height='80' width='80' /> </span> &nbsp;&nbsp; </td>
+      <td> <span class="hdruid">ivo.welch+t1@gmail.com</span>
+          <br />&nbsp;<br />
+          <span class="hdrfid">Non Functional Sample Quiz </span> </td>
+    </tr>
+    <tr> <td colspan="2"> <span class="gravatarbottom">Equiz.Me</span>
+           <br />&nbsp;</td>
+    </tr>
+  </table>
+
+<nav>
+<div class="menubar">
+<a href="/instructor/users/ivo.welch+t1@gmail.com/home">home</a> 
+|
+<a href="/fm">directory of files</a>
+|
+<a href="/instructor/users/ivo.welch+t1@gmail.com/edit">account settings</a> 
+|
+<a href="/instructor/logout">logout</a>
+</div>
+</nav>
+
+</header><!-- PAGE: instructors/menu.html.ep  -->
+
+
+    <hr />
+
+     
+	
+    
+<div id='fm_html'>
+
+<script>
+    $(document).ready(start_watching_answers);
+</script>
+
+
+<div style="color:black;padding-top:1ex;padding-bottom:1ex">Quiz Area: </div>
+
+<h2 class="quizname">  Non-Functional Sample Quiz &mdash; Here is a trivial quiz
+</h2>
+
+
+
+<!-- Navigation -->
+
+<nav><table class="navbar" style="background-color:#0076BA;width:100%" border="1">
+ <tbody>
+ <tr>
+       <td style="width:10px"> <input type="button" onclick="showQuestion(0,1)" value="|<<"> </td>
+       <td style="width:10px"> <input type="button" onclick="showQuestion(-1,0)" value="<"> </td>
+       <td style="text-align:center">
+     <select id='selectPage' onchange="displayPage(this.value)">
+	<option value="1"> Choose page 1 of 3 :   Q1:  A simple algorit </option>
+	<option value="2"> Choose page 2 of 3 :   Q2: (unnamed Q2) </option>
+	<option value="3"> Choose page 3 of 3 :   Q3: (unnamed Q3) </option>
+
+     </select>
+     <input type="checkbox" id="singleFull" onclick="displayAllInfo()"><span style="color:white">View All Pages</span>
+       </td>
+       <td style="width:10px"> <input type="button" onclick="showQuestion(+1,0)" value=">"> </td>
+       <td style="width:10px"> <input type="button" onclick="showQuestion(0,100)" value=">>|"> </td>
+ </tr>
+ </tbody>
+</table></nav>
+
+<!-- END Navigation -->
+
+<form method="post" class="quizform">
+
+<div class="subpage">
+<div class="qstn" id="1">
+	<p class="timehint"> Suggested Time:  1 min.&nbsp;</p>  
+<p class="qstnnum">[ Q1: <span class="qname"> A simple algorithmic question </span> ] </p>
+
+<p class="qstn">  This is the first question.  X=10 is a random integer number between
+    10 and 20.  Please calculate 10+1 and enter it as your answer. </p>
+	<p class="inputanswer"> Your Answer: <input class="studentanswerfield" type="number" step="any" size="8" name="q-stdnt-1" /><br />
+<span style="font-size:smaller">(enter only numbers [digits, minus, period])</span></p>
+
+	<input type="hidden" name="q-N-1" value=" A simple algorithmic question " />
+	<input type="hidden" name="q-Q-1" value=" This is the first question.  X=10 is a random integer number between
+    10 and 20.  Please calculate 10+1 and enter it as your answer." />
+
+</div><!--qstn-->
+
+</div><!--subpage-->
+
+
+
+
+<div class="subpage">
+<div class="qstn" id="2">
+	<p class="timehint"> Suggested Time:  2 min.&nbsp;</p>  
+<p class="qstnnum">[ Q2: <span class="qname">(an unnamed question)</span> ] </p>
+
+<p class="qstn">  This is the second question.  It shows a calculation that involves
+  two (random) variables.   What is 2+8?
+ </p>
+	<p class="inputanswer"> Your Answer: <input class="studentanswerfield" type="number" step="any" size="8" name="q-stdnt-2" /><br />
+<span style="font-size:smaller">(enter only numbers [digits, minus, period])</span></p>
+
+	<input type="hidden" name="q-N-2" value="(an unnamed question)" />
+	<input type="hidden" name="q-Q-2" value=" This is the second question.  It shows a calculation that involves
+  two (random) variables.   What is 2+8?
+" />
+
+</div><!--qstn-->
+
+</div><!--subpage-->
+
+
+
+
+<div class="subpage">
+<div class="qstn" id="3">
+	<p class="difficultyhint"> Difficulty:  Way Too Easy.&nbsp;</p>  
+	<p class="timehint"> Suggested Time:  2 min.&nbsp;</p>  
+<p class="qstnnum">[ Q3: <span class="qname">(another unnamed question)</span> ] </p>
+
+<p class="qstn">  This is the third question.  It shows a multiple choice question.
+    If $52+$62 is less than $100, then please choose 'A'.
+     Otherwise, choose 'B'.  Never choose 'C'.
+ </p>
+	<p class="inputanswerlist"> Your Answer:
+	<ol>
+		<li class="mchoice"> <input class="studentanswerfieldm" type="radio" value="1" name="q-stdnt-3" />  A could be true  <br /></li>
+		<li class="mchoice"> <input class="studentanswerfieldm" type="radio" value="2" name="q-stdnt-3" />  B might be true  <br /></li>
+		<li class="mchoice"> <input class="studentanswerfieldm" type="radio" value="3" name="q-stdnt-3" />  C is never true <br /></li>
+</ol>
+
+	<input type="hidden" name="q-N-3" value="(another unnamed question)" />
+	<input type="hidden" name="q-Q-3" value=" This is the third question.  It shows a multiple choice question.
+    If $52+$62 is less than $100, then please choose 'A'.
+     Otherwise, choose 'B'.  Never choose 'C'.
+" />
+
+</div><!--qstn-->
+
+</div><!--subpage-->
+
+
+
+
+
+
+          <div class="quizsubmitbutton">
+             <input type="submit" class="quizsubmitbutton" name="submit" value="Submit and Grade my Answers" />
+</div><!--quizsubmitbutton-->
+
+</form>
+
+
+<hr />
+
+<p>This is not a functional quiz.  It just illustrates how a quiz looks like to a student.</p>
+
+
+
+<!-- PAGE: instructors/show_quiz.html.ep  -->
+
+</div>
+
+
+    <hr />
+    
+   
+<footer>
+
+<aside>
+            <a target="_blank" href="/static/help.html" >Help/FAQ</a>
+	    |
+            <a target="_blank" href="/static/legal.html#extra" >Legal</a>
+    
+</aside>
+
+<hr />
+
+</footer>
+
+
+</body>
+</html>
+
+<!-- instructor.html.ep -->

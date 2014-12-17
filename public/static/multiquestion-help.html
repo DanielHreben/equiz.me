@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Question Help</title>
+        <link href="/static/main.css" media="screen" rel="stylesheet" type="text/css" />
+
+        <style type="text/css" >.help_title {font-weight: bold;} dt { padding-top:1em; font-weight:bold }</style>
+    </head>
+
+
+    <body>
+
+        <header>
+        <table class="hdr">
+            <tr>
+                <td> <span class='gravatar'> <img src='/static/equizavatar.jpg' alt='Gravatar' height='80' width='80' /> </span> &nbsp;&nbsp; </td>
+                <td> <span class="hdruid"></span>
+                    <br />&nbsp;<br />
+                    <span class="hdrfid"> QUESTION HELP </span> </td>
+            </tr>
+            <tr> <td colspan="2"> <span class="gravatarbottom">Equiz.Me</span>
+                    <br />&nbsp;</td>
+            </tr>
+        </table>
+        </header>
+
+        <hr />
+
+   <p>It shows
+   <ul>
+   <li> how you can inform your students how difficult your question is (use <code>:D:</code>);</li>
+   <li> how $ANS is the default answer (in the source, there is no <code>:S:</code> field);</li>
+   <li> a multiple choice question.</li>
+   </ul>
+
+  <p>Your multiple choice answer ($ANS) must evaluate to 1 if the first answer
+  is correct, 2 if the second is correct, etc.  Typically, you would use
+  something like <code>$ANS = ($x&lt;50) ? 1 : ($x&lt;100) ? 2 : 3</code> to
+  select the right answer.  (This is based on the simple and obvious
+  if-then-else statement syntax, common in C, java, perl, etc.)  Now, here
+  it goes: <br />&nbsp;<br /> X=${$x} is again a random integer number
+  between 1 and 100, with a dollar sign prefix.  Y=${$y} is another random
+  integer number between 1 and 100, with a dollar sign prefix.  If
+  ${$x}+${$y} is less than $100, then please choose 'A'.  Otherwise, choose
+  'B'.  Never choose 'C'.
+
+
+  <h3>A multiple answer question example</h3>
+  <dl>
+      <dt>Question Name</dt>
+      <dd>Multiple choice question</dd>
+      <dt>Initializer</dt>
+      <dd>
+      $x= rseq(1,100); $y= rseq(1,100); $ANS= ( ($x+$y) < 100) ? 1 : 2
+      </dd>
+      <dt>Question Text</dt>
+      <dd>This is the third question.  It shows a multiple choice question.  If ${$x}+${$y} is less than $100, then please choose 'A'.  Otherwise, choose 'B'.  Never choose 'C'.</dd>
+      <dt>Numeric Answer</dt>
+      <dd>$ANS</dd>
+      <dt>Answer Explanation</dt>
+      <dd>Your third correct answer should be {$ANS}.</dd>
+      <dt>Recommended Time</dt>
+      <dd>2</dd>
+      <dt>Difficulty Level</dt>
+      <dd>Way Too Easy</dd>
+      <dt>Choices</dt>
+      <dd>A could be true | B might be true | C is never true</dd>
+  </dl>
+
+    </body>
+</html>

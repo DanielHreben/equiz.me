@@ -1,0 +1,13 @@
+% title um_config->{profile_labels}->{page_title};
+
+<%== um_config->{profile_labels}->{title} %> <br />
+
+% if (stash('already_unsubscribed')) {
+    You are already unsubscribed from email communication
+% } else {
+    <%= form_for user_unsubscribe => {user_id => $user_id} => (method => 'post') => begin %>
+
+    <input type="submit" value="Unsubscribe from email communication" />
+
+    <% end %>
+% }

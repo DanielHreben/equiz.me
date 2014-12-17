@@ -1,0 +1,236 @@
+::EQVERSION:: 1.0 -- not used.
+
+################################################################
+::NAME::  Welch, Chapter 6.
+
+::INSTRUCTOR:: -- not used
+
+::CREATED:: April 2011 by Welch Team -- not used
+
+::VERSION:: 1.0 -- not used
+
+::AREA:: Finance / Corporate Finance / Uncertainty, Default, and Risk
+
+::SHARING:: ok
+
+::INTRODUCTION::
+
+<div style="color:darkred">
+
+<h4>Quiz Status</h4>
+
+<p> Checked for Wording: Not Yet.</p>
+
+<p> Checked for Correct Answer: Not Yet.</p>
+
+<p> Checked for Comprehensive Chapter Coverage: Not Yet.</p>
+
+</div>
+
+::PS::
+
+<p>Don't forget to click the submit button below when you are done.</p>
+
+################################################################
+
+::START::
+
+:N: Q06.1
+
+:Q: What is the expected value of the sum of {$x} rolls of standard, 6-sided
+dice?
+
+:I: $x= rseq(2,10); $ANS=3.5*$x
+
+:L: The expected value of 1 die roll is (1+2+3+4+5+6)/6 = 3.5.  So, for {$x}
+    rolls of a die, the expected sum is 3.5*{$x} = {$ANS}
+
+:T: 2
+
+:E:
+
+
+:N: Q06.2
+
+:Q: You roll 2 standard 6-sided dice.  You will win a number of dollars
+    equal to the number of dots you roll.  What is the variance of your
+    expected winnings in this game?
+
+:I: $ANS=5.83333
+
+:L: The expected value of one roll is (1/6)*(1+2+3+4+5+6)=3.5.  the variance
+    of one roll is (1/6)*[ (1-3.5)^2 + (2-3.5)^2 + (3-3.5)^2 + (4-3.5)^2 +
+    (5-3.5)^2 + (6-3.5)^2 ] = 2.917 .  The result on each dice is
+    independent of one another, therefore the covariance between the two
+    throws is zero.  (variance of two throws) = 2*(variance of one
+    throw)+(covariance of throws)= 2 * 2.917 + 0 = 5.833
+
+:T: 4
+
+:E:
+
+
+:N: Q06.3
+
+:Q: You are playing a game in which you will win a number of dollars based
+    on the number of dots you roll.  You are given the option of rolling two
+    dice simultaneously and winning 1 dollar for each dot.  Alternatively,
+    you may roll one die only, but win 2 dollars for every dot you roll.  If
+    you are risk-averse, which version of the game would you prefer to play?
+
+:I: $ANS=1
+
+:C: Prefer to roll two dice simultaneously and receive $1 per dot | Prefer to roll one die and receive $2 per dot
+
+:L: You would prefer to roll 2 dice simultaneously, as opposed to doubling the roll of a
+    single die.  This is due to the increased variance that doubling the roll of a single die introduces.  Intuitively, there is a much larger chance of getting
+    twos or twelves (1/6 each vs.  1/36) since the probability of any even
+    winnings is uniform.  When rolling two dice, the possible distribution
+    of probabilities is more heavily distributed near the mean, and is thus
+    less risky.  You can also confirm this mathematically through the
+    variance formula.
+
+:T: 2
+
+:E:
+
+
+:N: Q06.4
+
+:Q: A pharmaceutical stock trading at $25 is awaiting approval on one of its
+    most profitable drugs this year.  You research indicates there is a 25%
+    chance the drug will be rejected, a 25% chance the drug will be
+    accepted, and 50% chance that the decision will be delayed for longer
+    than 1 year.  In each instance, the stock will rise to ${$xp}, fall to
+    ${$xm}, or remain at $25, respectively.  What do you expect the stock to
+    be worth after 1 year, should you purchase this stock?
+
+:I: $x= rseq(5, 15); $xp=25+$x; $xm=25-$x; $ANS=25
+
+:L: The expected future value of the stock is 0.25*{$xp} + 0.25*{$xm} +
+0.5*$25 = $25.
+
+:T: 3
+
+:E:
+
+
+:N: Q06.5
+
+:Q: You are attempting to decide if a particular retail stock, trading at
+    $20, is priced appropriately.  You know with certainty there is a {$x}%
+    chance the company will have a booming sales year, driving the stock
+    price to $45.  You also know there is a 50% chance sales will stagnate,
+    keeping the stock price at $20.  Lastly, there is a {$x3}% chance the
+    company will lose market share to a new competitor this year, driving
+    the price down to $10.  Is there an opportunity for expected gain in
+    this stock, and if so, how much (i.e.  report the net gain if so, 0
+    otherwise)?
+
+:I: $x= rseq(15, 25); $x3=50-$x; $xdec=$x/100; $x3dec=$x3/100;
+$FV=$xdec*45+0.5*20+$x3dec*10; $ANS=$FV-20
+
+:L: The expected future value of the stock is {$xdec}*$45 + 0.5*$20 +
+    {$x3dec}*$10 = ${$FV}.  Thus, the expected value of the stock at the end
+    of the year is greater than the current price, $20, and you can obtain a
+    net gain of ${$FV} - $20 = ${$ANS}.
+
+:T: 3
+
+:E:
+
+
+:N: Q06.6
+
+:Q: A $16 stock has the following probability distribution with associated
+     outcomes after 1 year: $12 with prob 10%; $15 with prob 20%; $16 with
+     prob 40%; $18 with prob 20%; and $20 with prob 10%.  What is the
+     expected value of the stock price at the end of year 1? If the
+     prevailing interest rate is 2%, is this a good investment? Report the
+     positive difference between the expected stock price and how much you
+     would have if you invested the money at the fixed interest rate.
+
+:I: $ANS=0.12
+
+:L: (Stock Expected Value) =0.1*$12 + 0.2*$15 + 0.4*$16 + 0.2*$18 + 0.1*$20
+    = $16.2.  If you were to invest the $16 at 2% for a year, you would get
+    1.02*$16=$16.32 at the end of a year.  Because this is greater than the
+    expected stock value (which has added risk also!) it is likely not a
+    good investment.  You should have reported the answer $16.32-$16.2 =
+    $0.12
+
+:T: 3
+
+:E:
+
+
+:N: Q06.7
+
+:Q: A stock has the following probability distribution with associated
+     changes in price after 1 year: -$12 with prob 12%, $0 with prob 22%.
+     $4 with prob 46%.  $10 with prob 6%.  $15 with prob 14%.  What is the
+     expected change in price and Variance(change in price) of this stock?
+     Report the value (V/P), where V is the variance and P is the expected
+     change in price, in dollars.
+    
+
+:I: $V = ( 0.12*(-12-3.1)^2 + 0.22*(0-3.1)^2 + 0.46*(4-3.1)^2 +
+       0.06*(10-3.1)^2 + 0.14*(15-3.1)^2 ); $ANS = $V/3.1
+
+:L: The E(change in P) = 0.12*(-$12) + 0.22*$0 + 0.46*$4 + 0.06*$10 +
+    0.14*$15 = $3.1 .  Variance = [ 0.12*(-$12-$3.1)^2 + 0.22*($0-$3.1)^2 +
+    0.46*($4-$3.1)^2 + 0.06*($10-$3.1)^2 + 0.14*($15-$3.1)^2 ] = {$V}.
+    Hence the answer is {$V}/3.1={$ANS}
+
+:T: 5
+
+:E:
+
+
+:N: Q06.8
+
+:Q: You seek a $2500 loan to start a new business at your college.  There is
+    a 90% chance you will succeed, paying back the $2500 plus interest to
+    the bank in one year.  There is also an 8% chance you will only earn
+    enough to pay back $1000, and a 2% chance you'll go totally bankrupt.
+    If the riskless government securities are currently selling for {$x}%,
+    what promised interest rate will the bank charge you in order to obtain
+    this expected {$x}% interest rate? (Report interest rate as a decimal. i.e. 10% interest rate = .1)
+
+:I: $x= rseq(2,10,0.5); $xdec=$x/100; $eq1=2500*(1+$xdec); $r= (2500*(1+$xdec) - 2330)/2250
+
+:S: $r
+
+:L: Compute the expected monetary return to the bank first, EV =
+    0.9*($2500*(1+r)) + 0.08*$1000 + 0.02*$0 = $2250(1+r) + 80 = $2330 +
+    $2250*r.  This needs to be equal to $2500*(1+{$xdec})=${$eq1} that the
+    bank would obtain in the risk-free market.  So, $2330 + $2250*r=${$eq1}
+    and r = {$r}
+
+:T: 5
+
+:E:
+
+
+:N: Q06.9
+
+:Q: A bond, which costs $5000, will be paid back in full with {$xfull}%
+    probability, and not at all with {$x}% probability.  If the risk-free
+    market rate is 4%, what is the appropriate promised bond yield in this
+    perfect market? (Report promised bond yield as a decimal. i.e. 10% promised bond yield  = .1)
+
+:I: $x=rseq(1, 10); $xfull=100-$x; $xfulldec=$xfull/100; $r=
+1.04/$xfulldec -1;
+
+:S: $r
+
+:L: The expected payment of the bond is $5000*(1+r)*{$xfulldec}.  The return
+    on $5000 investment in risk free bond is $5000*1.04=$5200.  In perfect
+    markets the two should be equal, $5000*(1+r)*{$xfulldec}=$5200.  Hence r
+    = {$r}.
+
+:T: 4
+
+:E:
+
+::END::

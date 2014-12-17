@@ -1,0 +1,183 @@
+::EQVERSION:: 1.0 -- not used.
+
+################################################################
+::NAME::  Welch, Chapter 2, Quiz A.
+
+::INSTRUCTOR:: -- not used
+
+::CREATED:: April 2011 by Welch Team -- not used
+
+::VERSION:: 1.0 -- not used
+
+::AREA:: Finance / Corporate Finance / Present Value
+
+::SHARING:: ok
+
+::INTRODUCTION::
+
+<p> Be prepared to answer all questions within one session&mdash;you cannot
+save your work and continue it another time.</p>
+
+<p>If you refresh your browser window, your answers will be lost and the
+questions will be rewritten (with new numerical inputs).  Thus, do not hit
+refresh unless you want to start over from scratch.</p>
+
+<div style="color:darkred">
+
+<h4>Quiz Status</h4>
+
+<p> Checked for Wording: Not Yet.</p>
+
+<p> Checked for Correct Answer: Not Yet.</p>
+
+<p> Checked for Comprehensive Chapter Coverage: Not Yet.</p>
+
+</div>
+
+::PS::
+
+<p>Don't forget to click the submit button below to the right when you are
+done.</p>
+
+################################################################
+
+::START::
+
+:N: Q02.02.1
+
+:Q: You are considering investing in a 1-year project with a rate of return
+   of {$x}%.  How much will you need to invest to earn a payoff of $1000
+   upon completion of the project?
+
+:I: $x= rseq(10,20); $xdec=$x/100;  $ANS= 1000/(1+$xdec)
+
+:L: The answer is $1000/(1+{$xdec}) = ${$ANS}.
+
+:T: 1
+:E: 
+
+
+
+:N: Q02.2
+
+:Q: You may purchase a stock at $50 which will pay a guaranteed dividend of $5 at the end of 1 year. If you sell the stock for ${$x} at the end of 1 year, what is your total rate of return? (Report rate of return as a decimal. i.e. 10% rate of return = .1)
+
+:I: $x= rseq(45,55); $ANS= ($x+5)/(50)-1;
+
+:L: Your total rate of return is (${$x} + $5 - $50)/$50 = (${$x} + $5)/$50 - 1 = {$ANS}.
+
+:T: 2
+:E: 
+
+
+:N: Q02.3
+
+:Q: You may purchase a stock at ${$ICF} which will pay a guaranteed dividend of $5 at the end of 1 year. If you sell the stock for ${$OCF} at the end of 1 year, what is your capital gain (or capital loss) for the period?
+
+:I: $ICF= rseq(40,60); $OCF=rseq(40,60); $ror= ($OCF+5)/($ICF)-1; $ANS= ($OCF-$ICF)
+
+:L: Your capital gain is ${$OCF}-${$ICF}=${$ANS}.
+  (Note that your total rate of return is higher, r= (${$OCF}+$5)/(${$ICF})-1 = {$ror}.)
+
+:T: 2
+:E: 
+
+
+:N: Q02.4
+
+:Q:  A stock has an unknown, constant rate of return, but you have access to an oracle that will grant you this information with certainty. You would like to purchase this $1,000 car in exactly 5 years. If you have ${$x} to invest, and will only invest if you can purchase the car with certainty in 5 years, what annual percent rate of return must the oracle guarantee you to entice you to invest in the stock? (Report rate of return as a decimal. i.e. 10% rate of return = .1)
+
+:I: $x= rseq(50,90)*10; $ANS= (1000/$x)^(1/5)-1;
+
+:L: You are solving (${$x})(1+ROR)^5 = $1,000. Hence, (1+ROR) = ($1000/${$x})^(1/5) and  ROR = {$ANS}.
+
+:T: 3
+:E: 
+
+
+
+:N: Q02.5
+
+:Q: A bank account was opened with $1,000 when you were born, and has accrued
+   a constant {$x}% interest rate, compounded each year.  On your 20th birthday,
+   what will be the account balance?
+
+:I: $x= rseq(1,12)/2; $xdec=$x/100; $ANS= 1000*(1+$x/100)**20
+
+:L:  $1000*(1+{$xdec})^(20) = ${$ANS}
+
+:T: 3
+:E: 
+
+
+:N: Q02.6
+
+:Q: A bank account was opened with $1000 when you were born, and has accrued a constant {$x}% interest rate, compounded each month. On your 20th birthday, what will be the account balance?
+
+:I: $x= rseq(3,10)/2; $xd100=$x/100; $rmonthly= $xd100/12; $ANS= 1000*(1+$x/1200)**240;
+
+:L: Monthly interest rate = {$xd100}/12 = {$rmonthly}. 20 years are 240 months. Therefore, the balance will be  $1000*(1+{$rmonthly})^240 = ${$ANS}
+
+:T: 3
+:E: 
+
+
+:N: Q02.7
+
+:Q: You opened a savings account {$k} years ago, and the account currently
+   has $900.  You only made one $600 deposit on the day the account was
+   created, and never withdrew or deposited again.  What was the APR (i.e
+   monthly compounded rate) if it was constant throughout time? (Report APR as a decimal. i.e. 10% APR = .1)
+
+:I: $k= rseq(5,20); $month=$k*12; $eq1= (900/600)^(1/$month)-1; $int= 1200*(1.5**(1/(12*$k)) - 1); $ANS= $int/100
+
+:L:  First, find the effective monthly return by taking the {$month} (=12*{$k}) root of the total return. Monthly return= ($900/$600)^(1/{$month})-1 = {$eq1}. Then, to get the APR simply multiply by 12. APR=12*{$eq1} = {$int}. Convert to decimal, {$int}/100 = {$ANS}.
+
+:T: 4
+:E: 
+
+:N: Q02.8
+
+:Q: You opened a savings account 8 years ago, and the account currently has
+   $900.  You only made one deposit on the day the account was created, and
+   never withdrew or deposited again.  What was the amount of the original
+   deposit if you collected a constant {$x}% APR (monthly compounded rate)
+   throughout time?
+
+:I: $x= rseq(4,10); $xdec= $x/100; $ANS= 900/((1 + $x/1200)**96);
+
+:L: Using the APR formula P * (1 + {$xdec}/12)^(12*8) = $900. Therefore,  P = $900 / ((1 + {$xdec}/12)^96) = {$ANS}
+
+:T: 3
+:E: 
+
+
+:N: Q02.9
+
+:Q: A savings account quotes you a {$x}% interest rate (effective or APY) per year. 
+   How many basis points would you earn per week on a balance in this account (assume 52.15 weeks per year)?
+
+:I: $x= rseq(2, 6); $xdec=$x/100; $r= ((1+$xdec)**(1/52.15))-1; $rperc=$r*100;  $ANS=10000*$r
+
+:L: Because the effective rate is {$x}%,the weekly interest rate is (1+{$xdec})^(1/52.15)-1 = {$rperc}% per week. This is {$ANS} basis points.
+
+:T: 3
+:E: 
+
+
+:N: Q02.10
+
+:Q: You would like to deposit $1000 in a savings account. The bank gives you two options: Account A pays interest at a rate of {$l}% each year. Account B pays a simple interest rate of {$l}% per year (but never compounds), and gives you a $50 bonus at the end of 5 years. Which account is more desirable if you only care about the balance in 5 years?
+
+:I: $l= rseq(4,9); $ldec=$l/100;   $a= 1000*((1+0.01*$l)**5); $b= 1050+50*$l; $ca=($a < $b) ? 2 : 1
+
+:C: Account A|Account B|Don't Know
+
+:S: $ca
+
+:L: The first account will yield 1000*(1+{$ldec})^5=${$a}. In the second option, we do not earn interest on the interest (compound), instead, we earn the same interest 5 times (multiply). The second option will yield 1000(1+(5*{$ldec}))+50=${$b} . Thus, the answer is {$ca}.
+
+:T: 2
+:E: 
+
+::END::

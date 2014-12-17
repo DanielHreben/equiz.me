@@ -1,0 +1,43 @@
+% layout 'student';
+% title 'Leaderboard';
+
+<section> <!-- PAGE: students/show_quiz_leaderboard.html.ep  -->
+
+<link href="/static/tablesorter/style.css" media="screen" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/static/tablesorter/jquery.tablesorter.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#results_table").tablesorter();
+}); 
+</script>
+
+<table id='results_table'  class="tablesorter">
+    <thead>
+        <tr>
+            <th>Instructor</th>
+            <th>Quiz</th>
+            <th>Student</th>
+            <th>Submit Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        % foreach my $res (@$leaderboard) {
+            <tr>  
+                <td> <%= $res->{instructor_id} %> </td>
+                <td> <%= $res->{quiz_id} %> </td>
+                <td> <%= $res->{student_name} %> </td>
+                <td> <%= $res->{submit_time} %> </td>
+            </tr>
+        % }
+    </tbody>
+</table>
+
+<hr />
+
+<p style="font-size:small">The leaderboard shows all students who received a
+perfect score on a given quiz, provided the instructor and the student have
+both enabled this feature.</p>
+
+</section><!-- PAGE: students/show_quiz_leaderboard.html.ep  -->

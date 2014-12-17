@@ -1,0 +1,45 @@
+% title um_config->{profile_labels}->{page_title};
+
+<%== um_config->{profile_labels}->{title} %> <br />
+
+<%= form_for user_update => {user_id => $user_id} => (method => 'post') => begin %>
+
+<%= include 'um_msg' %>
+
+<a href="<%= url_for user_iplog => {user_id => $user_id} => (method => 'get') %>">  IP Log</a>
+|
+<a href="<%= url_for user_update_password_form => {user_id => $user_id} => (method => 'get') %>">  Change password</a>
+|
+<a href="<%= url_for 'user_delete' %>">Delete my account</a>
+
+<div class='fieldset'>
+    <table class='form'>
+        % for my $field ( @{ all_fields_schema() } ) {
+        % next if $field->{name} ~~ ['user_id', 'email', 'password', 'password2'];
+        % next if $field->{type} eq 'hidden';
+            <tr>
+                <td class='fieldname' title='<%= $field->{hint} %>' ><%== $field->{label} %></td>
+                <td>
+                    <%=  html_for_field($field->{name}) %> 
+                    <br /> 
+                    <span style='color: red; font-size: 0.8em'>
+                        <%=  flash("um_error_$field->{name}") %>
+                    </span>
+                </td>
+            </tr>
+        % }
+        
+        <tr>
+            <td></td>
+            <td style='padding-top: 7px;'><input type='submit' value='Update' /></td>
+        </tr>
+        
+    </table>
+
+    % if (my $secret = stash('secret')) {
+        <p>Hash: <%= $secret %> (<%= url_for %>)</p>
+    % }
+    <p>(hover over input fields to learn more information.)</p>
+
+</div>
+<% end %>

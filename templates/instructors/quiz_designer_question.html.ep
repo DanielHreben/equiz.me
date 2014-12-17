@@ -1,0 +1,45 @@
+% $suffix = '' unless defined $suffix;
+    <div class="question_container" style="padding-bottom:1em">
+        <table width="100%">
+        <tr>
+        <td style="vertical-align:top" width="50%">
+            <div style="background:#ccc;text-align:center">Editable</div>
+            <table class="question_table">
+                <tr>
+                    <td><u>Field</u></td>
+                    <td><u>Short Tag</u></td>
+                    <td><u>Content</u></td>
+                </tr>
+                <tr class="question-help <%= 'hidden' if $question->{is_multi} %>">
+                    <td colspan="3"><i>This is a single answer question. Get <a href="/static/question-help.html" target="_blank">help</a>.</i></td>
+                </tr>
+                <tr class="multiquestion-help <%= 'hidden' unless $question->{is_multi} %>">
+                    <td colspan="3"><i>This is a multiple answer question. Get <a href="/static/multiquestion-help.html" target="_blank">help</a>.</i></td>
+                </tr>
+% foreach my $field (@{$question->{fields}}) {
+                <tr>
+                    <td><%= $field->{label} %> <%= '*' if $field->{class} && $field->{class} eq 'required' %></td>
+                    <td>:<%= $field->{name} %>:</td>
+                    <td>
+                    % if ($field->{type} && $field->{type} eq 'textarea') {
+                        <textarea class="<%= $field->{class} || '' %>" placeholder="<%= $field->{placeholder} || 'Soon=Example PlaceHolder (Field Specific)' %>" name="<%= $field->{name} . $suffix %>" <%== 'rows="' . $field->{rows} . '"' if $field->{rows} %>><%== $field->{value} if defined $field->{value} %></textarea>
+                    % }
+                    % else {
+                        <input class="<%= $field->{class} || '' %>" placeholder="<%= $field->{placeholder} || 'Soon=Example PlaceHolder (Field Specific)' %>" name="<%= $field->{name} . $suffix %>" value="<%== $field->{value} if defined $field->{value} %>" />
+                    % }
+                    </td>
+                </tr>
+% }
+            </table>
+
+            <button class="evaluate_question">Try Evaluate</button>
+            <button class="delete_question">Delete Above Question</button>
+        </div>
+        </td>
+        <td style="vertical-align:top" width="50%">
+            <div style="background:cyan;text-align:center">Example</div>
+            <div class="example"></div>
+        </td>
+        </tr>
+        </table>
+    </div>

@@ -1,0 +1,48 @@
+{
+    mail => {
+    	
+    },
+    
+    file_manager  => {
+        root_dir => '/tmp/file_manager',
+    },
+    user_manager  => {
+        admin_confirm => 0,
+        email_confirm => 0,
+        admin_email   => 'viktor@webbylab.com',
+        site_url      => 'http://localhost:3000',
+        captcha       => 1,
+    },
+    recaptcha => {
+        public_key  => '6LcMF9ASAAAAANnyAnLMsi5OiVOFrI79PsgKracU',
+        private_key => '6LcMF9ASAAAAAO-D3EQkF7O68R1l4sexlbSGC4jb',
+        theme       => 'white'
+    },
+    gravatar => {
+    	default => 'http://equiz.me/static/img/equizavatar.jpg'
+    },
+    hypnotoad => {
+        listen  => [ 'http://*:8080' ],
+        workers => 4
+    },
+    eq => {
+        default_files_dir => '', # if empty then will copy files from $APP_ROOT/deploy/samples
+        intro_files_dir   => '', # if empty then will copy files from $APP_ROOT/deploy/intro
+        site_url          => 'http://localhost:3000',
+    },
+    model => {
+        instructors_root => '/tmp/file_manager',
+        storage_driver => 'Files',
+        storage_root => '/tmp/user_manager',
+        storage_db => {
+            dsn      => 'dbi:mysql:eq',
+            username => 'root',
+            password => '',
+            params   => {
+                RaiseError           => 1,
+                mysql_auto_reconnect => 1,
+                mysql_enable_utf8    => 1,
+            }
+        }
+    }
+}

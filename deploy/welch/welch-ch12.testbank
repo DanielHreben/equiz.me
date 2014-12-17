@@ -1,0 +1,270 @@
+::EQVERSION:: 1.0 -- not used.
+
+################################################################
+::NAME::  Welch, Chapter 12.
+
+::INSTRUCTOR:: -- not used
+
+::CREATED:: April 2011 by Welch Team -- not used
+
+::VERSION:: 1.0 -- not used
+
+::AREA:: Finance / Corporate Finance / Capital Budgeting Pitfalls
+
+::SHARING:: ok
+
+::INTRODUCTION::
+
+<div style="color:darkred">
+
+<h4>Quiz Status</h4>
+
+<p> Checked for Wording: Not Yet.</p>
+
+<p> Checked for Correct Answer: Not Yet.</p>
+
+<p> Checked for Comprehensive Chapter Coverage: Not Yet.</p>
+
+</div>
+
+::PS::
+
+<p>Don't forget to click the submit button below when you are done.</p>
+
+################################################################
+
+
+::START::
+
+:N: Q12.1
+
+:Q: A zero-bond with a market-beta of {$beta} promises to pay $1,000 in the
+     first year.  However, it will default and pay nothing with probability
+     p={$p}%.  If the risk-free rate is {$rf}%, the equity premium is
+     {$eqp}%, and the CAPM is correct, what must the bond price be today?
+
+:I: $p= rseq(2,20,2); $rf= rseq(2,8); $eqp= rseq(2,8);
+    $beta=rseq(-0.2,0.7,0.05); $exppay= (100-$p)/100*1000+$p*0;
+    $Er=($rf+$eqp*$beta); $ANS=$exppay*1.0/(1.0+$Er/100.0)
+
+:L: The expected payoff on the bond is E(B)=(1-p)*$1,000+p*$0=
+  (1-${$p}%)*$1,000= ${$exppay}. The bond's appropriate expected rate of
+  return is determined by the CAPM as E(r) = rf + (E(rm)-rf)*beta = {$rf}% +
+  {$eqp}%*{$beta} = {$Er}%.
+   
+  Thus, the correct answer is E(B)/(1+E(r))= ${$exppay}/(1+{$Er}%) =
+  ${$ANS}.
+
+:T: 3
+
+:E:
+
+
+
+
+:N: Q12.2
+
+:Q: Two companies, A and B, are worth ${$VA} million and ${$VB} million,
+    respectively.  A and B have CAPM expected rates of returns of {$rA}% and
+    {$rB}%, respectively.  If the two companies merge, what will the
+    conglomerate's CAPM expected rates of return be? (Report rate of return as a decimal. i.e. 10% rate of return = .1)
+
+:I: $rA= rseq(5,50,5); $rB= rseq(6,50,5); $VA=rseq(5,55); $VB=rseq(5,55);
+$VSUM=$VA+$VB; $ANS=($rA*$VA/$VSUM + $rB*$VB/$VSUM)
+
+:L: The expected rate of return on the conglomerate is the linear
+    combination of the individual expected rate of returns, properly
+    weighted by their investment weights.  The total conglomerate is worth
+    VA+VB={$VA}+{$VB}={$VSUM}.  Thus, the expected rate of return of the
+    conglomerate is (rA*VA/VSUM + rB*VB/VSUM)= ({$rA}%*{$VA}/{$VSUM} +
+    {$rB}%*{$VB}/{$VSUM}) = {$ANS}% .
+
+:T: 3
+
+:E:
+
+
+:N: Q12.3
+
+:Q: You purchase a widget making machine that can produce ${$V} in widgets
+    each year for up to four years.  However, there is a {$p}% chance that
+    the machine will break entirely at the end of each year after the cash for that year has been produced.  (This is roughly the process describing how incandescent light bulbs burn out,
+    too.)  What is the expected NPV of this widget machine?  Assume a 10%
+    discount factor, applicable beginning with the first ${$V}.
+
+:I: $V=rseq(100,5000,100); $PV1ok=$V/1.1; $PV2ok=$V/1.1^2; $PV3ok=$V/1.1^3;
+    $PV4ok=$V/1.1^4; $p= rseq(2,20); $omp=100-$p; $ompp=$omp*$p/100;
+    $omppp=$ompp*$omp/100; $prest= (100-$p-$ompp-$omppp); $EPV1=
+    $p/100*$PV1ok; $EPV2= $ompp/100*($PV1ok+$PV2ok); $EPV3=
+    $omppp/100*($PV1ok+$PV2ok+$PV3ok);
+    $EPV4=$prest/100*($PV1ok+$PV2ok+$PV3ok+$PV4ok); $ANS= $EPV1 + $EPV2 +
+    $EPV3 + $EPV4
+
+:L: The probability that the machine will work exactly only for the first
+     year is p={$p}%; for exactly the first two years, p*(1-p)={$ompp}%; for
+     exactly the first three years, p*(1-p)^2={$omppp}%; and for exactly all
+     four years, p=1-preceding={$prest}%.  The present values of cash flows,
+     if working, are ${$PV1ok}, ${$PV2ok}, ${$PV3ok}, and ${$PV4ok},
+     respectively.  Your project thus earns from the first scenario (of
+     exactly one year only) {$p}%*${$PV1ok}=${$EPV1}; from the second
+     scenario (of exactly two years only)
+     {$ompp}%*(${$PV1ok}+${$PV2ok})=${$EPV2}; from the third scenario (of
+     exactly three years only)
+     {$omppp}%*(${$PV1ok}+${$PV2ok}+${$PV3ok})=${$EPV3}; and from the four
+     scenario (of exactly all four years)
+     {$prest}%*(${$PV1ok}+${$PV2ok}+${$PV3ok}+${$PV4ok})=${$EPV4}.  Add them
+     up and you find your project is worth
+     ${$EPV1}+${$EPV2}+${$EPV3}+${$EPV4}=${$ANS}.
+
+:T: 8
+
+:E:
+
+
+
+:N: Q12.4
+
+:Q: You (many years ago) are deciding whether to upgrade your company's
+    equipment from typewriters to computer technology at a cost of $2500 per
+    machine, and machines will be replaced one to one.  The typewriter
+    technology was able to output $8000 per unit per year, and you expect
+    the computers to be able to output ${$output} per unit per year forever,
+    but make the typewriters completely useless.  What would the NPV be of
+    making this upgrade, per unit upgraded? Assume a 10% interest rate.
+
+:I: $x= rseq(500,3000,250); $output=8000+$x; $perpval=10*$x; $ANS=10*$x-2500
+
+:L: One can consider the increased output (per unit) like a perpetuity,
+    where the payment each period is the difference between computer output
+    and typewriter output, ${$x} per year.  At a 10% interest rate, the
+    value of these payments starting next year is ${$x}/(.1) = ${$perpval}
+    (per unit).  Because you need to spend $2500 today on the upgrade, the
+    NPV of this upgrade is ${$perpval} - $2500 = ${$ANS} per unit.
+
+:T: 4
+
+:E:
+
+
+
+:N: Q12.5
+
+:Q: You are considering purchasing a new technology at a cost of $5000,
+    which will reduce your expenses by ${$x} per year starting next year,
+    forever.  Additionally, the new technology complements your production
+    process by increasing productivity.  This increases profits by ${$y} per
+    year, also forever.  Assuming the discount rate is 10%, what is the NPV
+    of this project?
+
+:I: $x= rseq(200, 1000, 100); $y= rseq(200, 1000, 100);
+    $xpy=$x+$y;$perpxpy=10*$xpy; $ANS=10*$x+10*$y-5000
+
+:L: We can consider the reduction of costs and increases in profit as a net
+    perpetuity, since the changes take place forever after.  Thus, the
+    purchase would produce a net gain of ${$x}+${$y} = ${$xpy} each year
+    forever.  Thus, the PV of these increased profits are ${$xpy}/.1 =
+    ${$perpxpy}.  Subtracting the inital cost of $5000 yields the total NPV,
+    ${$ANS}.
+
+:T: 4
+
+:E:
+
+
+
+:N: Q12.6
+
+:Q: Your production of widgets is governed by an average production cost
+    equation, avg.  cost = $1 + $5/(x+1), where x is the number of goods
+    produced.  If you can sell {$n} units at a price {$p}, what is the
+    firm's total profit?
+
+:I: $p= rseq(1.5,2.5,0.1); $n= rseq(10, 50, 5); $c= 1+5/($n+1);$pmc=$p-$c;
+    $ANS=$n*($p-$c)
+
+:L: First compute the average unit cost given the number produced, {$n}, and
+    the cost function.  Thus avg.  cost = $1 + $5/({$n}+1) = ${$c}.  Thus,
+    the net profit per unit is ${$p}-${$c} = ${$pmc}.  So, the total profit
+    is ${$n}*{$pmc} = ${$ANS}
+
+:T: 4
+
+:E:
+
+
+
+
+:N: Q12.7
+
+:Q: Your production of widgets is governed by an average production cost
+    equation, avg.  cost = $1 + $5/(x+1), where x is the number of goods
+    produced.  If you are currently selling {$n} units at a price {$p}, what
+    is the marginal cost of selling an additional unit?
+
+:I: $p= rseq(1.50, 2.50, 0.10);  $n= rseq(10, 50, 5); $eq1=$n+$n*5/($n+1); $np1=$n+1;
+    $eq2=$np1+$np1*5/($np1+1); $ANS= ($n+1)*(1+5/($n+2)) - ($n+$n*5/($n+1))
+
+:L: The total cost to produce the first {$n} goods was ${$n}*(1+5/({$n}+1))
+    =${$eq1} .  Next, compute the total cost to produce {$np1} units.  This
+    is ${$np1}*(1+5/({$np1}+1)) =${$eq2}.  The marginal cost of the {$np1}th
+    unit is the difference between these two, or {$ANS}.
+
+:T: 4
+
+:E:
+
+
+
+:N: Q12.8
+
+:Q: You manage a software company that requires internet bandwidth to
+    produce output.  Currently your company is using {$p}% of its capacity,
+    but is considering an expansion to utilize the additional bandwidth.
+    Doing so will require $50000 in additional personnel expenditures per
+    year forever, and generate {$y} additional profits each year forever.
+    The expansion will require a one time cost of $100000.  What is the NPV
+    of undertaking this expansion project? Assume a cost of capital of 10%.
+    
+
+:I: $p= rseq(50,90); $y= rseq(51,90)*1000; $eq1=$y-50000; $eq2=10*$eq1; $ANS=10*$y-600000
+
+:L: Consider the increased profits generated each year due to the expansion,
+    ${$y} - $50000 = ${$eq1}.  Since this will be maintained forever, this
+    will generate a PV increase of ${$eq1}/.1 =${$eq2} .  Subtracting the
+    cost of $100000 yields a total NPV of $ {$ANS}
+
+:T: 3
+
+:E:
+
+
+
+:N: Q12.9
+
+:Q: You can produce 1000 widgets at a production cost of $1.75 per widget.
+    Alternatively, you may produce 3000 widgets at a cost of $2.25 per
+    widget.  Widget sales this year are highly dependent on nice weather,
+    and you believe there is a {$p} chance of high demand due to great
+    weather, and a {$onemp} chance of low demand.  If there is high demand,
+    you can sell the widgets for $4, and if there is low demand, you can
+    only get $2 per widget.  How many widgets should you choose to produce
+    if you remain uncertain about the weather?
+
+:I: $p = rseq(0.3, 0.85, 0.05 ); $onemp=1-$p; 
+    $esale=$p*4+$onemp*2;$eq1=1000*($esale-1.75); $eq2=3000*($esale-2.25);
+    $ANS=3000
+
+:L: First compute the expected selling price of the widgets.  This will be
+    $4*{$p} + $2*{$onemp} = ${$esale}.  So, the total profit if you choose
+    to produce 1000 units is 1000* ( {$esale} - 1.75) = {$eq1}.  The total
+    profit if you choose to produce 3000 is 3000*( {$esale} - 2.25) =
+    {$eq2}.  So, you should choose to produce 3000, the higher quantity.
+
+:T: 3
+
+:E:
+
+
+::END::
+
+

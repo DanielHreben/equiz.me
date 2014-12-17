@@ -1,0 +1,219 @@
+	::EQVERSION:: 1.0 -- not used.
+
+################################################################
+::NAME::  Welch, Chapter 15.
+
+::INSTRUCTOR:: -- not used
+
+::CREATED:: April 2011 by Welch Team -- not used
+
+::VERSION:: 1.0 -- not used
+
+::AREA:: Finance / Corporate Finance / Corporate Claims
+
+::SHARING:: ok
+
+::INTRODUCTION::
+
+<div style="color:darkred">
+
+<h4>Quiz Status</h4>
+
+<p> Checked for Wording: Not Yet.</p>
+
+<p> Checked for Correct Answer: Not Yet.</p>
+
+<p> Checked for Comprehensive Chapter Coverage: Not Yet.</p>
+
+</div>
+
+::PS::
+
+<p>Don't forget to click the submit button below when you are done.</p>
+
+################################################################
+
+
+::START::
+
+
+:N: Q15.1
+
+:Q: Consider a firm which has issued {$s} equity shares and {$b} $100
+    zero-bonds which may be converted one-for-one into equity shares at the
+    bondholder's discretion.  At what total value of the firm would the
+    bondholders be indifferent between converting to equity or not?
+
+:I: $s= rseq(100, 1000); $b= rseq(25, 250);
+    $eq1=$b/($b+$s);$eq2=100*$b; $ANS=$eq2/$eq1
+
+:L: If the bondholders were to convert their bonds to an equity share of the
+    firm, they would own the fraction {$b}/({$b}+{$s}) = {$eq1} of the firm.
+    If they were to take the bond payments, they would receive a payment of
+    {$b}*$100 = ${$eq2}.  Setting ${$eq2} = {$eq1}*V and solving for V will
+    give the value at which they will be indifferent.  V = ${$eq2}/{$eq1} =
+    ${$ANS}
+
+:T: 3
+
+:E:
+
+
+:N: Q15.2
+
+:Q: Consider a firm that has issued a 1 year zero-bond for ${$b}, due next
+    year.  If the total firm value next year were to be ${$ttlval}, and
+    there are {$n} equal shareholders in the firm, what is the value of each
+    shareholder's claim?
+
+:I: $b= rseq(100, 1000); $v= rseq(25, 250); $n= rseq(2,10); $ttlval= $v+$b;
+     $ANS=$v/$n
+
+:L: Since the total value of the firm is ${$ttlval}, the bondholder holds
+    claim to all of the ${$b} it is owed.  This leaves a total equity value
+    of ${$v} for the shareholders to divide equally.  Thus, each shareholder
+    has claim to ${$v}/{$n} = ${$ANS}.
+
+:T: 2
+
+:E:
+
+
+:N: Q15.3
+
+:Q: Consider a firm that has issued a 1 year zero-bond for ${$b}, due next
+    year.  If the total firm value next year were to be ${$ttlval}, and
+    there are {$n} equal shareholders in the firm, how much is each
+    shareholder's claim of the firm value?
+
+:I: $b= rseq(300, 1000, 100); $v= (-1)*rseq(25, 250); $ttlval= $v+$b; $n= rseq(2, 10);
+    $ANS= 0
+
+:L: The bondholders will have first claim to the assets of the firm.  In
+    this case, since the total firm value is less than the amount due on the
+    bond, the bondholders will have claim to all of its assets! There will
+    be nothing left for the firm shareholders, so each will receive $0.
+
+:T: 2
+
+:E:
+
+
+:N: Q15.4
+
+:Q: A firm is financed with {$b} zero-bonds that promise $100 each.  Half of the
+    bonds are senior bonds and the other half are junior bonds, otherwise
+    identical.  How much greater is total payout on the senior bondholders' claims
+    than on those of the junior bondholders' claims, if the total firm
+    value is ${$v}?
+
+:I: $n= rseq(1, 10); $k= rseq(20, 40)*5; $b=2*$n; $hn=100*$n; $v= $k*$n; $bp2=$v-100*$n; $bp1=100*$n;
+    $ANS= 200*$n-$v
+
+:L: First compute the total demands of the senior bondholders, who have
+    claim to their payments first.  There are {$n} $100 bonds, so the total
+    owed to senior bondholders is ${$hn}.  Now, the remaining value of the
+    firm, up to $100 per junior bondholder, is payable to the junior
+    bondholders.  The total remaining value is ${$bp2}.  So, the difference
+    between the two total bond payments is ${$bp1} - ${$bp2} = ${$ANS}.
+
+:T: 3
+
+:E:
+
+
+:N: Q15.5
+
+:Q: You purchase a new laptop computer and decide to puchase a warranty that
+    will pay you back the cost of repairs if it breaks.  You are required to
+    pay a ${$d} deductable if you use the policy, and must pay {$p}% of the
+    repair cost yourself.  The most the warranty will contribute to repairs
+    is $1000, the cost of the new laptop.  Graph the payoff diagram of this
+    warranty plan, i.e.  graph the warranty contributions against the total
+    repair costs.  Report the slope of the graph at the point where repair
+    costs are $500 as your answer.
+
+:I: $d= rseq(5,20)*5; $p= rseq(1,10)*5; $ANS= 1-0.01*$p; $hANS=1000/$ANS
+
+:L: This graph will have the warrantly plan payout on the y-axis and the
+    total repair cost on the x-axis.  The payout will be zero until ${$d} of
+    repair cost is incurred, else the deductable would be too high for you
+    to want to pay it.  From that point onward, for every dollar of repair
+    cost you incur beyond ${$d} they will pay for ( 1 - {$p}%) = ${$ANS} of
+    the cost.  This slope will continue until the total repairs equal $1000.
+    Solving ${$ANS}*cost = $1000 for the cost, you find that the graph will
+    have this slope until cost = $1000/${$ANS} = ${$hANS}.  The slope after
+    this cost level will be zero.  The correct answer to report is {$ANS}.
+
+:T: 5
+
+:E:
+
+
+:N: Q15.6
+
+:Q: A firm has issued {$n} convertible zero-bonds that give the holder an
+    option to convert the bond for {$k} shares of equity.  There are also
+    {$e} equity shares outstanding.  If half of the bondholders decided to
+    convert their bonds, what percent of the firm would they control?
+
+:I: $n= rseq(1,10)*100; $k= rseq(2,10); $e= rseq(1,10)*1000;
+$ANS=($n*$k/2)/( ($n*$k/2) + $e); $nk=$n*$k; $nk2=$nk/2
+
+:L: First, compute the total number of possible shares the bondholders could
+    convert their bonds into.  There are {$n} bonds to be converted to {$k}
+    shares, so there are {$nk} potential new equity shares to be created for
+    bondholders.  If half of these, {$nk2} shares, were to be redeemed, that
+    would give bondholders a {$nk2} / ({$nk2} + {$e}) = {$ANS} total share
+    of the firm.
+
+:T: 3
+
+:E:
+
+
+:N: Q15.7
+
+:Q: You issue a floating-rate bond at {$r}% which has a fixed difference
+    from LIBOR for the life of the bond.  If LIBOR is {$l}% at the time of
+    issue, what will the interest rate on the bond be if LIBOR goes to 10%,
+    in percent? (Report as a percent)
+
+:I: $r= rseq(3, 15); $d= rseq(1, 6); $l= $r+$d; $ANS=10-$d
+
+:L: First compute the difference between the bond rate and LIBOR, {$l}% -
+    {$r}% = {$d}%.  So, if LIBOR goes to 10%, the bond interest rate must be
+    10%-{$d}% = {$ANS}%.
+
+:T: 1
+
+:E:
+
+
+:N: Q15.8
+
+:Q: A firm is financed with {$b} zero-bonds that promise $100 each.  Half of the
+    bonds are senior bonds and the other half are junior bonds, otherwise
+    identical.  At what total firm value will the junior bondholders have
+    claim to exactly {$p}% of their bond value?
+
+:I: $n= rseq(1,10); $b=2*$n; $p= rseq(5,19)*5;$eq1=100*$n; $eq2=$n*$p;  $eq3=$eq1+$eq2;
+    $ANS=$n*$p+100*$n
+
+:L: First compute the total demands of the senior bondholders, who have
+    claim to their payments first.  There are {$n} $100 bonds, so the total
+    owed to senior bondholders is ${$eq1}.  Now, the junior bondholders have
+    claim to the next ${$eq1} of the firm value.  So, {$p}% of this is
+    ${$eq2}, and so when the firm has total value of ${$eq2} + ${$eq1} =
+    ${$eq3}, the junior bondholders will have claim to {$p}% of their bond
+    value.
+    
+
+:T: 3
+
+:E:
+
+
+::END::
+
+	

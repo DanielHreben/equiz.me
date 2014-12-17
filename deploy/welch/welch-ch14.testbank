@@ -1,0 +1,303 @@
+::EQVERSION:: 1.0 -- not used.
+
+################################################################
+::NAME::  Welch, Chapter 14.
+
+::INSTRUCTOR:: -- not used
+
+::CREATED:: April 2011 by Welch Team -- not used
+
+::VERSION:: 1.0 -- not used
+
+::AREA:: Finance / Corporate Finance / Comparables
+
+::SHARING:: ok
+
+::INTRODUCTION::
+
+<div style="color:darkred">
+
+<h4>Quiz Status</h4>
+
+<p> Checked for Wording: Not Yet.</p>
+
+<p> Checked for Correct Answer: Not Yet.</p>
+
+<p> Checked for Comprehensive Chapter Coverage: Not Yet.</p>
+
+</div>
+
+::PS::
+
+<p>Don't forget to click the submit button below when you are done.</p>
+
+################################################################
+
+
+
+::START::
+
+
+:N: Q14.1
+
+:Q: Stock EFG has a market price of ${$p} and expected earnings next year of ${$e}.
+    What is the price/earnings ratio of stock EFG?
+
+:I:  $p= rseq(20,100); $e= rseq(1, 10);  $ANS=$p/$e
+
+:L: Divide the price by the earnings, ${$p}/${$e} = {$ANS}.
+
+:T: 1
+
+:E: 
+
+
+:N: Q14.2
+
+:Q: An electric company XYZ has a P/E ratio of {$pe}.  You are trying to
+    value another similar electric company, ABC, which has earnings of
+    ${$e}.  If you use a comparables approach, what could you best estimate
+    is the Value of electric company ABC based on the P/E ratio of XYZ?
+
+:I: $pe= rseq(5, 50); $e= rseq(100,1000,100); $ANS=$pe*$e
+
+:L: ABC Value = (XYZ P/E) * ABC Earnings = ({$pe})*(${$e}) = ${$ANS}
+
+:T: 2
+
+:E: 
+
+
+
+:N: Q14.3
+
+:Q: Your firm is expected to earn ${$x} next year and has a cost of capital
+    of {$r}%.  Assume the firm's revenues resemble a perpetuity whose income
+    will grow at {$g}%.  Using the perpetuity growth model as described in
+    Chapter 3 to value this firm, compute the Price/Earnings ratio for the
+    firm.
+
+:I:  $x= rseq(100,200,10); $r= rseq(10,15); $g= rseq(1,9); $NPV=$x/(($r/100)-($g/100));
+     $ANS=$NPV/$x
+
+:L: The value of the firm can be estimated by value = earnings/(r-g) = ${$x}/({$r}%-{$g}%) =${$NPV} .
+    The P/E ratio is then just ( value/{$x}) = {$ANS} .
+
+:T: 4
+
+:E: 
+
+
+
+:N: Q14.4
+
+:Q: Consider a firm that is priced at ${$p}, with a cost of capital of {$r}% and expected earnings of ${$e}.
+    What is the PVGO of this firm?
+
+:I: $p= rseq(50,100); $r= rseq(5,15); $e= rseq(2,20); $ANS=$p-$e/(0.01*$r)
+
+:L: Rearranging the equation Price = Expected Earnings / Cost of Capital + PVGO to obtain PVGO = ${$p} - ${$e}/{$r}% = ${$ANS}
+
+:T: 3
+
+:E: 
+
+
+:N: Q14.5
+
+:Q: A firm has earnings of ${$e} this year and a P/E ratio of 10.
+    It is currently growing at 5% per year.
+    What would the new P/E ratio be if the firm began growing at {$g}%? Assume that the cost of capital does not change.
+
+:I: $e= rseq(100,200); $g= rseq(6,15);$Er=0.1+0.05; $eq1=(15-$g)/100;   $ANS=1/$eq1
+
+:L: Plugging into E(r) = E/P + E(g), we obtain the expected return  = 1/10 + 5% = 15%.
+    So, if it began growing at {$g}%, we can set 15% = E/P + {$g}%  and thus E/P = {$eq1} .
+    So, P/E = {$ANS}.
+
+:T: 5
+
+:E: 
+
+
+:N: Q14.6
+
+:Q: A firm with P/E ratio equal to {$pe} and earnings of ${$x} seeks to take over another firm with value {$y} and P/E ratio {$pe2}.
+    What is the new merged firm's P/E?
+
+:I:  $pe= rseq(5,40); $x= rseq(4,20); $y= rseq(100,300); $pe2= rseq(5,40);$eq1=$pe*$x; $eq2=$eq1+$y;$eq3=$y/$pe2; $ANS=($eq2)/($x+$eq3)
+
+:L: The firm seeking to do the taking over has a value of {$pe}*${$x} = ${$eq1}.
+    So, the total value of the new merged firm will be ${$eq1} + ${$y} = ${$eq2}.
+    The earnings of the taken over firm can be computed as {$y}/{$pe2} = ${$eq3} .
+    So, the total company has a price to earnings ratio of ${$eq2}/(${$x}+${$eq3}) = {$ANS}.
+
+:T: 4
+
+:E: 
+
+
+:N: Q14.7
+
+:Q: Consider firm ABC with the following financials.
+    Compute the difference between the P/E and unlevered P/E ratios of firm ABC (P/E minus unlevered P/E).
+    <table>
+    <tr> <th> <u> Firm ABC </u> </th> </tr>
+    <tr> <td>Interest Expenses</td>	<td>${$i}</td> </tr>
+    <tr> <td>Earnings</td>		<td>${$e}</td> </tr>
+    <tr> <td>Equity Market Value</td>	<td>${$v}</td> </tr>
+    <tr> <td>Debt Book Value</td>	<td>${$d}</td> </tr>
+    </table>
+
+:I:  $i= rseq(.05,.4,.05); $e= rseq(1, 5,0.25); $v= rseq(50,125,5); $d= rseq(1,7.5,0.5); 
+     $eq1=$v/$e; $eq2=$d+$v; $eq3=$i+$e; $eq4=$eq2/$eq3; $ANS=$eq1-$eq4
+
+:L: First compute the standard P/E ratio: This is just ${$v}/${$e} = {$eq1}.
+    Now, to compute the unlevered P/E ratio, all debt will become equity.
+    Adding the debt ${$d} to the market equity value, {$v} will yield a total equity of ${$eq2}.
+    Also, any interest payments ${$i} will become equity payments, making the total interest + earnings = ${$eq3}.
+    Then taking the ratio of ${$eq2}/${$eq3} will yield the unlevered P/E ratio, {$eq4}.
+    Thus, the difference is {$eq1}-{$eq4}={$ANS}.
+
+:T: 4
+
+:E: 
+
+
+:N: Q14.8
+
+:Q: Consider a firm with the following financials.
+    Compute the Price/Sales and Price/Earnings ratios, and report (P/E - P/S) as your answer.
+    What is the issue with relying on P/S or P/E in this situation? <br>
+<table>
+<tr> <th> <u> Firm </u> </th> </tr>
+<tr> <td> Sales: </td>        <td> ${$x} </td> </tr>
+<tr> <td> Dividends: </td>    <td> $0 </td> </tr>
+<tr> <td> Market Value: </td> <td> ${$MV} </td> </tr>
+<tr> <td> Earnings: </td>     <td> ${$e} </td> </tr>
+</table>
+
+:I: $x= rseq(10,20)*10; $r= rseq(10,50); $e= rseq(1,10)/10;$MV=$r*$x;
+     $ANS=$r*$x/$e - $r;   $rx=$r*$x; $rxde=$rx/$e
+
+:L: The Price/Earnings ratio is simply ${$rx}/${$e} = {$rxde}.
+    The Price/Sales ratio is just ${$rx}/${$x} = {$r}.
+    So, the difference is {$ANS}.
+    However, one should consider if using either of these two ratios is useful.
+    You should notice that this firm is barely profitable, as earnings are a miniscule fraction of sales.
+    This will bias the P/S ratio significantly.
+    However, it could be the case that the firm is in its infancy, and is expecting high growth in the near future.
+    The lesson is that you just can't tell from such little information - you can't simply rely on the ratios!
+
+:T: 4
+
+:E: 
+
+
+:N: Q14.9
+
+:Q: Refer to the Appendix of Chapter 13 for the Coca-Cola financials from 1999-2001.
+    Compute the average dividend payout ratio over 1999-2001 for Coca-Cola.
+    Report as a decimal.
+    
+
+:I: $ANS=0.5895
+
+:L: The two pieces of information required are the Net Income and Dividend Payouts.
+    The sum of net income over these three years is 3969 + 2177 + 2431 = 8577.
+    The sum of dividend payments over this period is 1791 + 1685 + 1580 = 5056.
+    So, the dividend payout rate is 5056/8577 = 58.95% = 0.5895
+
+:T: 3
+
+:E: 
+
+
+:N: Q14.10
+
+:Q: Consider a firm with the following financials.
+    Compute the dividend yield for Firm ABC.
+<table>
+<tr> <th> <u> Firm ABC<u/>:                </th> </tr>
+<tr> <td>  Sales		</td> <td>${$x}    </td> </tr>
+<tr> <td>  Dividends	</td> <td>${$div}  </td> </tr>
+<tr> <td> Market Value	</td> <td>${$mv}   </td> </tr>
+<tr> <td> Earnings(N.I.)	</td> <td>${$ern}</td> </tr>
+</table>
+
+:I: $x=rseq(100, 200, 10); $r=rseq(10,50);  $p=rseq(.3,.65, .05); $d= rseq(.2,.6,.05);
+    $div=$d*$p*$x; $mv=$r*$x; $ern=$p*$x;   $ANS=$d*$p/$r; $dpx=$d*$p*$x; $rx=$r*$x
+
+:L: The dividend yield is simply the ratio of dividend payments / Market Value.
+    For this firm, D/MV = ${$dpx}/${$rx} = {$ANS}.
+
+:T: 2
+
+:E: 
+
+
+:N: Q14.11
+
+:Q: Consider a firm with the following financials.
+    Compute the net profit margin or return on sales for firm ABC.
+<table>
+<tr> <th> <u> Firm ABC </u> </th> </tr>
+<tr> <td> Sales	 </td>          <td> ${$x} </td> </tr>
+<tr> <td> Dividends </td>      <td> ${$div} </td> </tr>
+<tr> <td> Market Value	</td>   <td> ${$mv} </td> </tr>
+<tr> <td> Earnings(N.I.) </td> <td> ${$ern} </td> </tr>
+</table>
+
+:I: $x= rseq(100,200,10); $p=rseq(0.3,0.65,0.05); $d= rseq(0.2,0.6,0.05);
+    $div=$d*$p*$x; $mv=$p*$x; $ern=$p*$x; $ANS=$ern/$x
+
+:L: The return on sales is the ratio of Net Income or Earnings to Sales, or ${$ern}/${$x} = {$ANS}.
+
+:T: 2
+:E: 
+
+
+:N: Q14.12
+
+:Q: Firm EFG is growing fast, and will produce a cash flow of ${$x} next year.
+    Its cash flows will grow at {$g}% per year and has a cost of capital of 15%.
+    What is the firm's P/E ratio? Assume it has no debt.
+
+:I: $x= rseq(1,10)*100; $g= rseq(6,14); $eq1=$x/(0.15-0.01*$g); $ANS=$eq1/$x
+
+:L: First compute the market value of the firm, which can be modeled like a
+    perpetuity with initial cash flow of ${$x}.  MV = ${$x}/(15% - {$g}%) =
+    ${$eq1}.  Because the expected earnings is ${$x} next year, the P/E ratio
+    is ${$eq1} / ${$x} = {$ANS}.
+
+:T: 4
+
+:E: 
+
+
+:N: Q14.13
+
+:Q: You are trying to estimate the long-run future expected rate of return
+    on the Dow Jones Industrial Average.  You observe that the P/E ratio on
+    the DJIA is {$pe}.  Assume the real earnings growth rate is 2%, and a
+    constant long-run inflation rate of 3%.  What can you predict is the
+    nominal long-run rate of return? (Report rate of return as a decimal. i.e. 10% rate of return = .1)
+
+:I: $pe= rseq(8,15);$ep=1/$pe; $eq1=$ep+0.02; $ANS=(1+$eq1)*(1+0.03)-1
+
+:L: Because the P/E ratio is {$pe}, the E/P yield is just the inverse, or
+    {$ep}.  Using the real earnings growth rate of 2% and the formula E(r) =
+    E/P + E(g), we obtain the real rate of return on the DJIA= {$ep} + 0.02
+    = {$eq1} .  Last you need to add in the inflation of 0.03, making your
+    predicted nominal return=(1+{$eq1})*(1+0.03)-1= {$ANS}.
+
+:T: 3
+
+:E: 
+
+
+::END::
+
+
+
+

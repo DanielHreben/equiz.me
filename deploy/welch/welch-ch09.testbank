@@ -1,0 +1,171 @@
+::EQVERSION:: 1.0 -- not used.
+
+################################################################
+::NAME::  Welch, Chapter 09
+
+::INSTRUCTOR:: -- not used
+
+::CREATED:: April 2011 by Welch Team -- not used
+
+::VERSION:: 1.0 -- not used
+
+::AREA:: Finance / Corporate Finance / CAPM
+
+::SHARING:: ok
+
+::INTRODUCTION::
+
+<p><b>WARNING:</b> The rest may be bad, but this chapter needs extra debugging</b></p>
+
+<div style="color:darkred">
+
+<h4>Quiz Status</h4>
+
+<p> Checked for Wording: Not Yet.</p>
+
+<p> Checked for Correct Answer: Not Yet.</p>
+
+<p> Checked for Comprehensive Chapter Coverage: Not Yet.</p>
+
+</div>
+
+::PS::
+
+<p>Don't forget to click the submit button below when you are done.</p>
+
+################################################################################################################################
+
+
+::START::
+
+:N: Q09.1
+
+:Q:In graphing a Security Market Line (assuming perfect markets and an Ideal CAPM world), you find that project A has Beta = {$x} and a return of 7%, and project B has Beta = {$xp1} and a return of 9%. From these two data points, determine the risk-free rate of return in the market.
+
+:I: $x= rseq(0.5,3.0,0.25); $xp1=$x+1; $sm2x=7-2*$x; $ANS=0.01*(7-2*$x)
+
+:L:When given two points, simple algebra will allow you to compute the slope of the unique line through these points. Then you can evaluate beta=0 in this SML equation to determine the risk-free rate of return.  Slope(SML ) = (9-7)/({$xp1}-({$x})) = 2.  Thus, for the SML with a slope 2 to go through the point ({$x},7), it must go through the point (0,{$sm2x})).  Thus, the risk free rate of return is ({$sm2x})% = {$ANS}.
+
+:T:3
+
+:E:
+
+
+:N: Q09.2
+
+:Q:In graphing a Security Market Line (assuming perfect markets and an Ideal CAPM world), you find that project A has Beta = 1.5 and a return of {$x}%, and project B has Beta = 2.5 and a return of 11.5%. From these two data points, determine the predicted rate of return for a stock with Beta=1.
+
+:I: $x= rseq(7.5,11,0.5); $ANS=.01*(1.5*$x-5.75)
+
+:L: We can compute the slope of the SML:  Slope = (11.5-{$x})/(2.5-1.5) = (11.5-{$x}). For a stock with Beta=1, you can use either of the other data points in tandem with the slope to determine the predicted return. This implies the stock with Beta=1 has predicted return {$x}-(11.5-{$x})*(1.5-1)= {$ANS}
+
+:T:3
+
+:E:
+
+
+
+:N: Q09.3
+
+:Q:The expected rate of stock market return is 15% and the risk-free rate is 5%. What is the appropriate cost of capital for a project with Beta = {$x}? (Report cost of capital as a decimal. 10% cost of capital = .1)
+
+:I: $x= rseq(1,8)/2;  $ANS=.01*(5+10*$x)
+
+:L:The equity premium must be (15-5)% = 10%. Therefore, E(r_i) = 5% + (10%)*({$x}) = {$ANS}
+
+:T:2
+
+:E:
+
+
+
+:N: Q09.4
+
+:Q:Solve for an appropriate project beta if the cost of capital is 10%, and the market is such that the risk-free rate is {$x}% and the expected market return is {$xp7}%.
+
+:I: $x= rseq(1,8); $xp7=$x+7; $ANS=(10-$x)/7
+
+:L:The E(r_i ) = r_risk-free + [ E(r_market) - r_risk-free ]*(beta_i). Thus, 10% = {$x}% + ( {$xp7}% - {$x}% )*(B_i) = {$x}% + 7*(B_i)%.  Solving for beta, B_i = {$ANS}.
+
+:T:3
+
+:E:
+
+
+
+:N: Q09.5
+
+:Q:A project has two possible outcomes; the good outcome returns $10000 next year and occurs 90% of the time, while the bad outcome is total failure, returning $0 the other 10% of the time. If the risk free interest rate is 4%, the expected market return is 8%, and the project Beta is {$x}, what must the price of the bond be? 
+
+:I: $x= rseq(0, 4, 0.5); $ANS= 9000/(1+(4+4*$x)/100);
+
+:L:This problem requires us to compute the appropriate cost of capital for the project using CAPM analysis.  Doing so, solve: E(r_i) = 4% + (8-4)%*({$x}) = (4+4*{$x})%. All that is left to do is simple PV analysis. The expected cash flow next year is $9000, or .9*$10000.  Discounting to the present with the computed cost of capital, the price of the bond equals PV = $9000 / (1 + (4+4*{$x})%) = ${$ANS}
+
+:T:4
+
+:E:
+
+
+
+:N: Q09.6
+
+:Q:You are tasked with estimating the beta of a government-owned firm, and have found several pieces of data. A comparable company has a listed equity beta of 1.5, but a debt-to-asset ratio of 1/2. If the firm you are tasked with analyzing has a debt-to-asset ratio of {$x}, and the debt is risk-free (the firm is government-owned), what can you conclude is the equity beta of this firm?
+
+:I:$x= rseq(2,18)/20; $ANS=0.75/(1-$x); $omx=1-$x
+
+:L:The relevant formula for computing the asset beta is: B_asset = w_debt*(B_debt) + w_equity*(B_equity).  Using the information from the comparable firm, deduce the asset beta as B_asset = .5*0 + .5*1.5 = 0.75.  Now, using this asset Beta from the comparable firm, solve for this firms equity Beta, 0.75= {$x}*0+ {$omx}*(B_equity) = B_equity = {$ANS}.
+
+:T:4
+
+:E:
+
+
+
+:N: Q09.7
+
+:Q:What happens to a projects appropriately priced cost of capital under CAPM if there is a sudden shock to its market-beta? In other words, what is the effect of an increase in the project beta on E(r_i)?
+
+:C: The effect on E(r_i) is negative | The effect on E(r_i) is zero | The effect on E(r_i) is positive
+
+:I: $ANS=3
+
+:L:Intuitively, consider the CAPM equation in light of an increase in Beta. If beta increases, the effect on E(ri) will be the change in beta times the risk premium. Since the risk premium is always positive (why must this be?), a positive change in beta will have a positive effect (increase) the CAPM cost of capital for a given project. More formally, using calculus, it can be shown this is true quite easily: dE(r_i)/dB = E(r_m) - r_f = risk premium > 0
+
+:T:2
+
+:E:
+
+
+
+:N: Q09.8
+
+:Q:Consider a sudden positive shock to the expected return of the market, with no noticeable change to the risk-free rate of return or CAPM inputs. What are the implications for a projects cost of capital if it has positive Beta?
+
+:I: $ANS=3
+
+:C: The effect is a decrease | The effect is neutral | The effect is positive
+
+
+:L:Intuitively, if the market return increases ceteris paribus to other CAPM inputs, the equity premium will increase necessarily. So, if a projects Beta is positive, it will intuitively move with the market, and the product of the increased premium times Beta will have a positive effect on E(ri). This may be shown with more clarity using the calculus that dE(r_i)/dE(r_m) = Beta.  If Beta is positive, the effect on the cost of capital is positive. If Beta is negative, so is the effect on the cost of capital. Thus there is a positive effect on cost of capital.
+
+:T:2
+
+:E:
+
+
+
+:N: Q09.9
+
+:Q:A $1000 municipal bond is in danger of default, and you are a bond-holder trying to sell the asset at a fair price. The municipality is facing uncertainty in the facing of decreasing tax revenues, but is expected to repay the bond in its entirety with probability {$x}. There is also a (1-{$x}/2) probability of paying back only $800, and otherwise will only afford to pay $500 with probability (1-{$x}/2). Current market conditions indicate a 2% risk-free rate of return and a 5.5% equity premium, and the bond has a beta of 0.5. What would you conclude is a fair CAPM market price, in dollars, for this bond?
+
+:I:$x= rseq(2,18)/20; $ebp= ($x)*(1000) + (1-$x/2)*(500+800); $pv= $ebp/(1.0475)
+
+:S:$pv
+
+:L:First, compute the expected payoff for the bond based on the given probability distribution of payoffs.   Expected Bond Payments = ({$x})*($1000) + (1-{$x}/2)*(500 + 800) = {$ebp}.  Now compute the relevant cost of capital based on CAPM inputs:  E(r_i) = 2% + 5.5%*0.5 = 4.75%.  To compute the PV (fair price) of the bond, simply discount the expected payoff by the relevant cost of capital, PV = {$ebp}/(1.0475) = {$pv}.
+
+:T:4
+
+:E:
+
+::END::

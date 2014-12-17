@@ -1,0 +1,151 @@
+::EQVERSION:: 1.0 -- not used.
+
+################################################################
+::NAME::  Welch, Chapter 4.
+
+::INSTRUCTOR:: -- not used
+
+::CREATED:: April 2011 by Welch Team -- not used
+
+::VERSION:: 1.0 -- not used
+
+::AREA:: Finance / Corporate Finance / Capital Budgeting Rules
+
+::SHARING:: ok
+
+::INTRODUCTION::
+
+<div style="color:darkred">
+
+<h4>Quiz Status</h4>
+
+<p> Checked for Wording: Not Yet.</p>
+
+<p> Checked for Correct Answer: Not Yet.</p>
+
+<p> Checked for Comprehensive Chapter Coverage: Not Yet.</p>
+
+</div>
+
+::PS::
+
+<p>Don't forget to click the submit button below when you are done.</p>
+
+################################################################
+
+::START::
+
+:N: Q04.11
+:Q: A project has cash flows of -$5500, and ${$x} per year for each of 10
+    years thereafter.  If you are facing a cost of capital of 10%, what does
+    IRR analysis say about accepting this project?
+:I: $x= rseq(900, 1200, 50); $ANS=1
+:C: Yes, Invest|No, Do not Invest
+:L: Using IRR spreadsheet analysis, you find that the IRR is greater than 10%.  You should accept the project.
+:T: 3
+:E: 
+
+
+:N: Q04.12
+:Q: A project has cash flows of -$5500, and ${$x} per year for each of 10 years thereafter. 
+    If you are facing a cost of capital of 10%, what does IRR analysis suggest about 
+    accepting this project?
+:I: $x= rseq(600, 800, 50); $ANS=2
+:C: Yes, Invest|No, Do not Invest
+:L: Using IRR spreadsheet analysis, you find that IRR is less than 10%,
+    suggesting you would like to reject the project.
+:T: 3
+:E: 
+
+
+:N: Q04.13
+:Q: A project has cash flows of -$5500, and ${$x} per year for each of 10
+    years thereafter.  If you are facing a cost of capital of 10%, what does
+    NPV analysis say about accepting this project?
+:I: $x= rseq(600, 800, 50); $ANS=2
+:C: Yes, Invest|No, Do not Invest
+:L: Using spreadsheets, you find that the project has negative NPV and you
+    would like to reject the project.
+:T: 3
+:E: 
+
+
+:N: Q04.14
+:Q: A project has cash flows of -$5500, and ${$x} per year for each of 10 years thereafter. 
+    If you are facing a cost of capital of 10%, what does NPV analysis say about accepting this project?
+:I: $x= rseq(900, 1200, 50);$ANS=1
+:C: Yes, Invest|No, Do not Invest
+:L: Using spreadsheets, you find that the project has positive NPV and you would like to accept the project. 
+:T: 3
+:E: 
+
+
+
+:N: Q04.15
+:Q: A proposed project has an initial cash flow of -$10000, followed by
+    $1000, $2000, $3000, $4000, and $5000 in subsequent years.  This project
+    was rejected by your company's management.  However, a similar project
+    with an initial cash flow of -$10000 was accepted with consecutive cash
+    flows of $5000, $4000, $3000, $2000, and $1000.  Assuming the management
+    used solely IRR analysis to make a decision, what can you deduce about
+    this company's cost of capital based on these two project decisions?
+    (Report your answer as the positive difference between the maximum and
+    minimum possible costs of capital to 3 decimal points, not percent)
+:I: $ANS=0.083
+:L: By using IRR analysis with spreadsheets, you can find that the company rejected a proposal 
+    that gave an IRR of 12.0%, but accepted the other proposal which had an IRR of 20.3%. 
+    Thus, you can infer that the company's cost of capital, r, is such that 12.0% < r < 20.3%. 
+    Thus, report 20.3% - 12% = 8.3% = 0.083
+:T: 4
+:E: 
+
+
+:N: Q04.16
+:Q: Project A has cash flows of -$80, $50, and $50.  Project B has cash
+    flows of -${$c1}, ${$c2}, and ${$c2}.  What do IRR and NPV analyses say
+    about each project?  Which project is more desirable?
+:I: $x= rseq(6, 30,3); $c1=80*$x;  $c2=50*$x; $ANS=2
+:C: Project A is more desirable | Project B is more desirable | They are both
+    equally desirable
+:L: IRR analysis will state that both projects are equivalent.  Because the
+    cash flows in project B are exactly {$x} times those in project A, IRR
+    will imply the projects have equal benefit.  However, NPV analysis will
+    imply that the NPV of Project B is exactly {$x} times larger, because
+    every cash flow through time is {$x} times greater.  Thus, you should
+    defer to the judgment of NPV and conclude that Project B is strictly
+    better than Project A.
+:T: 4
+:E: 
+
+
+
+:N: Q04.17
+:Q: Consider a project with an initial -${$x} cash flow followed by consecutive yearly cash flows of $10, $5, $3, $5, and $10. Compute the profitability index based on a 10%
+    cost of capital and compute the payback time.  Report as your answer the
+    ratio (Profitability Index / Payback Time in years).
+:I: $x= rseq(19, 23, 0.4); $pi= 25.10/$x; $ANS=$pi/4
+:L: Payback time:  Payback = 4 years. PV(future inflows only) = $25.10. Hence,  P.I. = $25.10/${$x} = {$pi}.
+    Thus, your answer should be {$ANS}.
+:T: 4
+:E: 
+
+
+
+:N: Q04.18
+:Q: Consider a project with an initial cash flow of -$100, followed by annual cash flows of $150, and $25.
+    You overhear a colleague discussing the projects profitability index,
+    stating it was {$x}.  The current cost of capital, however, completely
+    slips your mind.  Given your observation and knowledge of the project,
+    infer the current cost of capital. (report cost of capital as a decimal. i.e. 10% cost of capital = .1)
+:I: $x= rseq(0.5, 0.75, 0.05); $eq1=100*$x; $ANS= ( (150 + (22500+100*$eq1)^0.5 )/(2*$eq1)) -1
+:L: You can solve P.I. = (PV of future inflows)/$100. Thus, PV of future
+    inflows = P.I.*$100=${$eq1}.  Discounting the future inflows yields
+    ${$eq1} = $150/(1+r) + 25/(1+r)^2.  Solving for cost of capital,
+    r={$ANS}.  Note that you can use the IRR function in a spreadsheet to
+    solve for r.
+:T: 5
+:E: 
+
+
+::END::
+

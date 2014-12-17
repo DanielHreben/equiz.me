@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title> Release Plan </title>
+
+<link href="/static/main.css" media="screen" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+<header>
+  <table class="hdr">
+    <tr>
+      <td> <span class='gravatar'> <img src='/static/equizavatar.jpg' alt='Gravatar' height='80' width='80' /> </span> &nbsp;&nbsp; </td>
+      <td> <span class="hdruid"> Anyone </span>
+          <br />&nbsp;<br />
+          <span class="hdrfid"> Release Plan </span> </td>
+    </tr>
+    <tr> <td colspan="2"> <span class="gravatarbottom">Equiz.Me</span>
+           <br />&nbsp;</td>
+    </tr>
+  </table>
+</header>
+
+<hr />
+
+(Read <a href="/static/legal.html">legal</a> usage conditions.)
+
+<hr />
+
+<h2>Latest Completed Changes</h2>
+
+<!--
+<h3>Sep 2012:</h3>
+
+<table>
+<tr> <td>#62</td>	<td> move to more secure https </td> </tr>
+<tr> <td>#66</td>	<td> switched internal passwords from md5 to sha2 for better security if ever broken in </td> </tr>
+<tr> <td>#72</td>	<td> record action when instructor completes testbank or quiz for testing </td> </tr>
+<tr> <td>#15</td>	<td> Instructor option to email/store daily results; and mail student results (not yet configured) </td> </tr>
+<tr> <td>#65</td>	<td> log all login attempts, give better description of failures in log, and reasons for failures </td> </tr>
+<tr> <td>#71</td>	<td> the registration email should spit back registration info  </td> </tr>
+<tr> <td>#52</td>	<td> In student's home, mark scores of finished quizzes in quiz list </td> </tr>
+<tr> <td>#90</td>	<td> "Not Active" message needs to be more informative (why not active?) </td> </tr>
+<tr> <td>#74</td>	<td> student needs to be able to view their full past attempts </td> </tr>
+<tr> <td>#96</td>	<td> Better error handling for EQ::Controller::Students::show    </td> </tr>
+<tr> <td>#41</td>	<td> UM: Break out Password Settings from other settings </td> </tr>
+<tr> <td>#83</td>	<td> broken insert new lines in "Edit" fixed </td> </tr>
+</table>
+-->
+
+<h3>April 2013:</h3>
+
+<table>
+<tr> <td> </td> <td> Quiz (Question) Designer, v1 </td> </tr>
+<tr> <td> </td> <td> Students Can Look Up Detailed Past Quiz Answers </td> </tr>
+<tr> <td> </td> <td> Comprehensive Search Feature (e.g., search for NPV or Welch) </td> </tr>
+<tr> <td> </td> <td> https instead of http now</td> </tr>
+<tr> <td> </td> <td> broken out the password setting from other settings.</td> </tr>
+<tr> <td> </td> <td> intelligent default for key return (enter): do not submit quiz by default, but do submit login info by default. </td>
+<tr> <td> </td> <td> Search-based system to select instructors and classes. </td> </tr>
+<tr> <td> </td> <td> Drag-and-Drop into File Manager </td> </tr>
+
+</table>
+
+<hr />
+
+<p>Quick and soon: replace many links with buttons.  placeholders for new question designer.
+
+<hr />
+
+<h2>Version X: Focus = Polish, Enhancements of Existing Features</h2>
+
+<p>Planned Release: Summer 2013.
+
+<p><b>Student</b>:
+
+<ul>
+<li> Improvements in student home screen &mdash; next to each quiz, it should describe the status (taken, not taken, perfect score, not-perfect score)</li>
+<li> Reorganize "Search and Browse" into one page. </li>
+<li> Class Leaderboards.  Right now, we only have quiz leaderboards. </li>
+</ul>
+
+
+<p><b>Instructor</b>:
+<ul>
+<li> Fine-tuning Question Designer:  All header fields with pull down.  Better default startups and rendering sample questions.  Better layout---though self-enlarging is nice, too. </li>
+<li> Add place holders in quiz designer that give sample formats for each field. </li>
+<li> Better Area Organization and Collaboration among instructors with same area. There is no reason why every calculus instructor has to write their own intro calculus questions.  We already allow instructors to search by keyword to find other related questions.</li>
+<li> (Related:) Multiple default deploy directories for different subject areas.  </li>
+<li> Higher Math Support (LaTeX "on the fly").  Darn html has no math (fraction) support. </li>
+<li> Paranoid security option: allow restricting log-in to occur only from specific IP addresses or domains after email confirm. </li>
+<li> Improved management of student lists: Email reminders (to laggards) and class authentication beyond shared passwords.  Basics are already in the system.</li>
+<li> Declutter file manager view by checking and unchecking boxes (backup, deleted).
+</ul>
+
+<p><b>Both</b>:
+<ul>
+<li> Rate this question </li>
+<li> Improvements in web standards rendering </li>
+</ul>
+
+<hr />
+
+<h2>Version X+1: Focus = Integration of External Information (Essay Submissions, etc)</h2>
+
+<p><b>Instructor:</b>
+<ul>
+<li> Sort searched questions by highest ratings. </li>
+<li> Handling (integration and management) of grading of tests and exams outside the Equiz.Me system </li>
+<li> Extended Instructor Class Homepage, not just one message, for students </li>
+<li> Student uploading of essays or other files, rather than just answering quizzes. </li>
+<li> Better system to administer different classes at the same time.  (right now, accomplished through
+multiple accounts.)</li>
+<li> Self-delete account. </li>
+<li> Remove button just checks for any unmodified template files, regardless of origin.   Best to do via overlay file system --- as long as file is untouched, it remains a duplicate.</li>
+<li> Choose own color themes and look. </li>
+</ul>
+
+
+<p><b>Student:</b>
+<ul>
+<li> Improved leaderboards, rather than what it is now (just the list of students with perfect answers).</li>
+<li> Self-delete account. </li>
+</ul>
+
+
+<p><b>External</b>
+
+<ul>
+<li> Administrator interface to "freeze-and-remove" instructors.
+<li> change URLs: from www.Equiz.Me to Equiz.Me ; from www.Equiz.Me/student to student.Equiz.Me ; from www.Equiz.Me/instructor to instructor.Equiz.Me.  Ideally, it would be vanity URLs, such as welch.equiz.me .</li>
+</ul>
+
+
+<hr />
+
+
+<a target="_blank" href="/static/legal.html#instructors_show_home" >Legal</a>
+
+<hr />
+<p>April 2013</p>
+
+
+
+</body>
+</html>

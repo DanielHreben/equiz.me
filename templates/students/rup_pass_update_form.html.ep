@@ -1,0 +1,29 @@
+% layout 'student';
+% title 'set instructor password';
+
+
+<p> Instructor "<%= $instructor_id %>" password protection </p>
+
+ %= form_for students_rup_pass_update => (method => 'post') => begin
+ 	<table>
+ 		<tr>
+ 			<td>Enter password to submit quizzes: </td>
+ 			<td><input type='text' name='rup_pass' /></td>
+ 		</tr>
+ 		
+ 		<tr>
+ 			<td><label for='is_force_quiz_start' >Skip password check</label></td>
+ 			<td><input type='checkbox' id='is_force_quiz_start' name='is_force_quiz_start' value='1'/></td>
+ 		</tr>
+ 		
+		<tr>
+ 			<td></td>
+ 			<td><input type='submit' value='Submit' /></td>
+ 		</tr>
+     
+
+    </table>
+    
+ % end
+
+<!-- PAGE: students/rup_pass_update_form.html.ep  -->

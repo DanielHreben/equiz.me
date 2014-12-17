@@ -1,0 +1,30 @@
+% layout 'instructor';
+% title 'Search';
+
+<section>
+
+% if (my $text = config->{search}->{text}) {
+    <p><%== $text %></p>
+% }
+
+%= form_for 'instructors_search', method => 'POST' => begin
+<div>
+<input name="query" />
+<input type="submit" value="Search" />
+</div>
+
+%= end;
+
+% if (stash('matches')) {
+    <h2>Matches (<%= scalar @{stash('matches')} %>)</h2>
+
+    % my $count = 1;
+    % foreach my $match (@{stash('matches')}) {
+        <h3><%= $count++ %>. <%= $match->{author} %> (<%= $match->{email} %>)</h3>
+        <pre style="width=80%;color:#000;overflow:auto;background-color:#fff"><%== $match->{question} %></pre>
+    % }
+
+    <div>Only first 100 matches are shown.</div>
+% }
+
+</section>

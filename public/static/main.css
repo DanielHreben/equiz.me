@@ -1,0 +1,82 @@
+/*
+	main.css is included in all html files
+
+	the gravatar image blue is primarily 0, 118, 186, which is #0076ba
+*/
+
+input.no_answer {
+	color: red;
+}
+
+body {
+    font: 15px/50px "Lucida Grande", "Trebuchet MS", Arial, Helvetica, sans-serif;
+    color: #0076BA;
+    padding-left: 4em;
+    padding-right: 4em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    line-height:125%;
+}
+
+li { padding:1ex; }
+
+
+table.hdr span.gravatar img { border: 1px solid #5a698b; }
+table.hdr span.gravatarbottom { background-color:white; font-size:120%; }
+
+table.hdr { font-size:100%; }
+table.hdr span.hdruid { font-size:80%; }
+table.hdr span.hdrfid { font-size:300%; line-height:100% }
+
+span.green_msg { color:green; font-weight:bold; }
+span.red_msg { color:red; font-weight:bold; }
+div.green_msg { padding: 1ex; color:green; font-weight:bold; }
+div.red_msg { padding: 1ex; color:red; font-weight:bold; }
+span.req { color: red; vertical-align: super; font-size: x-small; }
+span.message { font-weight: bold; color: #880000; }
+/* 880000 is dark red */
+
+title {
+    width: 330px;
+    height: 26px;
+    color: #0076BA;
+    font: bold 11px/28px "Lucida Grande", "Trebuchet MS", Arial, Helvetica, sans-serif;
+    padding-top: 5px;
+    background: transparent url("images/bg_legend.gif") no-repeat;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+table.show_csv_table {
+	border-collapse:collapse;
+}
+
+table.show_csv_table td, table.show_csv_table th {
+	border: solid 1px gray;
+	padding: 5px;
+}
+
+
+a:link {
+    background-color: white;
+    color: #0076BA;
+}
+
+a:hover{
+    background-color: #0076BA;
+    color: white;
+}
+
+/* a:active or a:visited not used */
+
+.menubar .active {
+    background-color: #0076BA;
+    text-decoration:none;
+    color:white;
+    font-weight:bold;
+}
+
+.hidden {
+    display:none;
+}

@@ -1,0 +1,206 @@
+::EQVERSION:: 1.0 -- not used.
+
+################################################################
+::NAME::  Welch, Chapter 10
+
+::INSTRUCTOR:: -- not used
+
+::CREATED:: April 2011 by Welch Team -- not used
+
+::VERSION:: 1.0 -- not used
+
+::AREA:: Finance / Corporate Finance / Market Imperfections
+
+::SHARING:: ok
+
+::INTRODUCTION::
+
+<p><b>NEEDS EXTRA DEBUGGING</b></p>
+
+<div style="color:darkred">
+
+<h4>Quiz Status</h4>
+
+<p> Checked for Wording: Not Yet.</p>
+
+<p> Checked for Correct Answer: Not Yet.</p>
+
+<p> Checked for Comprehensive Chapter Coverage: Not Yet.</p>
+
+</div>
+
+::PS::
+
+<p>Don't forget to click the submit button below when you are done.</p>
+
+################################################################################################################################
+
+::START::
+
+
+:N: Q10.1
+
+:Q:Consider a market in which the capital gains tax is {$x}%. If you were to purchase a stock at $10 and sell it in two years for ${$y}, what would be the present value of this stock today if interest rates are expected to be a constant 5% over the next two years?
+
+:I:$x= rseq(1,8)*5; $y= rseq(10,20); $z= ($y-10)*.01*(100-$x)+10;  $ANS=$z/1.1025
+
+:L:The PV is thus ({$y}-10)*.01*(100-{$x})+10, discounted by 1/(1.05)^2 = {$ANS}
+
+:T:3
+
+:E:
+
+
+
+:N: Q10.2
+
+:Q:You have $750 to invest in a project that costs $1000. If your lending rate is {$x}% and your borrowing rate is {$y}%, what rate of return must the project have for you to want to invest? (report rate of return as a decimal. i.e. 10% rate of return should be reported as .1)
+
+:I:$x= rseq(2,8); $y= rseq(9,15); $r= (750*.01*$x+750+275)/1000-1; $IMD=750*.01*$x+750
+
+:S:$r
+
+:L:You would need to borrow $250 to invest in the project today. Thus, if the rate of project return is r, you will earn $1000*(1+r)-$250*1.1 next period. Your alternative is to simply invest your $750 at the rate {$x}%, earning ${$IMD}.  Equating 1000*(1+r)-275 = {$IMD} and solving for r gives us: r = {$r}.
+
+:T:4
+
+:E:
+
+
+
+:N: Q10.3
+
+:Q:A credit card company seeks to extract an expected rate of return of 10%. If they believe you will default with probability {$x}, paying zero back, what interest rate will they decide to charge you? (report interest rate as a decimal. i.e. 10% rate of return should be reported as .1)
+
+
+:I:$x= rseq(0.05,0.35,0.05); $r= (.1+$x)/(1-$x);
+
+:S:$r
+
+:L:The bank will solve for the appropriate interest rate by equating (1-{$x})*(r)+{$x}*(-1) = .1 Thus, (r)= (.1+{$x})/(1-{$x}} = {$r}
+
+:T:3
+
+:E:
+
+
+
+:N: Q10.4
+
+:Q:A credit card company seeks to extract an expected rate of return of 10%. If they believe you will default with probability {$x}, but you know with certainty there is no chance of default, how much is this imperfect market scenario inflating your quoted interest rate?
+
+:I:$x= rseq(0.05,0.35,0.05); $r= (.1+$x)/(1-$x); $rmp1= $r-0.1; $omx=1.0-$x; $hrmt= 100*$r-10; 
+
+:S:$rmp1
+
+:L:The bank will solve for the interest rate they believe is fair by equating {$omx}*(r)+{$x}*(-1) = .1 Thus, (r)= (.1+{$x})/{$omx} = {$r}. If they had perfect information about your credit risk as you do, however, they would be able to charge you only 10%, knowing they would earn this return with certainty. Thus the imperfect market scenario is costing you {$hrmt}% = {$rmp1} in added interest rates!
+
+:T:3
+
+:E:
+
+
+
+:N: Q10.5
+
+:Q:Risk free bonds are currently trading with an expected rate of return of 6%. A risky municipal bond will repay $1000 in full next year with probability (1-{$x}), and and nothing at all otherwise, probability {$x}. What is an appropriate promised yield on this bond?
+
+:I:$x= rseq(0.05,0.15,0.01); $ANS=1.06/(1-$x)-1;  $IMD=1000*(1-$x); $IMD2=$IMD/1.06
+
+:L:Compute the expected payoff: {$IMD}. The discounted expected payoff then is just {$IMD}/1.06 = {$IMD2}. Therefore the promised yield is simply 1000/{$IMD} - 1 = {$ANS}.
+
+:T:3
+
+:E:
+
+
+
+:N: Q10.6
+
+:Q:You purchase a house for $100000 as an investment and pay a transaction fee of {$f}% at the time of purchase. Your best alternative investment would have paid a return of 5% per year. Assume you gain no value from being able to live in the home (let's say you have a nicer one, and this one is unrentable). Assuming a 6% brokers fee when you plan to sell the home in 1 year, what must the home value appreciate to in order for this to be a better investment than your alternative?
+
+:I:$f=rseq(1,15)/10; $x=100000+1000*$f; $p=$x*(1.05/.94)
+
+:S:$p
+
+:L:The original investment is the sum of the house cost and the transaction fee, or {$x}. Your return on the home will be the sale price, p, minus 6%, or a net of .94*p. Then solve the following, after discounting the future sale price by the original cost of capital: {$x} = .94p*(1/1.05). Thus, breakeven p = {$p}
+
+:T:3
+
+:E:
+
+
+
+:N: Q10.7
+
+:Q:You earn ${$x} this year and have expenses of ${$e}. Compute your after tax income if {$pp}% of your expenses were before-tax expenses and there is only one 25% tax bracket.
+
+:I:$x= rseq(1,10)*10000; $e= $x*(rseq(1,5)/10); $p= rseq(5,9)/10; $pp = 100*$p; $t= ($x-$p*$e)*(1-.25)-(1-$p)*$e;
+
+:S:$t
+
+:L:Your before-tax net return will be ({$x}-{$p}*{$e})*(1-.25). Then subtract the remaining after-tax expenses, or (1-{$p})*{$e}. Thus your total after tax income will be ${$t}.
+
+:T:2
+
+:E:
+
+
+
+:N: Q10.8
+
+:Q:The marginal tax rates applicable to you are {$x}% on income up to 10000 and {$y}% on income above 10000. What is your average tax rate if your income is {$z} dollars?
+
+:I:$x= rseq(1,7)*5; $y= rseq(38, 50); $z= rseq(20,50)*1000; $t= 100*$x+(.01*$y)*($z-10000); $ANS=$t/$z; $xd100=$x/100; $yd100=$y/100; $rem1=$z-10000
+
+:L:Since your income is above 10000, you will have to pay {$xd100}*10000 to the government on the first $10,000 of earnings. Then, on the remaining ${$rem1}, you will pay ${$yd100}*{$rem1}. Thus, your total tax burden is the sum of these two, or {$t}. Therefore, your average tax rate is simply {$t}/{$z} = {$ANS}.
+
+:T:3
+
+:E:
+
+
+
+:N: Q10.9
+
+:Q:If your current marginal tax rate is {$x}%, what would your after tax earnings rate be if you had a before tax earnings on interest of {$r}%? Assume your marginal tax rate will be constant. 
+
+:I:$x= rseq(15,30); $r= rseq(5,15);  $ANS=(1-.01*$x)*(.01*$r); $hmx=100-$x;
+
+:L:Your after tax rate of return is simply (1-{$x}%)*({$r}%) = {({$hmx}%)*({$r}%)} or {$ANS}.
+
+:T:2
+
+:E:
+
+
+
+:N: Q10.10
+
+:Q:Comparable corporate bonds and tax exempt municipal bonds are trading at significantly different prices. If a corporate bond with a particular maturity and risk rating is trading at a yield of {$c}%, and a tax-exempt muni bond is trading at a yield of {$cmof}% with the same maturity and risk rating, what can you infer is the marginal investor's tax rate?
+
+:I:$c= rseq(50,70)/100; $cmof=$c-1.5/100; $cmofc=$cmof/$c; $ANS=1-$cmofc
+
+:L:Observe that the tax exempt bond is trading at a fraction {$cmof}/{$c} of the comparable corporate bond. Thus, the complement of this fraction will give us the marginal investor's tax rate: Tax rate = 1 - {$cmofc} = {$ANS}
+
+:T:3
+
+:E:
+
+
+
+:N: Q10.11
+
+:Q:You are performing a NPV analysis on a project to determine if your company should invest. The project will cost $100000 and produce a return of $150000 in two years. Your company's marginal capital gains tax is {$t}%. If you don't choose to invest in this project, the money will be invested in U.S. Treasury bonds at an 8% rate of return. What is the NPV of this investment opportunity and would you choose to take the project? (Report the NPV as your answer response)
+
+:I:$t= rseq(10,30); $r= 1.08*(1-$tp)-1; $npv= -100000 + (150000-$tp*500)/(1.1025); $tp50000=$tp*50000; $tp = $t/100
+
+:S:$npv
+
+:L:First figure out the opportunity cost of capital if you were to just invest in treasuries. This is simply 1.08*(1-{$tp})-1 = {$r}. Now, you will need to pay taxes on the $50000 profit the company will make in 2 years, or {$tp50000}. Thus, discounting that future cash flow by (1/(1.05)^2) implies NPV = -100000 + (150000-{$tp}*500}/(1.1025) = {$npv}.  You find that this is positive, and thus you would like to invest in the project!
+
+:T:4
+
+:E:
+
+::END::

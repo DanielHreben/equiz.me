@@ -1,0 +1,8 @@
+% title um_config->{profile_labels}->{page_title};
+
+<table>
+<tr><td>IP</td><td>Time</td></tr>
+% foreach my $log (@$iplog) {
+<tr><td><%= $log->{ip} %></td><td><%= $log->{time} %></td></tr>
+% }
+</table>

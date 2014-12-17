@@ -1,0 +1,35 @@
+% layout layout || 'student';
+% title 'Quiz results';
+
+<section> <!-- PAGE: students/show_quiz_results.html.ep  -->
+% foreach my $r (@$results) {
+    <div class="show_quiz_answers">
+	<table>
+          <tr style="background-color:cyan"> <th>Question #:</th> <td> <%= $r->{number} %> (<%= $r->{name} %>)</td> </tr>
+	  <tr> <th> Grade: </th> <td>
+            % if ( $r->{is_correct} ) {
+                <span class='green_msg'>correct</span>
+            % } else {
+                <span class='red_msg'>incorrect</span>
+            % }
+		</td> </tr>
+    % if (!stash('no_answers')) {
+	  <tr> <th> Question: </th> <td> <%== $r->{question_text} %> </td> </tr>
+	  <tr> <th> Your answer: </th> <td><%= $r->{student_answer} %></td> </tr>
+          <tr> <th> Correct answer: </th> <td> <%= $r->{short_answer} %> &nbsp;&nbsp;
+              <small>(difference= <%= $r->{delta_answer} %>)</small></td> </tr>
+        % if ($r->{precision}) {
+          <tr> <th> Presicion: </th> <td> <%= $r->{precision} %> </td></tr>
+        % }
+          <tr> <th> Explanation: </th> <td> <%== $r->{long_answer} %> </td> </tr>
+    % }
+         </table>
+    </div>
+% }
+
+<p style="font-size:small">Note: if you used the correct formula but got an
+incorrect numerical result, first check that you did not round your
+intermediate values, but carried them through in full precision until the
+bitter end.</p>
+
+</section> <!-- PAGE: students/show_quiz_results.html.ep  -->

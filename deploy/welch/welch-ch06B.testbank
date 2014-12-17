@@ -1,0 +1,280 @@
+::EQVERSION:: 1.0 -- not used.
+
+################################################################
+::NAME::  Welch, Chapter 6.
+
+::INSTRUCTOR:: -- not used
+
+::CREATED:: April 2011 by Welch Team -- not used
+
+::VERSION:: 1.0 -- not used
+
+::AREA:: Finance / Corporate Finance / Uncertainty, Default, and Risk
+
+::SHARING:: ok
+
+::INTRODUCTION::
+
+<div style="color:darkred">
+
+<h4>Quiz Status</h4>
+
+<p> Checked for Wording: Not Yet.</p>
+
+<p> Checked for Correct Answer: Not Yet.</p>
+
+<p> Checked for Comprehensive Chapter Coverage: Not Yet.</p>
+
+</div>
+
+::PS::
+
+<p>Don't forget to click the submit button below when you are done.</p>
+
+################################################################
+
+::START::
+
+:N: Q06.10
+
+:Q: You are going to take out a one-year $15,000 loan to purchase a car.
+    The loan company believes there are three possible outcomes: a {$repay}%
+    chance that you will repay your loan in full next year, a {$run}% chance
+    you will take the car and disappear (paying nothing back), and a
+    {$stay}% chance you will not repay the loan but they will successfully
+    repossess your car and sell it for $10,000 to partially recoup their
+    loss.  If the risk-free securities are currently priced at {$rfname}%,
+    what is appropriate promised interest rate for your loan? (Report interest rate as a decimal. i.e. 10% interest rate = .1
+
+:I: $x=rseq(2,10,2); $repay=100-$x; $run=$x/4; $stay=3*$x/4; $rf=
+rseq(2,10)/100;$rfname=$rf*100; $eq1=15000*(1+$rf); $r=(
+($eq1-10000*$stay/100)/(15000*$repay/100))-1;
+
+:S: $r
+
+:L: A $15,000 investment in the risk-free asset yields
+     $15000*(1+{$rf})={$eq1}.  At a promised interest rate of r, the car
+     loan has an expected payment of {$repay}% * $15,000 * (1+r) + {$stay}%
+     * $10,000 + {$run}% * $0.  Set the two equal and solve: r={$r}.
+
+:T: 6
+
+:E:
+
+
+:N: Q06.11
+
+:Q: A bond will pay the promised amount of $2000, with probability 90%.  It
+    will pay only $1000, with probability {$x}%; and nothing at all with
+    probability {$x2}%.  The bond has a rate of return of 15%, and the
+    Treasury risk-free rate is 3%.  What is the risk premium and the default
+    premium on this bond? Report as your answer the sum of the risk premium
+    and twice the default premium. (Report as a decimal)
+
+:I: $x=rseq(2,8); $x2=10-$x; $xdec=$x/100; $x2dec=$x2/100;
+    $price=2000/1.15;$ret1=1000/$price-1; $RNR = (0.03 - ($xdec*$ret1 + $x2dec*(-1)))/0.9;
+     $DP=$RNR-0.03;$RP=0.15-$RNR; $ANS=$RP + 2*$DP
+
+:L: First, find the price of the bond.  Since the promised payment is $2000
+    and the promised rate of return is 15%, the price of the bond is
+    $2000/1.15 = ${$price}.
+    
+     With probability of {$x}% the bond return will be $1000/${$price}-1=
+    {$ret1}.  With probability of {$x2}% the bond return will be -1 (that
+    is, -100%).  If the lender were risk neutral, he would demand only a
+    default premium that will grant him the risk free return in expectation.
+    Thus, the risk neutral promised return (RNR) must satisfy
+    {$xdec}*{$ret1} + {$x2dec}*(-1) + 0.9*(RNR) = 0.03 and therefore RNR =
+    {$RNR}.  The default premium is the difference between the risk neutral
+    promised return and the risk free rate, (Default Premium) = {$RNR} -
+    0.03 = {$DP}.  The risk premium is the promised return beyond the risk
+    neutral promised return, (Risk Premium) = 0.15 - {$RNR} = {$RP}.  The
+    reported answer is {$RP} + 2*{$DP} = {$ANS}
+
+:T: 5
+
+:E:
+
+
+:N: Q06.12
+
+:Q: A toy company will be worth 1, 2, or {$x} million dollars 3 years from
+    now.  Each of the three states are equally likely, pending consumer
+    demand for its new line of toys.  What is the present value of this
+    firm, in millions, if the current cost of capital is 8% per year?
+
+:I: $x= rseq(3,5,0.5);$FV=(1+2+$x)/3; $ANS=$FV/(1.08)**3;
+
+:S: $ANS
+
+:L: Consider the expected future value of the firm in 3 years: E = ($1 + $2
+    + ${$x})/3 = ${$FV}.  Hence, PV = ${$FV} / 1.08^3 = {$ANS}.
+
+:T: 3
+
+:E:
+
+
+:N: Q06.13
+
+:Q: A new restaurant may be a booming success (15% probability), a moderate
+    success (25% probability), barely survive (30% probability), or fail
+    entirely (30%) within two years.  The restaurateur will earn payoffs of
+    ${$x}, ${$y}, $25000, or -$80000 (assume they are instantaneous payoffs,
+    in 2 years) each of these cases, respectively.  The current cost of
+    capital is 10%.  If the restaurateur wished to sell his venture to a
+    financier instead for the restaurants PV, how much would it sell for?
+
+:I: $x= rseq(100000, 250000, 25000); $y= rseq(50000, 75000, 5000)
+;$FV=0.15*$x + 0.25*$y + 0.30*25000 + 0.30*(-80000); $ANS= $FV/(1.10)**2;
+
+:S: $ANS
+
+:L: First compute the expected future payoffs for the restaurateur:(Expected
+    FV) = 0.15*${$x} + 0.25*${$y} + 0.30*$25000 + 0.30*(-$80000) = ${$FV}.
+    Computing the PV of the venture requires discounting this expected
+    future cash flow to the present: PV = ${$FV} / (1.10)^2 = ${$ANS}
+
+:T: 3
+
+:E:
+
+
+:N: Q06.14
+
+:Q: You take out a bond, promising to pay $1100 next year, to finance a new
+     venture with the following probabilities of success and payoffs after 1
+     year: With prob {$y}%, you get ${$x}.  With prob 25%, you get $2000.
+     With prob {$y2}%, you get $4500.  If the bond is currently priced at
+     $950, what is the quoted interest rate? What is the expected rate of
+     return on this bond?  Report as your answer the sum of these two values
+     (as a decimal).
+    
+
+:I: $x= rseq(0, 800, 100); $y= pr(5, 10, 15); $y2= 100-25-$y;
+    $ydec=$y/100; $y2dec=$y2/100; $prom=1100/950-1;
+    $eq1=(0.25+$y2dec)*1100+$ydec*$x; $eq2= $eq1/950-1;
+     $ANS=$prom+$eq2
+
+:S: $ANS
+
+:L: The quoted interest rate is simply the promised rate divided by the
+    stated price.  Quoted rate = $1100/$950-1 = {$prom}.  The expected rate
+    of return is the expected payment divided by the quoted price.  Note
+    that you will be able to pay the promised amount of $1100 if your
+    venture outcome is $2000 or $4500.  However, with probability of {$y}%
+    you will only be able to repay ${$x}.  Therefore, the expected payment
+    on the bond is (0.25+{$y2dec})*$1100 + {$ydec}*${$x}=${$eq1} .  The
+    expected rate of return is thus, (${$eq1} / $950) - 1 = {$eq2}.  Thus,
+    the correct value to report is {$prom}+{$eq2} = {$ANS}
+
+:T: 6
+
+:E:
+
+
+:N: Q06.15
+
+:Q: Your food service business has applied to a local bank for a ${$x}
+    million loan.  There is a 30% chance that the Olympics will come to your
+    city next year, increasing your net profits from $2.5 million (if no
+    Olympics, 70%) to $5.5 million.  If the bank can make risk free loans at
+    6%, what interest rate do you expect the bank to quote you? (Report interest rate as a decimal. i.e. 10% interest rate = .1)
+
+:I: $x= rseq(2.8,3.3,0.1); $a=0.3*$x; $b=$a+1.75; $eq1=$x*1.06;
+    $ANS=($eq1-$b)/$a
+
+:L: If there is no Olympics, you will have to repay all your net profits of
+    $2.5 million to the bank.  Thus, the expected repayment of the loan (in
+    millions) is 0.7 * $2.5 + 0.3 * ${$x} * (1+r) = ${$b} + {$a}*r.
+    Equating this to the possible risk-free investment of the bank, {$x}*(
+    1.06) = ${$eq1}.  Solving for r, r = (${$eq1} - ${$b})/{$a} = {$ANS}.
+
+:T: 4
+
+:E:
+
+
+:N: Q06.16
+
+:Q: A corporate bond is promising to pay a 13% return, while the risk free
+    securities currently trade at just {$x}%.  Maintaining assumptions of
+    risk-neutrality, what portion of the bond return is attributable to
+    default and liquidity premiums? (Report as a decimal)
+
+:I: $x= rseq(3, 10, 0.5);$xdec=$x/100; $ANS=0.13-$xdec
+
+:L: The default and liquidity premiums account for the difference 0.13 -
+{$xdec} = {$ANS}.
+
+:T: 2
+
+:E:
+
+
+:N: Q06.17
+
+:Q: A new restaurant may be a booming success (15% probability), a moderate
+    success (25% probability), barely survive (30% probability), or fail
+    entirely (30%) within two years.  The restaurateur will earn payoffs of
+    ${$x2}, ${$x}, $25000, or -$80000.  What is the expected payoff and
+    variance of these payoffs to the proprietor? Report just the variance.
+    
+
+:I: $x= rseq(5,9)*10000; $x2=2*$x; $M=0.15*$x2+0.25*$x+0.30*25000+0.30*(-80000);
+     $ANS=(0.15*($x2-$M)**2) + (0.25*($x-$M)**2)+(0.3*(25000-$M)**2) + (0.3*(-80000-$M)**2)
+
+:L: The expected payoff is 0.15*${$x2} + 0.25*${$x} + 0.30*$25000 +
+    0.30*(-$80000) = ${$M}.  Variance = 0.15*(${$x2}-${$M})^2 +
+    0.25*(${$x}-${$M})^2 + 0.3*($25000-${$M})^2 + 0.3*((-$80000)-${$M})^2 = {$ANS}
+
+:T: 4
+
+:E:
+
+
+:N: Q06.18
+
+:Q: A business, seeking a loan of $1.75 million, is facing an equal
+    probability of stagnation or rapid growth next year, earning either $2
+    million or $4 million in net income, respectively.  If the current risk
+    free interest rate is {$x}%, what promised interest rate must this
+    business promise a lender to obtain the loan?
+
+:I: $x= rseq(2,10,0.5); $xdec=$x/100; $eq1=1.75*(1+$xdec); $ANS=$x/100
+
+:L: This is essentially equivalent to a risk free loan.  The business can
+    always pay back the $1.75*(1+{$xdec}) = ${$eq1} millions, so the bank
+    can offer the risk free rate of {$xdec}.  In other words, the promised
+    return is the same as the expected return.
+
+:T: 2
+
+:E:
+
+
+:N: Q06.19
+
+:Q: A business, seeking a loan of $1.75 million, is facing an equal
+    probability of stagnation or rapid growth next year, earning either $2
+    million or $4 million in net income, respectively.  If the current risk
+    free interest rate is {$x}%, what promised interest rate must this
+    business promise a lender to obtain the loan? (Report interest rate as a decimal. i.e. 
+10% interest rate = .1)
+:I: $x= rseq(15, 20, 0.5); $xdec=$x/100; $eq1=1.75*(1+$xdec);
+$ANS=($eq1-1.875)/0.875;
+
+:L: Half the time, the company will only be able to afford to pay $2 million
+    of the promised payment, and the other half, can pay up to 4M.  Thus,
+    the expected return for the bank under promised rate r is 0.5*$2 +
+    0.5*$1.75*(1+r) = $1.875 + $0.875*r.  This needs to be set equal to the
+    risk free return that the lender can obtain, $1.75*(1+{$xdec})= ${$eq1}.
+    Solve for appropriate promised rate, r : $1.875 + $0.875*r =${$eq1}
+    yields r = {$ANS}.
+
+:T: 5
+
+:E:
+
+
+::END::

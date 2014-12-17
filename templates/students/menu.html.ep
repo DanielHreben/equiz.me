@@ -1,0 +1,66 @@
+
+<header><!-- PAGE: students/menu.html.ep  -->
+  <table class="hdr">
+    <tr>
+      <td> <span class='gravatar'> <%= gravatar( user_data->{email} ) %> </span> &nbsp;&nbsp; </td>
+      <td> <span class="hdruid"><%= user_data->{user_id} %></span>
+      % if (my $quiz_name = stash('quiz_name')) {
+      <h1 class="quizname"><%== $quiz_name %></h1>
+      % }
+          <br />&nbsp;<br />
+          <span class="hdrfid"><%= title %> </span> </td>
+    </tr>
+    <tr> <td colspan="2"> <span class="gravatarbottom">Equiz.Me</span>
+           <br />&nbsp;</td>
+    </tr>
+  </table>
+
+<nav>
+
+<table class="menubar">
+<tr> 
+
+<th> <form action="<%= url_for 'students_show_home' %>"> <input type="submit" value="home" <%== qq{class="active"} if current_route() eq 'students_show_home' %> /> </form> </th>
+<th> <form action="<%= url_for 'students_show_results' %>"> <input type="submit" value="past results" <%== qq{class="active"} if current_route() eq 'students_show_results' %> /> </form> </th>
+<th> <form action="<%= url_for 'students_browse' %>"> <input type="submit" value="browse/search" <%== qq{class="active"} if current_route() eq 'students_browse' %>/> </form> </th>
+<th> <form action="<%= url_for 'students_search' %>"> <input type="submit" value="search/browse"  <%== qq{class="active"} if current_route() eq 'students_search' %> /> </form> </th>
+% my @settings_routes = (qw/user_update_form user_iplog user_update_password_form/);
+<th> <form action="<%= url_for 'user_update_form' %>"> <input type="submit" value="settings" <%== qq{class="active"} if grep {$_ eq current_route() } @settings_routes %> /> </form> </th>
+
+    % if ( current_route() ) {
+<th> <form action="/static/help.html#<%= current_route %>" > <input type="submit" value="help+faq" <%== qq{class="active"} if current_route() eq 'help_faq' %> /></form> </th>
+    % }
+
+<th> <form action="<%= url_for 'auth_delete' %>"> <input type="submit" value="logout" /> </form> </th>
+
+<!--
+<div class="menubar">
+<tr>
+<th>
+<a <%== qq{class="active"} if current_route() eq 'students_show_home' %> href="<%= url_for 'students_show_home' %>">my home</a> </th>
+<th>|
+<a <%== qq{class="active"} if current_route() eq 'students_show_results' %> href="<%= url_for('students_show_results') %>">my past results</a> </th>
+<th>|
+<a <%== qq{class="active"} if current_route() eq 'students_browse' %>href="<%= url_for 'students_browse', user_id => session('user_id') %>">browse quizzes</a> </th>
+<th>|
+<a <%== qq{class="active"} if current_route() eq 'students_search' %>href="<%= url_for 'students_search', user_id => session('user_id') %>">search</a> </th>
+<th>|
+<a <%== qq{class="active"} if current_route() eq 'user_update_form' %> href="<%= url_for 'user_update_form' %>">my account settings</a> </th>
+<th>|</th>
+
+<th>|
+< <a href="<%= url_for('students_show_instructors') %>">(browse)</a>
+|
+<a href='<%= url_for "auth_delete" %>'>logout</a> </th>
+</tr>
+</div>
+-->
+
+</tr>
+</table>
+
+
+</nav>
+
+</header><!-- PAGE: students/menu.html.ep  -->
+

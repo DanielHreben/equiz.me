@@ -1,0 +1,255 @@
+::EQVERSION:: 1.0 -- not used.
+
+################################################################
+::NAME::  Welch, Chapter 5.
+
+::INSTRUCTOR:: -- not used
+
+::CREATED:: April 2011 by Welch Team -- not used
+
+::VERSION:: 1.0 -- not used
+
+::AREA:: Finance / Corporate Finance / Time-Varying Rates of Return
+
+::SHARING:: ok
+
+::INTRODUCTION::
+
+<div style="color:darkred">
+
+<h4>Quiz Status</h4>
+
+<p> Checked for Wording: Not Yet.</p>
+
+<p> Checked for Correct Answer: Not Yet.</p>
+
+<p> Checked for Comprehensive Chapter Coverage: Not Yet.</p>
+
+</div>
+
+::PS::
+
+<p>Don't forget to click the submit button below when you are done.</p>
+
+################################################################################################################################
+
+::START::
+
+
+:N: Q05.10
+
+:Q: A 10-year zero coupon bond with a $1000 face value has an interest rate
+    of {$x}% per year. What is the change in the bonds value if the interest
+    rate rises 0.1% (10 basis points).
+
+:I: $x= rseq(2, 6, 0.5); $xdec=$x/100; $ANS= -(1000/(1+$xdec)^10) +
+(1000/(1+$xdec+0.001)^10);
+
+:L: We compare the present value of the bond under both interest rates, and
+subtract these values: Change in value = $1000/(1+{$xdec}+0.001)^10 - $1000/(1+{$xdec})^10 = ${$ANS}
+
+:T: 3
+
+:E:
+
+
+:N: Q05.11
+
+:Q: You will receive cash flows of $50 next year from a perpetuity. The
+    perpetuity is indexed to inflation, 1.5%, such that payments grow at
+    1.5% faster than inflation. If the interest rate is {$x}% per year, what
+    is the PV of the perpetuity?
+
+:I: $x= rseq(3, 10); $xdec=$x/100; $ANS= 50/($xdec-.03)
+
+:L: Note that this is a growing perpetuity. First obtain the nominal growth
+    rate, (nominal growth) = (inflation)+(perpetuity index) = 0.015+0.015 =
+    0.03. Now, the PV = $50/({$xdec}-0.03) = ${$ANS}
+
+:T: 2
+
+:E:
+
+
+:N: Q05.12
+
+:Q: A 30-year bond has an annualized rate of return of 5%. Assuming
+    inflation remains at {$x}%, what would be the real rate of return over
+    30 years? (Report rate of return as a decimal. i.e. 10% = .1)                
+
+:I: $x= rseq(1, 4.5, 0.5);
+    $xdec=$x/100; $gnom=(1+0.05)/(1+$xdec);
+    $ANS=$gnom**30 - 1;
+
+:L: The gross real rate of return over one year is
+    (1+0.05)/(1+{$xdec})={$gnom}. Over 30 years, the real rate of return is
+    {$gnom}^30 - 1 = {$ANS}
+
+:T: 2
+
+:E:
+
+
+:N: Q05.13
+
+:Q: A perpetuity will pay cash flows of $10,000, in real dollars, every year
+    indefinitely starting next year. If the prevailing nominal interest rate
+    is {$x}%, and inflation rate is 2.5% forever, what is the PV of
+    this perpetuity?
+
+:I: $x=rseq(4, 10,0.5); $xdec=$x/100; $rror=(1+$xdec)/(1.025) - 1 ; $pv= 10000/(1 + $rror);
+
+:S: $pv
+
+:L: The perpetuity will pay $10000 next year, increasing by 2.5% per year
+    forever in order to keep pace with inflation (so it is always worth
+    $10000 in real dollars). Convert to real rate of return. Real Rate of Return = (1+{$x}%)/(1+2.5%) - 1. So, PV = $10000/(1 + {$ror}) = ${$pv}
+
+:T: 2
+
+:E:
+
+
+:N: Q05.14
+
+:Q: 1-year, 2-year, and 3-year annualized rates of return are 2.5%, 3.5%,
+    and {$x}%, respectively. Compute the implied interest rate from year 2
+    to year 3 (i.e. r2,3). (Report the interest rate as a decimal. i.e. 10% interest rate = .1)
+
+:I: $x=rseq(3.5, 5, 0.1); $xdec=$x/100; $ANS= (1+$xdec)^3/(1+0.035)^2-1;
+
+:L: The implied return from year 2 to year 3 (r2,3) is (1+r0,3) / (1+r0,2)-1
+= (1+{$xdec})^3/(1+0.035)^2-1 = {$ANS}
+
+:T: 4
+
+:E:
+
+
+:N: Q05.15
+
+:Q: 1-year, 2-year, 3-year, and 4-year annualized rates of return are 3%,
+    2.5%, 2% and {$x}%, respectively. Compute the implied interest rate from
+    year 2 to year 4 (i.e. r2,4). (Report the interest rate as a decimal. i.e. 10% interest rate = .1)
+
+:I: $x= rseq(1, 2,0.1); $xdec=$x/100; $ANS= (1+$xdec)^4/(1+0.025)^2-1;
+
+:L: The implied return from year 2 to year 4 (r2,4) is (1+r0,4) / (1+r0,2)-1
+= (1+{$xdec})^4/(1+0.025)^2-1 = {$ANS}
+
+:T: 5
+
+:E:
+
+
+:N: Q05.16 (Appendix Ch. 5)
+
+:Q: A 4 year coupon bond pays ${$x} in each of the first 3 years, then
+    ${$xfinal} which includes the $5000 principle in year 4. What is the
+    plain duration of this bond?
+
+:I: $x=rseq(500, 1000, 100);$xfinal=5000+$x; $ANS= ($x*1 + $x*2 + $x*3 +
+($xfinal)*4)/(5000 + 4*$x);
+
+:L: Plain Duration = ({$x}*1 + {$x}*2 + {$x}*3 + {$xfinal}*4) /
+(3*{$x}+{$xfinal}) = {$ANS}
+
+:T: 3
+
+:E:
+
+
+:N: Q05.17 (Appendix Ch. 5)
+
+:Q: A 4 year coupon bond pays ${$x} in each of the first 3 years, then
+    ${$xfinal} which includes the $5000 principle in year 4. What is the
+    Macaulay duration of this bond if the prevailing interest rate is 5%?
+
+:I: $x=rseq(500, 1000, 100);$xfinal=5000+$x; $ANS= (($x/1.05)*1 +
+($x/(1.05**2))*2 + ($x/(1.05**3))*3 + ((5000+$x)/(1.05**4))*4)/(($x/1.05)+
+($x/(1.05**2))+ ($x/(1.05**3)) + ((5000+$x)/(1.05**4)));
+
+:L: Macaulay Duration = ( ({$x}/1.05^1)*1 + ({$x}/1.05^2)*2 +
+({$x}/1.05^3)*3 + ({$xfinal}/1.05^4)*4 ) / ( ({$x}/1.05^1) + ({$x}/1.05^2) +
+({$x}/1.05^3) + ({$xfinal}/1.05^4) ) = {$ANS}
+
+:T: 5
+
+:E:
+
+
+:N: Q05.18 (Appendix Ch. 5)
+
+:Q: A 10-year bond costs $1000 today, paying ${$x} semiannual coupons, and
+    returning $1000 in addition to the final coupon at the end of year 10.
+    If the yield curve is a flat 0%, what is the plain duration of this
+    bond, and how does this differ from the Macaulay duration?
+
+:I: $x= rseq(25,100,25); $ANS= (105*$x+10000)/(20*$x+1000);
+
+:L: If the yield curve is flat, then the PV of each payment is no different
+    from its nominal value. In other words, the plain duration is equal to
+    the Macaulay duration. So, Plain Duration = Macaulay Duration= ({$x}*0.5
+    + {$x}*1 +{$x}*1.5 + {$x}*2 +...+ {$x}*9 + {$x}*9.5 + (1000+{$x})*10) /
+    (20*{$x}+1000) = ((10.5*10)*{$x}+1000*10)/ (20*{$x}+1000) = {$ANS}
+
+:T: 5
+
+:E:
+
+
+:N: Q05.19 (Appendix Ch. 5)
+
+:Q: If a banks simple interest rate quote is {$x}% per annum, what would the
+equivalent continuously compounded interest rate? (Report the interest rate as a decimal. i.e. 10% interest rate = .1)
+
+:I: $x=rseq(1, 25,1);$xdec=$x/100; $ANS= ln(1+$xdec);
+
+:L: (continuously compounded return) = ln(1 + (simple return)) =
+ln(1+{$xdec}) = {$ANS}
+
+:T: 2
+
+:E:
+
+
+:N: Q05.20 (Appendix Ch. 5)
+
+
+:Q: A friend will lend you money at a continuously compounded rate of {$x}%
+    per annum. You would prefer to read this as a simple rate, however.
+    Compute the correct simple interest rate for this loan.
+
+:I: $x= rseq(1, 25, 1);$xdec=$x/100; $ANS=exp($xdec)-1
+
+:L: (simple return)= exp^(CC return)-1 = exp^({$xdec})-1 = {$ANS}
+
+:T: 2
+
+:E:
+
+
+:N: Q05.21
+
+:Q: A 5-year bond costs ${$x} today. It will pay $250 interest at the end of
+    the first year, $500 after 2, $750 after 3, and $1000 after 4, and
+    ${$xfinal} at the end of year 5. If the yield curve is flat at 6%, what
+    is the Macaulay duration of this bond?
+
+:I: $x= rseq(2000, 6000, 500); $xfinal=1250+$x; $ANS= ((250/1.06)*1 +
+(500/(1.06**2))*2 + (750/(1.06**3))*3 + (1000/(1.06**4))*4 +
+((1250+$x)/(1.06**5))*5)/((250/1.06) + (500/(1.06**2)) + (750/(1.06**3)) +
+(1000/(1.06**4)) + ((1250+$x)/(1.06**5)));
+
+:L: [ (250/1.06)*1 + (500/1.06^2)*2 + (750/1.06^3)*3 + (1000/1.06^4)*4 +
+({$xfinal}/1.06^5)*5 ] / [ (250/1.06) + (500/1.06^2) + (750/1.06^3) +
+(1000/1.06^4) + ({$xfinal}/1.06^5) ] = {$ANS}
+
+:T: 5
+
+:E:
+
+ 
+
+::END::
+

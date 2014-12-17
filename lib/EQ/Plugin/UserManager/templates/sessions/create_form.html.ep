@@ -1,0 +1,54 @@
+% title 'Login';
+
+<%== um_config->{login_labels}->{title} %> <br />
+
+<%= form_for auth_create => (method => 'post') => begin %>
+
+<%= include 'um_msg' %>
+
+<div class='fieldset'>
+    <table class='form'>
+        <tr>
+            <!-- <td class='fieldname'><%= schema_for_field('user_id')->{label} %></td>  //TODO use this -->
+            <td class='fieldname'><%== um_config->{login_labels}->{user_id} %></td>
+
+            <td><input size="45" type='text' name='user_id' value="<%= flash 'user_id' %>" />
+            
+            % if (my $error = flash("um_error_user_id")) {
+                <span style='color: red; font-size: 0.8em'>
+                    <%= $error  %>
+                </span>
+            % }
+            </td>
+        </tr>
+
+        <tr>
+            <!-- <td class='fieldname'><%= schema_for_field('password')->{label} %></td>  //TODO use this -->
+            <td class='fieldname'><%== um_config->{login_labels}->{password} %></td>
+
+            <td><input size="45" type='password' name='password' value="<%= flash 'password' %>" />
+            % if (my $error = flash("um_error_password")) {
+                <span style='color: red; font-size: 0.8em'>
+                    <%= $error  %>
+                </span>
+            % }
+            </td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td style='padding-top: 7px;'><button type='submit' ><%== um_config->{login_labels}->{submit} %></button></td>
+
+        </tr>
+        <tr>
+            <td></td>
+            <td style='font-size: 0.8em'>
+                <a href='<%= url_for "user_create_form" %>'>Registration</a> |
+                <a href='<%= url_for "user_remind_password_form" %>'>Remind password</a>
+            </td>
+        </tr>
+        
+    </table>
+
+</div>
+<% end %>

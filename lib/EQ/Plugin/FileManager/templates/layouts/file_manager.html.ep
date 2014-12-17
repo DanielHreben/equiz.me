@@ -1,0 +1,19 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+<title><%= title %></title>
+   
+</head>
+
+  <body>
+    <hr />
+
+    <p>(if you want to load the pre-prepared Welch quizzes into your directory, go to the bottom and click on 'copy files into my directory', then select the Welch items.</p>
+
+    <h1> <%= title %> </h1>
+    <hr />
+    <%= content %>
+   <hr />
+ </body>
+</html>

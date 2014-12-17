@@ -1,0 +1,190 @@
+::EQVERSION:: 1.0 -- not used.
+
+################################################################
+::NAME::  Welch, Chapter 11
+
+::INSTRUCTOR:: -- not used
+
+::CREATED:: April 2011 by Welch Team -- not used
+
+::VERSION:: 1.0 -- not used
+
+::AREA:: Finance / Corporate Finance / Efficient Markets and Behavioral Finance
+
+::SHARING:: ok
+
+::INTRODUCTION::
+
+<p><b>NEEDS EXTRA DEBUGGING</b></p>
+
+<div style="color:darkred">
+
+<h4>Quiz Status</h4>
+
+<p> Checked for Wording: Not Yet.</p>
+
+<p> Checked for Correct Answer: Not Yet.</p>
+
+<p> Checked for Comprehensive Chapter Coverage: Not Yet.</p>
+
+</div>
+
+::PS::
+
+<p>Don't forget to click the submit button below when you are done.</p>
+
+################################################################################################################################
+
+::START::
+
+:N: Q11.1
+
+:Q:Assume an efficient market. Consider stock ABC which is currently priced at ${$x}. If the market expects stock ABC to trade at ${$rtx} next year, what can you conclude is the market expected rate of return? (Report rate of return as a decimal. i.e. 10% rate of return = .1)
+
+:I:$x= rseq(10,100); $r= rseq(1.01,1.10,0.01); $rm1= $r-1; $rtx=$r*$x
+
+:S:$rm1
+
+:L:The market must expect a rate of return, r, such that (1+r)*${$x}=${$rtx}. Solving this equation for the correct r results in r={$rm1}
+
+:T:2
+
+:E:
+
+
+
+:N: Q11.2
+
+:Q:Assuming an efficient market, if the market expects stock FGH to trading at ${$x} and expects a {$r}% rate of return on FGH over the next year, what must the efficient price for FGH be today?
+
+:I:$x= rseq(10,100); $r= rseq(1.01,1.10,0.01); $xdr=$x/$r
+
+:S:$xdr
+
+:L:The market must expect a price today, p, such that {$r}*$p=${$x}. Solving for p, p = ${$xdr}.
+
+:T:2
+
+:E:
+
+
+
+:N: Q11.3
+
+:Q:You have found a trading strategy which allows you to earn {$b} basis points with certainty every day.  Assuming 255 trading days, what would your yearly rate of return be if you could implement this strategy perfectly?
+
+:I:$b= rseq(1,30); $ANS= (1+$b/10000)**255;
+
+:L:A perfect signal of {$b} bps would allow you to earn a daily return of {$b}/10000. Compounding over 255 days, you would earn (1+{$b}/10000)^255 = {$ANS}.
+
+:T:3
+
+:E:
+
+
+
+:N: Q11.4
+
+:Q:You believe you have found a signal of {$b} basis points in your data which has {$n} bps of noise. What would your 1-day T-Statisic be for confidence you have in the signal? 
+
+:I:$b= rseq(1,25); $n= rseq(25,250); $bdn=$b/$n
+
+:S:$bdn
+
+:L:The 1 day T-statistic in this situation is the ratio of your expected signal strength to the standard deviation of the data, or T = {$b}/{$n} = {$bdn}. This is far too low to conclude with great certainty you have a good signal. 
+
+:T:3
+
+:E:
+
+
+
+:N: Q11.5
+
+:Q:You believe you have found a signal of {$b} basis points in your data which has {$n} bps of noise. You would like to be about 95% sure that your signal is true (assume this requires a T-statistic of 1.96 or greater). How many days of data will you need to be this confident ?
+
+:I:$b= rseq(1,25); $n= rseq(25,250); $ANS= (1.96*$n/$b)**2; $bdn=$b/$n
+
+:L:The 1-day T-statistic is simply the ratio of your signal strength, or excess of the mean return, to the signal noise, or std. deviation. Thus the 1-day T-Statistic is {$b}/{$n} = {$bdn}. The N-day T-statistic will increase as N increases: T-statistic = sqrt(N)*{$bdn}. Next set this equal to 1.96 to get the minimum number of days of data that give you the proper confidence level. N = (1.96/{$bdn})^2 = {$ANS}
+
+:T:5
+
+:E:
+
+
+
+:N: Q11.6
+
+:Q:You claim you have the stock-picking ability to earn an additional {$b} basis points over the market each year. The typical daily noise in the market (standard deviation) is {$v} bps, and assume for simplicity there are 255 trading days, no transaction costs, and that your returns do not compound. If your investors want to be 95% sure you are indeed a star, how many days must you wait to convince them (i.e. your expected T-Statistic is 1.96 or greater)?
+
+:I:$b= rseq(100,500); $v= rseq(50,200); $ANS= (1.96*255*$v/$b)**2; $b255=$b/255
+
+:L:You expect to return an excess of {$b} bps per annum. Each day, you expect to return an additional {$b}/255 = {$b255} bps. Now notice how much noise there is in the market after N days - noise = {$v}*sqrt(N) , since it grows with the square root of time. Thus, your T statistic after N days of data will be the excess return divided by the noise, or ( {$b255}*N )/( {$v}*sqrt(N) ). Setting this equal to 1.96 and solving for N will give us the appropriate number of days of data, {$ANS}. (That's a lot of days, yes?)
+
+:T:7
+
+:E:
+
+
+
+:N: Q11.7
+
+:Q:Consider the prices of stock STU on different stock exchanges. If STU trades for ${$x} on the New York Stock Exchange, but trade for ${$y} on the Canadian Stock Exchange, how much arbitrage profit can you make per share assuming no transaction costs?
+
+:I: $x= rseq(25,35); $y= rseq(36,45); $ymx=$y-$x
+
+:S:$ymx
+
+:L:You can simply purchase the share on the NYSE for {$x} and sell it on the Canadian Exchange for {$y}, profiting the difference, {$ymx} with certainty. It's hard to find these sort of arbitrage profits in the financial markets...
+
+:T:1
+
+:E:
+
+
+
+:N: Q11.8
+
+:Q:Assume there are {$n} professional investors in the U.S at the start of this year. If every one of them is equally skilled, and the market is perfect, how many investors would you expect to have beaten the market 5 years in a row?
+
+:I: $n= rseq(100,1000)*32; $nd32=$n/32
+
+:S:$nd32
+
+:L:Each year you would expect the probability of each investor beating the market to be 50%. Thus, the fraction of investors beating the market for t years in a row is (1/2)^t. Thus, you should expect 1 in 32 investors to beat the market 5 years straight, or around {$nd32} investors
+
+:T:3
+
+:E:
+
+
+
+:N: Q11.9
+
+:Q:In a perfect market, if stock NOP is trading at {$p} and pays a dividend of {$d} per share, would should the new price of the stock be after payment of dividends?
+
+:I: $p= rseq(25,50); $d= rseq(0.25,1.00,0.05); $pmd=$p-$d
+
+:S:$pmd
+
+:L:The stock price should drop by exactly the amount of the dividend payment. Thus, the new price should be {$p}-{$d} = $pmd in a perfect market situation.
+
+:T:1
+
+:E:
+
+
+
+:N: Q11.10
+
+:Q:You, a stock analyst, are tasked with estimating the impact of Corporation ABC choosing a new CEO. They are deciding between Mr. A and Ms. B, and the perfect market knows it is equally likely they will choose either of the two. ABC stock is trading at ${$x} before the decision is revealed. If the market price increases to ${$y} after the board announces Ms. B is the new CEO, how much stock value can be attributed to Ms. B's selection over Mr. A as CEO?
+
+:I: $x= rseq(23,25,0.25); $y= rseq(25.25,26.50,0.25); $ANS=2*$y-2*$x; $WANS=2*$x-$y; $WANS2=$y-$x
+
+:L:The market thought there was a 50-50 chance of each candidate being selected. The stock value increased by {$WANS2} after the decision was realized. Thus, the difference {$WANS2} is attributable to 50% of Ms. B's value added over Mr. A. One can infer that the price would have been {$x} - {$WANS2} = {$WANS} if Mr. A was selected, and so the total event value is {$ANS}.
+
+:T:4
+
+:E:
+
+::END::

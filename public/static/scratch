@@ -1,0 +1,103 @@
+Ticket	 Component
+#16	 Automatic Reminders to Students 
+#17	 Upload Lists of Students To Enroll
+#22	 drag file into File Manager 
+#43	 add -T switch
+#78	 collaborative engine
+#79	 enhanced UM security --- optional IP restrictions
+#81	 add the navigation buttons in quiz also at the bottom
+#82	 do not escape html in Question and Explanation display in Quiz Results
+#84	 view secret code      new
+#85	 replace student's selection of instructor pull-down menu with search
+#86	 full scaleability 
+#87	 static/deploy/* book storage system
+#88	 intelligent editor for .testbank / .quiz files
+#89	 replace use of perl interpreter in user question interpretation
+#92	 System Message
+#93	 admin panel
+#97	 Precision and Factor show_quiz_results
+#98	 RA Accounts   
+#99	 self-delete account  
+#100	 unsubscribe from email communications only
+#36	 Button Bar At Top Should Rollover and css-class the current page for different look
+#58	 add a simple capture as an alternative
+#67	 Login's from elsewhere
+#68	 Web Standards and Assumptions
+#80	 enhanced UM security --- optional second password
+#91	 first-use message / dialogs
+#72	 action when instructor completes testbank or quiz for testing
+#83	 insert new lines in "Edit"
+#8	 UM "embeddable" in other web pages, or more init string options
+#95	 resend authorization email   
+#94	 student log in bug   
+#76	 password recovery is completely broken
+#69	 enhanced security features when first time use from IP
+#55	 allow instructors to submit testbanks or questions for bounty
+#73	 Registration Confirmation Email Contents 
+#52	 In Student's Home, Mark Scores of Finished Quizzes in Quiz List
+#71	 registration email should spit back registration info 
+#65	 log login attempts, failures, and reasons for failures
+#66	 switch from md5 to sha2       
+#60	 switch input field text to input field number in SafeEval
+#59	 rounding in recognizing correct numbers       
+#19	 for ivo: add large vertical arrow fields for paging in Quiz Drawer
+#53	 move favicon.ico to whereever it is supposed to be, please  
+#12	 provide a permalink for the instructor to hand to students
+#54	 change saved results file contents and file name  
+#2	 Allow submit quiz only when all questions answered w/ countdown
+#49	 h1 modifiable field in UM Registration
+#50	 Remind Password broken
+#39	 Resend Registration Email Page in UM
+#51	 security hole
+#40	 userid use in H1 in pages 
+#35	 Timeout       closed
+#48	 Hitting "Return" in Field must not submit
+#47	 student default instructor setting fails
+#44	 turn on or off recaptcha in UM
+#46	 please fix up my new button "Make Grade Sheet Files"
+#38	 Mojo Log Needs to Keep Who We Sent Registration / Forgetting Emails to
+#45	 broken right now --- Instructor cannot get to Manage Files   
+#42	 default instructor setting for students is now broken
+#37	 failed on registration for email with '+' in name
+#29	 Download Button in FMHooks Facility   
+#32	 Warning on Duplicate Email Registration   
+#34	 Download Button in FM (not hooks)
+#28	 UM: Allow setting the default timeout before logout
+#30	 Upstream Improvements in filemanager  
+#31	 Easier #11 related Solution
+#13	 Minor Bug in UM    
+#7	 Intro message for instructor to remind himself --- like a todo list
+#33	 Remind Password Needs Email Search
+#11	 fallback login as instructor if as student fails
+#18	 UM --- add more info on each field 
+#14	 2 Small Settings Changes -- legal agreement should be unchecked and after successful save, go back to home
+#23	 instructor results csv file needs to contain times and hotlinks to what student got and submitted     closed
+#25	 FM: Rename and Return
+#26	 Better *.results.csv file   
+#3	 Insert equiz.css || equiz-default.css from instructor home.
+#27	 UM --- Save And Return / Password Feature Changes     
+#24	 Poor Error Message when UM fields are duplicate
+#1	 Color the background row in the table based on file ending. mostly done, but need small help
+#10	 style and css files should be in head; move equiz.css into external reference
+#9	 small upstream change to FM   
+#20	 Flagging Duplicate Submissions
+#6	 Something wrong with decryption in Safeeval - [error] input must be 8
+#4	 student "submit" still fails...    closed   fixed     1.0   defect  blocker
+#21	 linux 12.04 update screws up nginx 
+#5	 show default_instructor_name in students/show_quizes.html   
+Approved (14 matches)
+Ticket	  Summary
+#15	  Instructor Option to Email/Store Daily Results; and mail student results
+#56	  change URLs to instructor.equiz.me and student.equiz.me AND maybe vanity URL's?
+#57	  variable deploy directories
+#61	  move h1 quiz name title (in safeeval) from page into h1 (next to gravatar below student name)
+#63	  in Users.pm, um_notice message after registration should be unescaped html
+#64	  user manager feature -- explain that the special sha key-based long URL allows login and pw change, too.
+#70	  break out storage backend
+#75	  Archive and Remove Users / Restore Them
+#77	  Obvious List of Answered vs. Unanswered Quizzes on Student Homepage
+#62	  move to more secure https    
+#41	  UM: Break out Password Page
+#96	  Better error handling for EQ::Controller::Students::show   
+#74	  student needs to be able to see their past attempts
+#90	  Not Active Message Needs To Be More Informative

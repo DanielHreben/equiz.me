@@ -1,0 +1,19 @@
+Install system packages
+> sudo apt-get install curl mysql-server libmysqlclient-dev libssl-dev libexpat1-dev libxml2-dev
+
+Install latest Carton with git support
+> curl -L cpanmin.us | perl - --sudo --dev Carton
+> curl -L cpanmin.us | perl - --sudo URI
+
+Install all project dependencies
+> carton install
+
+Copy and update default config
+> cp etc/eq.conf.sample  etc/eq.conf
+
+All commands should be executed with "carton exec":
+> carton exec -- morbo  script/eq          # development server
+> carton exec -- hypnotoad script/eq       # production server
+> carton exec -- bin/user_manager.pl list  # get users list
+
+

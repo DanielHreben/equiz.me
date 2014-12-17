@@ -1,0 +1,173 @@
+::EQVERSION:: 1.0 -- not used.
+
+################################################################
+::NAME::  Welch, Chapter 3, Quiz A.
+
+::INSTRUCTOR:: -- not used
+
+::CREATED:: April 2011 by Welch Team -- not used
+
+::VERSION:: 1.0 -- not used
+
+::AREA:: Finance / Corporate Finance / Annuities and Perpetuities
+
+::SHARING:: ok
+
+::INTRODUCTION::
+
+<div style="color:darkred">
+
+<h4>Quiz Status</h4>
+
+<p> Checked for Wording: Not Yet.</p>
+
+<p> Checked for Correct Answer: Not Yet.</p>
+
+<p> Checked for Comprehensive Chapter Coverage: Not Yet.</p>
+
+</div>
+
+::PS::
+
+<p>Don't forget to click the submit button below when you are done.</p>
+
+################################################################
+
+::START::
+
+:N: Q03.1
+:Q: A perpetuity pays $1000 per year starting next year. 
+   What is the PV of this perpetuity if the prevailing interest rate is {$x}%?
+:I: $x= rseq(5, 30, 5);$xdec=$x/100; $ANS= 1000/($x/100)
+:L: PV = $1000/({$xdec}) = ${$ANS}
+:T: 1
+:E: 
+
+
+:N: Q03.2
+:Q: The PV of a perpetuity is $100,000. The perpetuity pays ${$x} per month
+   starting next month.  What must be the prevailing (annual) interest rate? (Report interest rate as a decimal. i.e. 10% interest rate = .1)
+:I: $x= rseq(1000, 5000, 1000); $rmonthly=$x/100000; $ANS = (1+$rmonthly)^12-1
+:L: Start by using the perpetuity formula to obtain the prevailing monthly interest rate. 
+   Thus, $100000 = ({$x})/(monthly return) and the monthly return is {$rmonthly}. 
+   Compound 12 times to find the annual return. Annual Return=(1+{$rmonthly})^12-1= {$ANS} .
+:T: 3
+:E: 
+
+
+:N: Q03.3
+:Q: A perpetuity will pay $500 next year, growing by {$x}% per year. 
+    If the prevailing interest rate is {$r}%, what is the PV of the perpetuity?
+:I: $x= rseq(1, 10);   $r=$x+3; $xdec=$x/100; $rdec=$r/100; $ANS=500/0.03
+:L: Using the growing perpetuity formula, PV=$500/({$rdec}-{$xdec}) = ${$ANS}
+:T: 1
+:E: 
+
+
+:N: Q03.4
+:Q: A potential tenant makes you a proposition to rent your apartment. 
+    He, beginning this month, proposes to pay you $250 every month indefinitely to live in your apartment. 
+    Assuming the prevailing interest rate is {$x}% and that he will live forever, 
+    what is the PV of this lease if you were to accept his proposal?
+:I: $x= rseq(5,10); $xdec=$x/100; $rmonth=(1+$xdec)^(1/12)-1;  $pvperp=250/$rmonth; $ANS= 250+$pvperp
+:L: First, we find the monthly interest rate: (monthly return) = (1+{$xdec})^(1/12)-1 = {$rmonth}. 
+    Using the simple perpetuity formula, $250/{$rmonth} = ${$pvperp}. 
+    Because the tenant will start paying this month, we need to add $250 to obtain 
+      the PV of the lease: ${$pvperp}+$250 = ${$ANS}
+:T: 2
+:E: 
+
+
+:N: Q03.5
+:Q: Assume a home appraiser were to value a home based on rental income only. 
+    Assume that a home is indefinitely rentable, without disruption, at a monthly rate of ${$y}. 
+    What is the value of this home when the annual interest rate is 5% and the first payment starts next month?
+:I: $y= rseq(500,1500,100); $rmonth=1.05^(1/12)-1;   $ANS= $y/$rmonth;
+:L: The monthly interest rate is (1.05)^(1/12) - 1 = {$rmonth} Thus, the perpetuity PV = ${$y}/{$rmonth}  = ${$ANS}
+:T: 3
+:E: 
+
+
+
+:N: Q03.6
+:Q: Your new job includes as one of your benefits a free doughnut each
+    morning with a value of ${$x}.  If you expect doughnuts to increase in
+    price 5% per year, and prevailing interest rates are 10%, how much do
+    you value this benefit if you expected to live forever and work every
+    day (oh dear!).  Note, there are 365 days in a year and you have just
+    finished your breakfast.
+:I: $x= rseq(.5, 1.50,0.05);
+    $dret=1.1^(1/365)-1; $dgrow=1.05^(1/365)-1; $drethh=$dret*100; $dgrowhh=$dgrow*100;
+         $ANS=$x/($dret-$dgrow)
+:L: The daily interest rate is 1.1^(1/365)-1 = {$drethh}%.  The daily
+    doughnut price increase is 1.05^{1/365)-1 = {$dgrowhh}%.  Hence, the PV
+    of this growing perpetuity is ${$x} / ({$drethh}% - {$dgrowhh}%) =
+    ${$ANS}
+:T: 3
+:E: 
+
+
+
+:N: Q03.7
+:Q: A stock pays a yearly dividend of $1, expected to grow at 5% per year. 
+    If the stock is currently priced at ${$x}, what is the market interest rate? (Report interest rate as a decimal. i.e. 10% interest rate = .1)
+:I: $x= rseq(15, 50, 5); $ANS= (1/$x)+0.05;
+:L: Using the Gordon growth model, solve $1/(r - 0.05) = ${$x} for r, the market interest rate. 
+    Then, $1/${$x} = r-0.05 and r = (1/{$x})+0.05 = {$ANS} .
+:T: 2
+:E: 
+
+
+
+:N: Q03.8
+:Q: You are tasked with valuing a company based solely on its expected
+    future cash flows.  Interest rates are currently 8%. If this company
+    expects income of $500,000 next year (it is the end of year 0 or
+    equivalently the beginning of the first year), growing at 6% each year
+    until the end of the tenth year.  Then, income growth is expected to
+    slow to {$x}% forever after, what is the value of this company today, in
+    thousands of dollars?
+:I: $x= rseq(1, 5); 
+   $xdec=$x/100; $t2=500*1.06^1; 
+   $t3=500*1.06^2; $t4=500*1.06^3; $t10=500*1.06^9;  $t11=$t10*(1+$x/100); $t12=$t11*(1+$x/100); 
+   $pv10=(500/(0.08-0.06))*(1-((1+0.06)/(1+0.08))^10); 
+   $eq1=$t11/(0.08-$xdec); $eq2=$eq1/1.08^10; 
+   $ANS=$pv10+$eq2
+:L: Cash Flows (all dollar values in thousands): T=1, $500.  T=2, ${$t2}.
+     T=3, ${$t3}.  T=4, ${$t4}, and so on until T=10, ${$t10}. Then, slower
+     growth: T=11, ${$t11}.  T=12, ${$t12}, and so on.  You can use brute
+     force (i.e., a large spreadsheet) to get the correct answer.  Or, you
+     can be more clever.  The first 10 cash flows are a growing annuity.
+     Their present value is PV(first 10
+     years)=[500/(0.08-0.06)]*[1-((1+*0.06)/(1+0.08))^10]=${$pv10}.  The
+     cash flows from year 11 on are a growing perpetuity.  Standing at year
+     10, their value will be ${$t11}/(0.08-{$xdec})=${$eq1}.  Now, discount
+     this from year 10 to today, ${$eq1}/1.08^10=${$eq2}.  Finally, add the
+     two and obtain the answer, ${$pv10}+${$eq2}=${$ANS}.
+:T: 5
+:E: 
+
+
+:N: Q03.9
+:Q: What should a 2-year $1000 {$x}% semi-annual coupon bond sell for, if
+    the prevailing interest rate is 6%?
+:I: $x= rseq(2,10,2); $xdec=$x/100; $c=$xdec*1000/2; 
+    $ANS= $c/1.06^(0.5)+$c/1.06^(1)+$c/1.06^(1.5)+(1000+$c)/1.06^(2)
+:L: Using a spreadsheet, you can calculate the price as 
+   NPV = ${$c}/1.06^(0.5)+${$c}/1.06^(1)+${$c}/1.06^(1.5)+($1000+${$c})/1.06^(2)=${$ANS}
+:T: 4
+:E: 
+
+
+:N: Q03.10
+:Q:  You need a 30-year, $200000 mortgage to purchase a house. 
+    At an interest rate of {$x}%, what will your monthly mortgage payments be?
+:I: $x= rseq(4, 10);  $xdec=$x/100; $xmonth=(1+$xdec)^(1/12)-1; 
+   $ANS= (200000*$xmonth)/(1 - (1/(1+$xmonth)^360))
+:L: First, find the monthly interest return, r(monthly)=(1+{$xdec})^(1/12)-1 ={$xmonth}. 
+    Then, using the annuity formula, solve $200000 = [C/{$xmonth}] * [1 - (1/(1+{$xmonth})^360)]. 
+    Rearranging yields $200000*{$xmonth} / [1 - (1/(1+{$xmonth})^360)] = ${$ANS} .
+:T: 4
+:E: 
+
+::END::

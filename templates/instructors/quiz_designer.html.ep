@@ -1,0 +1,360 @@
+% layout 'instructor';
+% title 'Quiz designer';
+
+<script src="/static/jquery.validate.js"></script>
+<script src="/static/editable-select/jquery.editable-select.pack.js"></script>
+<link rel="stylesheet" href="/static/jquery-ui-1.10.1.custom.min.css" />
+<script src="/static/jquery-ui-1.10.1.custom.min.js"></script>
+
+<script>
+    function getParam(key) {
+        var url = window.location.href;
+        values = url.split(/[\?&]+/);
+        for (i = 0; i < values.length; i++) {
+                value = values[i].split("=");
+                if (value[0] == key) {
+                    return value[1];
+            }
+        }
+
+        return '';
+    }
+
+    function addQuestion() {
+        var question = $('#question').html();
+        $('#questions').append(question);
+
+        var new_question = $('#questions .question_container:last');
+        new_question.find('input,textarea').each(function() {
+            $(this).attr('name', $(this).attr('name') + new_question.index());
+        });
+
+        setupHandlers(new_question);
+    }
+
+    function addRawQuestion() {
+        var question = $('#raw_question').html();
+        $('#questions').append(question);
+
+        var new_question = $('#questions .question_container:last');
+        new_question.find('textarea').each(function() {
+            $(this).attr('name', $(this).attr('name') + new_question.index());
+        });
+
+        setupHandlers(new_question);
+    }
+
+    function addMultiQuestion() {
+        addQuestion();
+
+        $('table.question_table:visible').last().find('tr input[name^=P]').closest('tr').remove();
+        $('table.question_table:visible').last().find('tr:last')
+            .after('<tr><td>Choices *</td><td>:C:</td><td><input class="required" name="C_" /></td></tr>');
+
+        var new_question = $('#questions .question_container:last');
+        new_question.find('input[name=C_]').each(function() {
+            $(this).attr('name', $(this).attr('name') + new_question.index());
+        });
+        new_question.find('tr.question-help').addClass('hidden');
+        new_question.find('tr.multiquestion-help').removeClass('hidden');
+
+        setupHandlers(new_question);
+    }
+
+    function buildQuestion(container) {
+        var seen_name = 0;
+        var content = '';
+
+        var raw_textarea = container.find('textarea[name^=raw_question_]')[0];
+        if (raw_textarea) {
+            content = $(raw_textarea).attr('value') || $(raw_textarea).val();
+        }
+        else {
+            container.find('input,textarea').each(function() {
+                var field = $(this);
+
+                var value = field.attr('value') || field.val();
+
+                if (value) {
+                    var name = field.attr('name');
+                    name = name.replace(/_\d+$/, '');
+
+                    content += ':' + name + ': ' + value + "\n";
+
+                    if (name == 'N') {
+                        seen_name++;
+                    }
+                }
+            });
+
+            if (seen_name) {
+                content += ':E: ' + "\n\n";
+            }
+        }
+
+        return content;
+    }
+
+    function setupHandlers(new_object) {
+        $('button.evaluate_question').unbind('click');
+        $('button.evaluate_question').click(function() {
+            var container = $(this).closest('.question_container');
+            if (container) {
+                container.find('.example').each(function() {
+                    var question = buildQuestion(container);
+                    var example = this;
+
+                    var csrftoken = '<%= session('csrftoken') %>';
+                    $.post('<%= url_for('instructors_eval_quiz') %>', {csrftoken: csrftoken, content: question}, function(data) {
+                        if (data.error) {
+                            $(example).html(data.error);
+                        }
+                        else if (data.result) {
+                            var html = '<h2>' + data.result.N + '</h2>';
+                            html += '<p>' + data.result.Q + '</p>';
+                            html += '<p>(Visible Only After Answering):</p>';
+                            html += '<p><strong>Correct Answer: ' + data.result.S + '</strong></p>';
+                            html += '<p><strong>Correct Answer Explanation: ' + data.result.L + '</strong></p>';
+                            $(example).html(html);
+                        }
+                        else {
+                            $(example).html('Internal error');
+                        }
+                    });
+                });
+            }
+            return false;
+        });
+
+        $('button.delete_question').unbind('click');
+        $('button.delete_question').click(function() {
+            var container = $(this).closest('.question_container');
+
+            var caption = container.find('button.delete_question').html();
+
+            if (caption == 'Delete Above Question') {
+                container.addClass('deleted_question');
+                container.find('button.delete_question').html('Undelete Above Question');
+                container.find('.required').removeClass('required').addClass('required_deleted').removeClass('error');
+            }
+            else {
+                container.removeClass('deleted_question');
+                container.find('button.delete_question').html('Delete Above Question');
+                container.find('.required_deleted').removeClass('required_deleted').addClass('required');
+            }
+
+            return false;
+        });
+
+        if (new_object) {
+            new_object.find('.resizable').each(function() {
+                $(this).resizable({
+                    resize: function( event, ui ) {console.log('here')}
+                });
+            });
+        }
+    }
+
+    $(document).ready(function() {
+        $('.editable-select').editableSelect();
+
+        $('#add_question').click(function() {
+            addQuestion();
+            return false;
+        });
+
+        $('#add_multi_question').click(function() {
+            addMultiQuestion();
+            return false;
+        });
+
+        $('#add_raw_question').click(function() {
+            addRawQuestion();
+            return false;
+        });
+
+        if (getParam('f')) {
+            $('#quiz_form').attr('action', '/fm/submitedit');
+            $('#new_file').find('input[name=f]').attr('value', getParam('f'));
+            $('#new_file').hide();
+        }
+
+        setupHandlers();
+
+        % if (!@$questions) {
+            addQuestion();
+        % }
+
+        $("#quiz_form").submit(function() {
+            $('.question_container').each(function() {
+                var empty = true;
+                var question = $(this);
+
+                if (question.hasClass('deleted_question')) {
+                    return;
+                }
+
+                question.find('input,textarea').each(function() {
+                    var field = $(this);
+
+                    if (!empty) {
+                        return;
+                    }
+
+                    var value = field.val() || field.attr('value');
+
+                    if (value) {
+                        value = value.replace(/\s+/g, '');
+                        empty = false;
+                    }
+                    else {
+                        empty = true;
+                    }
+                });
+
+                if (empty) {
+                    question.find('input,textarea').each(function() {
+                        if ($(this).hasClass('required')) {
+                            $(this).removeClass('required').addClass('required_deleted');
+                        }
+                        $(this).removeClass('error');
+                    });
+                }
+                else {
+                    question.find('input,textarea').each(function() {
+                        if ($(this).hasClass('required_deleted')) {
+                            $(this).removeClass('required_deleted').addClass('required');
+                        }
+                    });
+                }
+            });
+        });
+
+        $("#quiz_form").validate({
+            onkeyup: false,
+            submitHandler: function(form) {
+                var content = '';
+
+                $('#header').find('input').each(function() {
+                    var field = $(this);
+                    content += '::' + field.attr('name') + ':: ' + (field.attr('value') || field.val()) + "\n";
+                });
+
+                content += "\n";
+                content += "::START::\n\n";
+
+                $('.question_container').each(function() {
+                    if ($(this).hasClass('deleted_question')) {
+                        return;
+                    }
+
+                    content += buildQuestion($(this));
+                });
+
+                content += "::END::\n";
+
+                $('input[type=submit]').parent().prepend('<textarea style="display:none" name="content">' + content + '</textarea>');
+
+                form.submit();
+            },
+            debug:true
+        });
+
+        $('#questions .resizable').resizable();
+    });
+</script>
+
+<section>
+
+%= form_for '/fm/submitfile', id => 'quiz_form', method => 'POST' => begin
+
+<h2>Quiz Header Information</h2>
+
+<div id="header">
+<table>
+% foreach my $field (@$global_fields) {
+    % if ($field->{type} && $field->{type} eq 'hidden') {
+        <input type="hidden" name="<%= $field->{name} %>" value="<%= $field->{value} %>" />
+
+        % next;
+    % }
+
+    <tr>
+        <td><label><%= $field->{label} %> <%= '*' if $field->{class} && $field->{class} eq 'required' %>:</label></td>
+        <td>
+        % if ($field->{variants}) {
+            <select class="editable-select" name="<%= $field->{name} %>">
+            % foreach my $variant (@{$field->{variants}}) {
+                <option <%== 'selected="selected"' if $field->{value} && $field->{value} eq $variant %>><%= $variant %></option>
+            % }
+            </select>
+        % }
+        % else {
+            <input class="<%= $field->{class} || '' %>" name="<%= $field->{name} %>" value="<%= $field->{value} %>" />
+        % }
+        </td>
+    </tr>
+% }
+</table>
+</div>
+
+<div>
+    <em>
+    Some fields are expanded automatically as you type.
+    </em>
+</div>
+
+<div id="questions" style="padding-top:1em;padding-bottom:1em">
+% my $i = 0;
+% foreach my $question (@$questions) {
+%= include 'instructors/quiz_designer_question', question => $question, suffix => '_' . $i++;
+% }
+</div>
+
+<div id="question" style="display:none" class="deleted_question">
+%= include 'instructors/quiz_designer_question', question => $sample_question, suffix => '_';
+</div>
+
+<div id="raw_question" class="hidden" class="delete_question">
+    <div class="question_container" style="padding-bottom:1em">
+        <table width="100%">
+        <tr>
+        <td style="vertical-align:top" width="50%">
+            <div style="background:#ccc;text-align:center">Editable</div>
+            <i>This is a quick question. You can put the raw fields and values here</i>
+            <div>
+                <textarea name="raw_question_" class="required resizable" style="width:98%"></textarea>
+            </div>
+            <button class="evaluate_question">Try Evaluate</button>
+            <button class="delete_question">Delete Above Question</button>
+        </td>
+        <td style="vertical-align:top" width="50%">
+            <div style="background:cyan;text-align:center">Example</div>
+            <div class="example"></div>
+        </td>
+        </tr>
+        </table>
+    </div>
+</div>
+
+<p>
+    <button id="add_question">Add A New Numeric Question</button>
+    <button id="add_multi_question">Add A New Multiple-Choice Question</button>
+    <button id="add_raw_question">Add A New Quick Question</button>
+</p>
+
+<div id="new_file">
+    <h2>When You Are Done Editing Your Quiz</h2>
+    <label>File Name*:</label>
+    <input name="f" class="required" />
+</div>
+
+<p>
+    <input type="submit" value="Save Quiz" />
+</p>
+
+<p>PS: For now, if you need to move questions around, you need to use the standard editor, or download the file, use a local editor like TextEdit, and then upload your changes. </p>
+
+%= end;
+
+</section>

@@ -1,0 +1,38 @@
+
+Welcome.
+
+The design of this equiz system is simple, yet flexible.  I promise that you will be pleasantly surprised.  I estimate that it will take you about 1 hour to learn how to use the equiz.me system to assign quizzes that have been written for you and to learn how to collect the student answers;  and, if you so desire, about one more hour to learn how to modify existing and create your own quizzes (change questions or add your own questions).
+
+Start with the file 'tutorial.testbank'.  Click on 'Preview Testbank' on the right side of your file manager.  The tutorial.testbank file is then rendered just how your students would see it if 'tutorial.testbank' was your quiz for them.  This tutorial explains almost everything that you need to learn to build your own quizzes, besides showing you how they look like to students.
+
+Ready to create your own questions?  Then rename 'tutorial.testbank' to, say, 'firstquiz.testbank', and make your own changes.  The easiest way to do this is to click on 'Edit'.  However, you can also download the testbank file, then modify it with your own editor (but make sure to save as ASCII text, not as a Word .doc file), and re-upload  the revised testbank file.
+
+If you have made an error that you cannot correct or if you want to start over from scratch, just delete your files and then click 'Copy *Intro and Tutorial* files' (at the bottom of your file manager) again.
+
+You can load the predefined testbanks from the Welch Corporate Finance textbook by clicking 'Copy *Welch CorpFin Book Testbanks* files'.  Just as with the tutorial.testbank, you can also add or delete existing questions to these testbanks.
+
+
+When you are ready to post your questions for your students, rename your '.testbank' file to a '.quiz' file.  The file background then turns orange.  For example, if you rename 'welch-ch02.testbank' to 'mywelch02.quiz', then when your students log in, they will see a 'mywelch02' quiz in their list of quizzes when they have set you as their instructor.  Just remember: your '.testbank' files remain private, your '.quiz' files are public.  You can restrict who can view your quizzes and who can answer your quizzes by setting passwords in your account settings.
+
+Don't put too many questions into each .quiz file.  Instead, create multiple quizzes for chapters.  Your students cannot save the state of their quiz and return the following day.  It also reduces student frustration if they hit "refresh" by accident.  Your students should be able to finish everything in one session, say 1 hour.
+
+
+All student answers on your quizzes will be collected for you in a .results.csv file in your directory with the same name as your quiz.  You can view this csv file or select the file and then copy and paste it into Excel to calculate and assign grades.  The best way to see how this works is to create a test student account, answer a quiz, and then look at what happened in your instructor file manager.
+
+
+When you want to get an overall answer sheet, click on "Make Grade Sheets" and all .results.csv file will be combined into a more comprehensive .csv file, that you can download.
+
+
+Why are we not yet releasing?  Before we go public, we still want to do the following.  On the computer front,
+
+   * break out the password setting from other settings
+   * identify a better header in the login and registration pages
+   * add the student registrar id to the results file (not just email)
+
+On the Welch book front, we must work over all questions.  This needs a lot more work than the Equiz.Me computer system.  It is still a mess.
+
+
+That's it.  Enjoy!
+
+Ivo Welch
+May 2012

@@ -1,0 +1,12 @@
+% layout 'student';
+% title '';
+
+<section> <!-- PAGE: students/show_quiz.html.ep  -->
+<script>
+	$(document).ready(start_watching_answers);
+</script>
+
+%== $quiz_html
+
+
+</section> <!-- PAGE: students/show_quiz.html.ep  -->

@@ -1,0 +1,214 @@
+::EQVERSION:: 1.0 -- not used.
+
+################################################################
+::NAME::  Welch, Chapter 5.
+
+::INSTRUCTOR:: -- not used
+
+::CREATED:: April 2011 by Welch Team -- not used
+
+::VERSION:: 1.0 -- not used
+
+::AREA:: Finance / Corporate Finance / Time-Varying Rates of Return
+
+::SHARING:: ok
+
+::INTRODUCTION::
+
+<div style="color:darkred">
+
+<h4>Quiz Status</h4>
+
+<p> Checked for Wording: Not Yet.</p>
+
+<p> Checked for Correct Answer: Not Yet.</p>
+
+<p> Checked for Comprehensive Chapter Coverage: Not Yet.</p>
+
+</div>
+
+::PS::
+
+<p>Don't forget to click the submit button below when you are done.</p>
+
+################################################################################################################################
+
+::START::
+
+
+:N: Q05.1
+
+:I: $i1= rseq(1, 3, 0.1); $i2=1+$i1; $i3=1+2*$i1; $i4=1+3*$i1;
+    $i1dec=i1/100; $i2dec=$i2/100; $i3dec=$i3/100; $i4dec=$i4/100; 
+    $ANS = (1+$i1dec)*(1+$i2dec)*(1+$i3dec)*(1+$i4dec) -1
+
+:Q: The first-year interest rate is {$i1}%, the second-year (one-year)
+    is {$i2}%, the third-year (one-year) is {$i3}%, and the
+    fourth-year (one-year) is {$i4}%. What is the four-year total interest
+    rate? What is the four-year total interest rate if you reversed the
+    sequence of rates (highest in year 1, lowest in year 4)? (Report interest rate as a decimal, i.e. 10% interest rate = .1)
+
+:L: The four-year interest rate, either way, is 
+    (1+{$i1})*(1+{$i2dec})*(1+{$i3dec})*(1+{$i4dec}) = {$ANS}
+
+:T: 3
+
+:E:
+
+
+:N: Q05.2
+
+:Q: A stock alternates between earning an 8% return and -{$x}% loss each
+    year. What is the total rate of return over 6 years with this stock? (Report rate of return as a decimal, i.e. 10% rate of return = .1)
+
+:I: $x= rseq(1, 7); $xdec=$x/100; $ANS= ((1.08)*(1-$xdec))**3 - 1
+
+:L: The return will be (1+0.08)^3 * (1+(-{$xdec}))^3 - 1 = {$ANS}
+
+:T: 2
+
+:E:
+
+
+:N: Q05.3
+
+:Q: A first year interest rate is 1%, the second year interest rate is
+    {$i2}%, the third years is {$i3}%, and fourth is {$i4}%. What is the
+    four year annualized interest rate? (Report interest rate as a decimal, i.e. 10% interest rate = .1)
+
+:I: $x= rseq(1,3,0.5); $i2=1+$x; $i3=1+2*$x; $i4=1+3*$x;
+    $i2dec=$i2/100; $i3dec=$i3/100; $i4dec=$i4/100; 
+    $ANS =((1+0.01)*(1+$i2dec)*(1+$i3dec)*(1+$i4dec) )^0.25-1
+
+:L: The four year annualized interest rate is 
+    ((1+0.01)*(1+{$i2dec})*(1+{$i3dec})*(1+{$i4dec}) )^(1/4) = {$ANS}
+
+:T: 3
+
+:E:
+
+
+:N: Q05.4
+
+:Q: You are in a dispute with your bank over the interest you have
+    accrued. You deposited $1000, {$x} years ago, and now have a balance of
+    exactly $2000 which makes a {$x} year holding rate of return of
+    100%. The banker, confusing average rate of return with annualized rate
+    of return, claims you have earned an annualized rate of return of
+    {$Av}%. Being a shrewd student, calculate the correct annualized rate of
+    return, and compute how much money you would have had if you'd indeed
+    earned the average rate of return for {$x} years. Report the value (B /
+    A), where B is how much money you would have had, and A is the correct
+    rate of return.
+
+:I: $x= rseq(3, 8); $Av=100/$x; $An=2^(1/$x)-1; $Avdec=$Av/100;
+    $eq1=1000*(1+$Avdec)^$x; $ANS=$eq1/$An;
+
+:L: Because your {$x} year total rate of return is 100%, your annualized
+    rate of return is (1+1.00)^(1/{$x})-1= {$An}. If you had earned the
+    average rate of return for {$x} years, you would have accrued {$Av}%
+    over {$x} years, or 1000*(1+{$Avdec})^({$x}) = ${$eq1}. Thus, the
+    correct reported value is {$eq1}/{$An}={$ANS}
+
+:T: 3
+
+:E:
+
+
+:N: Q05.5
+
+:I: $x1= rseq(1.0,2.0,0.1); $x2=1.75*$x1; $x3=4*$x1; $x4= -0.3*$x1; $x5= -5.4*$x1;
+    $x1dec=$x1/100; $x2dec=$x2/100; $x3dec=$x3/100; $x4dec=$x4/100; $x5dec=$x5/100; 
+    $comp=(1+$x1dec)*(1+$x2dec)*(1+$x3dec)*(1+$x4dec)*(1+$x5dec)-1;
+    $ari= ($x1dec + $x2dec + $x3dec + $x4dec + $x5dec )/5;
+    $ANS=$comp-$ari
+
+:Q: You have invested in a market portfolio of stocks, and in the past 5
+    years have earned returns of {$x1}%, {$x2}%, {$x3}%, {$x4}%, and
+    {$x5}%. What is the difference between the compounded (correct holding)
+    rate of return, and the average rate of return? (Report rate of return as a decimal, i.e. 10% rate of return = .1)
+
+:L: The compounded rate of return is
+    <pre>
+    (1+{$x1dec})*(1+{$x2dec})*(1+{$x3dec})*((1+{$x4dec})*(1+{$x5dec})-1={$comp} ,
+    </pre>
+     and the arithmetic rate of return is
+    <pre>
+    [{$x1dec} + {$x2dec} + ({$x3dec}) + ({$x4dec}) + {$x5dec} ]/5 = {$ari} .
+    </pre>
+    Thus, the difference is {$ANS}.
+
+:T: 3
+
+:E:
+
+
+:N: Q05.6
+
+:Q: The S&P 500 had returns of 4.91%, 15.79%, 5.49%, -37.00%, and 26.46% in
+    the years 2005-2009, inclusive. Compute the annualized rate of return. (Report rate of return as a decimal, i.e. 10% rate of return = .1)
+
+:I: $ANS= 0.00415
+
+:L: The total gross rate of return for the period is
+    (1.0491)(1.1579)(1.0549)(0.63)(1.2646) = 1.0209. Thus, the annualized
+    rate of return is (1.0209)^(1/5)-1 = {$ANS}
+
+:T: 3
+
+:E:
+
+
+:N: Q05.7
+
+:Q: Annualized interest rates are currently 5% over 1 year, {$x2}% over 2
+    years, and {$x3}% over 3 years. An investment that costs $1000 today
+    will yield positive cash flows of $300, $400, and $500 in the next 3
+    years. Compute the NPV of this investment.
+
+:I: $x2= rseq(4, 6, 0.5); $x3=$x2+1; $x2dec=$x2/100; $x3dec=$x3/100;
+     $ANS = -1000 + (300)/(1.05) + (400)/(1+$x2dec)**2 + (500)/(1+$x3dec)**3
+
+:L: We need to discount each cash flow by the appropriate period interest
+    rate to find the NPV: NPV = -$1000 + $300/1.05 + $400/(1+{$x2dec})^2 +
+    $500/(1+{$x3dec})^3 = ${$ANS}
+
+:T: 3
+
+:E:
+
+
+:N: Q05.8
+
+:Q: The nominal interest rate is 5%, but inflation is occurring at {$x}%.
+    Compute the real interest rate. (Report interest rate as a decimal, i.e. 10% interest rate = .1)
+
+:I: $x=rseq(2, 8, 0.5); $xdec=$x/100; $ANS = (1.05)/(1+$xdec)-1;
+
+:L: We simply use the equation (1+Nominal) = (1+Real) * (1+Inflation) to
+solve for the appropriate real interest rate: real=(1+0.05)/(1+{$xdec})-1=
+{$ANS}
+
+:T: 3
+
+:E:
+
+
+:N: Q05.9
+
+:Q: The real interest rate is 6%, and inflation is {$x}%. What is the NPV of
+    a project with the following cash flows -$100000 (initial), $75000, and $75000 in consecutive years?
+
+:I: $x= rseq(1,5); $xdec=$x/100; $nom=1.06*(1+$xdec)-1; 
+    $ANS= -100000 + 75000/(1+$nom) + 75000/(1+$nom)**2
+
+:L: Because the cash flows quoted are nominal values, you must solve for the
+    nominal interest rate to properly discount future cash flows. (Nominal
+    Return) = (1+0.06)*(1+{$xdec}) -1 = {$nom}. Thus, NPV = -$100000 +
+    $75000/(1+{$nom}) + $75000/(1+{$nom})^2 = ${$ANS}
+
+:T: 4
+
+:E:
+
+::END::

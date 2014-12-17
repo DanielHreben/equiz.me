@@ -1,0 +1,6 @@
+% if ( my $error = flash('error') || stash('error') ) {
+<div class='red_msg'>  <%= $error %></div>
+% }
+% if ( my $notice = flash('notice') || stash('notice') ) {
+<div class='green_msg'> <%= $notice %></div>
+% }

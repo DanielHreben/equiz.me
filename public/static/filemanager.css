@@ -1,0 +1,33 @@
+/* fm = file manager */
+
+#fm_html h1 { font-size:20pt;font-family:sans-serif }
+#fm_html h2 { font-size:17pt;font-family:sans-serif }
+#fm_html h3 { font-size:14pt;font-family:sans-serif }
+ 
+#fm_html hr.fat { background-color:red; height:8px; }
+ 
+#fm_html p.notice { background-color:white; font-size:10pt; border:solid black 5px; }
+ 
+#fm_html p.boxright { width:355px; margin-right:0px; background-color:white; font-size:10pt; float:right; padding:20px; font-size:large; vertical-align:top; }
+ 
+#fm_html dt.big { line-height:3; font-size:large; font-weight:bolder; font-family:sans-serif;margin-top:12pt }
+#fm_html dt.hili { font-size:large; font-family:Cursive; display:inline; text-decoration:underline; padding-top:1em; }
+#fm_html dt.smallbold { font-size:small; font-family:Cursive; display:inline; font-weight:bold; }
+#fm_html dd { margin-bottom:1ex }
+ 
+#fm_html td.hili { font-size:x-large; font-family:cursive; margin:20px; vertical-align:top }
+ 
+#fm_html div.smallnobox { width:400pt; font-size:smaller; margin:10px; }
+#fm_html div.smallbox { width:400pt; font-size:smaller; margin:10px; border:solid black 1px; }
+ 
+#fm_html .boxquote {float: left; text-align: center; border: solid black 1px;font-family: Times, sans-serif; font-size: 12pt; margin: 10px;}
+ 
+#fm_html td.googler { vertical-align:bottom; color:green; font-size:x-large}
+ 
+#fm_html .small { font-size:smaller; }
+#fm_html .right { text-align:right; }
+ 
+#fm_html td { padding:1ex; padding-right:1em; padding-left:1em }
+#fm_html div.viewfile { background-color:#F0F0FF; font-family:monospace; color:black }
+#fm_html div.msg { color:#0076BA; font-size:small; }
+

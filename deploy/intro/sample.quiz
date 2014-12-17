@@ -1,0 +1,77 @@
+::EQVERSION:: 1.0 -- not used.
+
+################################################################
+::NAME::  sample.quiz &mdash; Here is a trivial quiz
+
+::INSTRUCTOR:: [not yet used] Ivo Welch, You, Or Someone Else
+
+::CREATED:: [not yet used] April 2011 by Ivo Welch
+
+::VERSION:: [not yet used] 1.0
+
+::AREA:: General / Introduction
+
+::RENDER:: [not yet used] Could indicate which questions to render
+
+
+### our plan is to become collaborative, so instructors can search for other
+### instructors' questions and use them.  there is no reason why thousands
+### of instructors need to write Calculus I questions.
+
+### You can write anything you wish in the license, e.g., prohibiting
+### question reuse.  This is then between you and other instructors.  the
+### default is to allow open reuse--if nothing else is in the LICENSE
+### field.  However, if the word PRIVATE (capitalized) is anywhere in the
+### license then our system will not allow other instructors to see your
+### questions.
+
+::LICENSE:: Standard liberal Equiz.Me Question License (SLEQL).  http://www.equiz.me/static/legal.html
+
+### you should also provide an email if you allow reuse.  This means that
+### your email will flow into displayed question's :C: fields, so other
+### instructors using it can then easily send you feedback (e.g., about
+### ambiguities that students are pointing out.
+
+::EMAIL:: ivo.welch@gmail.com
+
+################################################################
+
+::START::
+
+:N: A simple algorithmic question 
+:I: $x= rseq(10,20); $ANS= $x+1      ### rseq picks one integer randomly from its range
+:Q: This is the first question.  X={$x} is a random integer number between
+    10 and 20.  Please calculate {$x}+1 and enter it as your answer.
+:S: $ANS
+:L: When done, your students will see your long explanation, which can also use
+ your variables.  So, here, the first correct answer should be {$ANS}.
+:T: 1
+:c: ivo.welch@gmail.com , Standard, August 23, 2012
+:E: 
+
+
+:N: Two RVs
+:I: $x= rseq(1,10); $y= rseq(1,10); $ANS= ($x+$y)
+:Q: This is the second question.  It shows a calculation that involves
+  two (random) variables.   What is {$x}+{$y:0}?
+:S: $ANS
+:L: Your second correct answer should be {$ANS}.
+:T: 2
+:E: 
+
+
+:N: Multiple Choice Q
+:I: $x= rseq(1,100); $y= rseq(1,100); $ANS= ( ($x+$y) < 100) ? 1 : 2
+:Q: This is the third question.  It shows a multiple choice question.
+    If ${$x}+${$y} is less than $100, then please choose 'A'.
+     Otherwise, choose 'B'.  Never choose 'C'.
+:C: A could be true | B might be true | C is never true
+:L: Your third correct answer should be {$ANS}.
+:D: Way Too Easy
+:T: 2
+:E: 
+
+::END:: 
+
+Everything after the end is ignored.
+	

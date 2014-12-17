@@ -1,0 +1,75 @@
+% layout 'instructor';
+% title 'Instructor\'s Home';
+
+<section><!-- PAGE: instructors/show_home.html.ep  -->
+
+% if (my $notice = flash('um_notice')) {
+    <span style="color:red"><%= $notice %></span>
+% }
+
+<ul>
+
+    % if ( user_data->{todolist} ) {
+
+	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/base/jquery-ui.css">
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		var $dialog = $('<div></div>')
+			.html('<span style="font-size:small"> <%= user_data->{todolist}  %> <br /> <span style="font-size:smaller">You can remove this message in your <a href="<%= url_for('user_update_form') %>">settings</a></span> </span>')
+			.dialog({
+				autoOpen: true,
+				title: 'Your ToDo List'
+			});
+		$('#opener').click(function() {
+			$dialog.dialog('open');
+			// prevent the default action, e.g., following a link
+			return false;
+		});
+	});
+	</script>
+
+      % }
+
+
+  <li> <a href="<%= url_for('file_manager') %>"> Manage files</a>
+
+     <ul style="font-size:smaller">
+	<li style="padding:0em">This is where you will do most of your work. It has good documentation, incl a tutorial.</li>
+	<li style="padding:0em">Design quizzes in testbanks and test them out yourself.</li>
+	<li style="padding:0em">Move testbanks to quizzes to open them to your students.</li>
+        <li style="padding:0em">Collect student answers on your quizzes.</li>
+        <li style="padding:0em">Change how your student site looks.</li>
+        <li style="padding:0em">To load all the Welch corporate finance textbook quizzes, choose this option and look at the bottom for <b>Copy files into my directory.</b></li>
+    </ul>
+    </div>
+
+   </li>
+
+   <li> <a href="<%= url_for('user_update_form') %>">Account settings</a>
+		<ul style="font-size:smaller">
+		  <li style="padding:0em"> Change your registration info and password.</li>
+		  <li style="padding:0em"> Create a todo list or notes for yourself. </li>
+		  <li style="padding:0em"> Set a general (non-quiz-specific) message for your students. </li>
+		  <li style="padding:0em"> Set a password to restrict student read-access to your quizzes. </li>
+		  <li style="padding:0em"> Set a password to restrict students submitting and recording quiz-answers. </li>
+		</ul>
+   </li> 
+
+   <li> If you want to give your students a direct registration link that sets you as their instructor, refer them to
+         <pre>
+    <a href="/student/registration?instructor_id=<%= Mojo::Util::url_escape(user_data->{user_id}) %>"><%= config->{eq}{site_url} %>/student/registration?instructor_id=<%= user_data->{user_id} %></a>
+         </pre>
+   </li>
+
+   <li> Please encourage other instructors to try <a href="mailto:?subject=<%= config->{promotion_email}{subject} %>&body=<%= uri_encode(config->{promotion_email}{body}) %>">Equiz.Me</a>.
+</li>
+
+   <li> Report a problem, or suggest a change or feature by <a href="mailto:ivo.welch@gmail.com?subject=Equiz.me">email</a>.  You can also read our <a href="http://www.equiz.me/static/release-schedule.html">Release Schedule</a>, which lists the features that we are currently planning, even short-term.
+</li>
+
+</ul>
+
+
+</section><!-- PAGE: instructors/show_home.html.ep  -->

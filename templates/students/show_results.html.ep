@@ -1,0 +1,47 @@
+% layout 'student';
+% title 'Results History';
+
+<section> <!-- PAGE: students/show_results.html.ep  -->
+
+<link href="/static/tablesorter/style.css" media="screen" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/static/tablesorter/jquery.tablesorter.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#results_table").tablesorter();
+}); 
+</script>
+
+<style type="text/css">
+  table.tablesorter tbody td { padding:1ex; padding-right:1em; padding-left:1em }
+</style>
+
+<table id='results_table'  class="tablesorter">
+    <thead>
+    	<tr>
+    		<th>Instructor</th>
+    		<th>Quiz</th>
+    		<th>Submit Time</th>
+    		<th>Your Score</th>
+    		<th>Maximum Score</th>
+    		<th>Your Score %</th>
+            <th>Details</th>
+    	</tr>
+    </thead>
+    <tbody>
+    	% foreach my $res (@$student_results) {
+    	    <tr>  
+    	    	<td> <%= $res->{instructor_id} %> </td>
+    	    	<td> <%= $res->{quiz_id} %> </td>
+    	    	<td> <%= $res->{submit_time} %> </td>
+    	    	<td> <%= $res->{score} %> </td>
+    	    	<td> <%= $res->{max_score} %> </td>
+    	    	<td> <%= $res->{percentage} %> </td>
+                <td> <%== "<a href='". url_for('students_show_full_results', result_id => $res->{result_id} ). "'> View </a>" if $res->{result_id} && $res->{is_print_answer} %> </td>
+    	    </tr>
+    	% }
+    </tbody>
+</table>
+
+</section> <!-- PAGE: students/show_results.html.ep  -->

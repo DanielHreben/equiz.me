@@ -1,0 +1,18 @@
+% layout 'student';
+% title 'choose instructor';
+
+<section> <!-- PAGE: students/show_instructors.html.ep  -->
+<p>Choose instructor:</p>
+
+<ul>
+    % foreach my $instr ( @$instructors ) {
+        <li>
+            <a href="<%= url_for('students_show_quizzes', instructor_id => $instr->{user_id} ) %>" > 
+                <%= $instr->{first_name} %>  <%= $instr->{last_name} %> 
+                <%== "<img src='/static/img/lock.gif' alt='lock' />" if $instr->{qdl_password} %>
+            </a>
+        </li> 
+    % }
+</ul>
+
+</section><!-- PAGE: students/show_instructors.html.ep  -->

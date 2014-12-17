@@ -1,0 +1,297 @@
+::EQVERSION:: 1.0 -- not used.
+
+################################################################
+::NAME::  Welch, Chapter 8.
+
+::INSTRUCTOR:: -- not used
+
+::CREATED:: April 2011 by Welch Team -- not used
+
+::VERSION:: 1.0 -- not used
+
+::AREA:: Finance / Corporate Finance / Investor Choice
+
+::SHARING:: ok
+
+::INTRODUCTION::
+
+<div style="color:darkred">
+
+<h4>Quiz Status</h4>
+
+<p> Checked for Wording: Not Yet.</p>
+
+<p> Checked for Correct Answer: Not Yet.</p>
+
+<p> Checked for Comprehensive Chapter Coverage: Not Yet.</p>
+
+</div>
+
+::PS::
+
+<p>Don't forget to click the submit button below when you are done.</p>
+
+################################################################
+
+::START::
+:N: Q08.1
+
+:Q: An asset has 4 possible rates of return, all equally likely: 5%, -6%,
+    8%, and {$x:0}%.  What is the expected rate of return for this asset? (Display rate of return as a decimal. i.e. 10% rate of return = .1)
+
+:I: $x= rseq(-7,15); $ror= ((5-6+8+$x)/4); $ANS=$ror/100
+
+:L: The expected rate of return is E(rate of return) =
+    [(5-6+8+{$x:0})/4]% = {$ror}% = {$ANS:4}
+
+:T: 2
+
+:E:
+
+
+:N: Q08.2
+
+:Q: An asset has 4 possible rates of return, all equally likely: 5%, -6%,
+    8%, and {$x:0}%.  What is the standard deviation of this assets return? (Report as a percent)
+
+:I: $x=rseq(-7, 15); $ror= ((5-6+8+$x)/4);
+    $var= .25*((5 -$ror)**2 + (-6 -$ror)**2 + (8 -$ror)**2 + ($x -$ror)**2);
+    $ANS=$var^0.5
+
+:L: First, compute the expected rate of return.  E(rate of return) =
+    [(5-6+8+{$x:0})/4]% = {$ror}% .  Now, compute the variance of the
+    assets returns.  Var(asset) = ((5-{$ror})^2 + (-6 -{$ror})^2 + (8
+    -{$ror})^2 + ({$x} -{$ror})^2) / 4 = {$var}%%.  Then, since standard
+    deviation is the square root of variance, SD(asset) = {$var}%%^0.5 =
+    {$ANS}%
+
+:T: 4
+
+:E:
+
+
+:N: Q08.3
+
+:Q: Asset A has two possible, equally likely, rates of return: (k-5)% or
+    (k+5)%.  Asset B also has two possible, equally likely, rates of return:
+    k% or (k+10)%.  Show (i.e.  prove!) that the variance of both assets are
+    equal for all values of k, and use this to explain which asset a
+    rational investor would prefer.  (Clearly you will not be able to report
+    your proof, but it is a good exercise)
+
+:I: $ANS=2
+
+:C: A is preferred | B is preferred
+
+:L: First, to compute the variance of the rates of return, one must compute
+    the expected rate of return.  For assets A and B, the expected rate of
+    return is k% and (k+5)%, respectively.  Thus, B has a higher expected
+    return than A.  Now consider the expressions for the variance of each
+    asset: Var(A) = ( [(k+5) - k]^2 + [(k-5) - k]^2 ) / 2 = (25+25)/2 = 25.
+    (Thus, SD(A) = sqrt(25) = 5).  Var(B) = ( [k - (k+5)]^2 + [(k+10) -
+    (k+5)]^2 ) / 2 = (25+25)/2 = 25 = Var(A).  QED.  Thus, Var(A) = Var(B)
+    and SD(A) = SD(B).  Thus, it is shown that the variance of each asset is
+    equal.  This should intuitively make sense, since in each case, the two
+    possible outcomes deviate from the expected outcome by 5% (which, you
+    may notice, is the standard deviation of each asset as well!) This
+    information would be useful to the rational investor, because asset B
+    exposes the investor to the same level of risk as asset A, but with an
+    expected return 5% greater.  Thus, he would prefer asset B.
+
+:T: 5
+
+:E:
+
+
+:N: Q08.4
+
+:Q: Consider two assets, A and B.  In situation 1, they make 4% and 10%,
+     respectively.  In situation 2, they both make 5%.  In situation 3, they
+     make 6% and 0%, respectively.  Find the expected rates of return for
+     assets A and B.  Which asset would an investor that cares only about
+     expected return and risk probably prefer?
+:I: $ANS=1
+
+:C: A is Preferred | B is Preferred | A and B are the Same
+
+:L: Expected return for asset A = (4+5+6)%*(1/3) = 5%.  Expected return for
+     asset B = (10+5+0)%*(1/3) = 5%.  A rational investor would observe that
+     the variance (risk) of asset B is greater for the same expected reward,
+     and would thus prefer to invest in asset A.
+
+:T: 2
+
+:E:
+
+
+:N: Q08.5
+
+:Q: Consider two assets, A and B, with the following equally likely rates of
+    return: A will return either {$a1}, {$a2}, or {$a3}.  B will return
+    either {$b1}%, {$b2}%, or {$b3}%.  Find the expected rates of return for
+    assets A and B.  Which asset would an investor who cares only about
+    expected return and risk probably prefer?
+
+:I: $a1= rseq(2.5, 7.5, 0.5); $a2=rseq(2.5, 8.5, 0.5); $a3=rseq(2.5, 7.5, 0.5);
+    $b1= rseq(2.5, 7.5, 0.5); $b2=rseq(2.5, 8.5, 0.5); $b3=rseq(2.5, 7.5, 0.5);
+    $erA=mean($a1,$a2,$a3); $sdA=sd($a1,$a2,$a3);
+    $erB=mean($b1,$b2,$b3); $sdB=sd($b1,$b2,$b3); 
+    $ANS= (($erB==$erA)&&($sdB==$sdA)) ? 3 :
+	  (($erB>=$erA)&&($sdB<=$sdA)) ? 2 :
+	  (($erB<=$erA)&&($sdB>=$sdA)) ? 1 : 4
+
+:C: A is better | B is better | Equal | Not Clear
+
+:L: The expected rate of return of A is $erA, its sd is $sdA.  The expected
+    rate of return of B is $erB, its sd is $sdB.  Thus, the correct answer
+    is $ANS.
+
+:T: 2
+
+:E:
+
+
+:N: Q08.6
+
+:Q: Consider two assets, A and B.  A earns 4%, -5%, or 3%, in scenarios 1,
+     2, and 3.  B earns -5%, 3%, or 4%, in scenarios 1, 2, and 3.  Compute
+     the expected rates of return and Std.  Dev.  for each asset, A and B.
+     Now, consider a portfolio of assets A and B, where the investor holds a
+     fraction of his portfolio in each asset: {$x} in A and {$xnm1} in B.
+     In this new diversified AB portfolio, compute the Std.  Deviation and
+     report this as your answer.  Compare the new SD to that of each asset's
+     individual SD.
+     
+
+:I: $x= rseq(0.1,0.9,0.1); $xnm1=1-$x; $sd=(((4-0.67)**2 + (-5-0.67)**2 + (3-0.67)**2)*(1/3))**.5;
+    $sdab=(((9*$x-5-0.67)**2 + (3-8*$x-0.67)**2 + (4-$x-0.67)**2)*(1/3))**.5;
+    $nxm5=9*$x-5; $tm8x=3-8*$x; $fmx=4-$x
+
+:S: $sdab
+
+:L: Expected Return for A = (4-5+3)/3 = 0.67%.  Expected Return for B =
+    (-5+3+4)/3 = 0.67%.  Note that the Std.  Deviation will also be the same
+    for A and B, since they have identical expected returns and possible
+    returns in the 3 equally likely situations.  SD(asset A or asset B) =
+    sqrt( ( (4-0.67)**2 + (-5-0.67)**2 + (3-0.67)**2 ) / 3 )= {$sd}.  Now
+    consider the new payoff table for each situation for Portfolio AB:
+    Situation 1: {$nxm5}%, Situation 2: {$tm8x}%, Situation 3: {$fmx}%.
+    Consider the new Expected rate of return (which should hopefully be the
+    same, since the portfolio is composed of two assets with the same
+    Expected Return!): ({$nxm5}+{$tm8x}+{$fmx})/3 = (2/3)% = (0.67)%, which
+    is the same as before.  Now consider the AB risk: SD(AB) = (
+    ({$nxm5}-0.67 )**2 + ({$tm8x}-0.67 )**2 + ({$fmx}-0.67)**2 ) / 3 =
+    {$sdab}
+
+:T: 6
+
+:E:
+
+
+
+:N: Q08.7
+
+:Q: Estimates for a project predict that the project will return +{$x}% if
+    the market return is -{$tx}%, and will return -{$x}% if the market
+    return is {$tx}%.  What can you estimate is the market beta for the
+    project?
+
+:I: $x= rseq(1,10,0.5); $tx=2*$x; $ANS=-0.5
+
+:L: The market beta is simply ({$x}-(-{$x})/(-{$tx}-{$tx}) = -0.5
+
+:T: 2
+
+:E:
+
+
+
+:N: Q08.8
+
+:Q: Estimates for a project predict that the project will return +{$tx}% if
+    the market return is {$x}%, and will return –{$tx}% if the market
+    return is -{$x}%.  What can you estimate is the market beta for the
+    project?
+
+:I: $x= rseq(1,5,1); $tx=3*$x; $ANS=3
+
+:L: The market beta is simply (({$tx}%) - (-{$tx}%)) / (({$x}%) - (-{$x}%))
+= 6/2 = 3
+
+:T: 2
+
+:E:
+
+
+
+:N: Q08.9
+
+:Q: Asset A earns {$rA1}%, {$rA2}%, {$rA3}%, or {$rA4}% in states 1 through
+     4.  Asset B earns {$rB1}%, {$rB2}%, {$rB3}%, or {$rB4}%.  What is the
+     sd for a portfolio AB that invests {$x100}% in A and {$omx100}% in B?
+
+:I: $rA1=rseq(-5,5); $rA2=rseq(-5,5); $rA3=rseq(-5,5); $rA4=rseq(-15,15);
+$rB1=rseq(-5,5); $rB2=rseq(-5,5); $rB3=rseq(-5,5); $rB4=rseq(-15,15);
+$x100=rseq(1,99); $x=$x100/100; $omx100=100-$x100; $omx=1-$x;
+$rC1=$x*$rA1+$omx*$rB1;$rC2=$x*$rA2+$omx*$rB2;$rC3=$x*$rA3+$omx*$rB3;$rC4=$x*$rA4+$omx*$rB4;
+$Cmean= mean($rC1,$rC2,$rC3,$rC4); $Cvar= var($rC1,$rC2,$rC3,$rC4); $Csd=
+sqrt($Cvar);
+
+:S: $Csd
+
+:L: The four returns for the AB portfolio are {$rC1}, {$rC2}, {$rC3}, and
+     {$rC4}.  Thus, the mean is {$Cmean}, the variance is {$Cvar}, and the
+     sd is {$Csd}.
+
+:T: 10
+
+:E:
+
+
+
+:N: Q08.10
+
+:Q: The risk-free market asset is currently trading at {$x}%.  If you held a
+    portfolio of two assets, A and B, such that Corr(A,B) = -1, what must be
+    the return on this portfolio with equal weights of asset A and B? (Report return as a decimal. 10% return = .1)
+
+:I: $x= rseq(0.5, 5.0, 0.5); $ANS=$x/100
+
+:L: If you hold two assets with correlation -1, they will counteract the
+    others risk entirely, leaving zero risk.  Thus, in a perfect market,
+    holding these two assets in tandem should yield a return equal to the
+    risk free asset, or {$x}% = {$ANS}.
+
+:T: 2
+
+:E:
+
+
+
+:N: Q08.11
+
+:Q: Asset A earns {$rA1}%, {$rA2}%, {$rA3}%, or {$rA4}% in states 1 through
+     4.  Asset B is risk-free and earns 2% for sure.  What is the sd for a
+     portfolio AB that invests {$x100}% in A and {$omx100}% in B?
+
+:I: $rA1=rseq(-5,5); $rA2=rseq(-5,5); $rA3=rseq(-5,5); $rA4=rseq(-15,15);
+$rB1=2; $rB2=2; $rB3=2; $rB4=2; $x100=rseq(1,99); $x=$x100/100;
+$omx100=100-$x100; $omx=1-$x;
+$rC1=$x*$rA1+$omx*$rB1;$rC2=$x*$rA2+$omx*$rB2;$rC3=$x*$rA3+$omx*$rB3;$rC4=$x*$rA4+$omx*$rB4;
+$Cmean= mean($rC1,$rC2,$rC3,$rC4); $Cvar= var($rC1,$rC2,$rC3,$rC4); $Csd=
+sqrt($Cvar);
+
+:S: $Csd
+
+:L: The four returns for the AB portfolio are {$rC1}, {$rC2}, {$rC3}, and
+     {$rC4}.  Thus, the mean is {$Cmean}, the variance is {$Cvar}, and the
+     sd is {$Csd}.
+
+:T: 10
+
+:E:
+
+
+::END::
+
+	

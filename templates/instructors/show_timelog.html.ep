@@ -1,0 +1,16 @@
+% title 'Quiz Timelog';
+
+<h1> <%= $file %></h1>
+% foreach my $row (@$rows) {
+    
+    
+    % if ( $row->{result_id} ) {
+        <a href='<%= url_for("instructors_show_full_results", result_id => $row->{result_id}, user_id => stash("user_id") ) %>'><%= $row->{text} %></a>
+    % } else {
+        <%= $row->{text} %> 
+    % }  
+     <br />
+    
+% }
+
+<!-- PAGE: instructors/show_timelog.html.ep  -->

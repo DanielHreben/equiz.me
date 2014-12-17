@@ -1,0 +1,3 @@
+% title um_config->{profile_labels}->{page_title};
+
+<%= stash 'um_notice' %>

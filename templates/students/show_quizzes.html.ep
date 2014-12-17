@@ -1,0 +1,36 @@
+% layout 'student';
+% title 'Choose Quiz From Browsed Instructor';
+
+<section> <!-- PAGE: students/show_quizzes.html.ep  -->
+
+<p>Quizzes from instructor <%= $instructor_id %>: </p>
+
+      <table>
+	<!-- <tr> <th> Quiz </th> <th> </th> </tr> -->
+	<tr>
+         % my $i=0; foreach my $quiz ( sort @$quizzes ) {
+
+	 % if (((++$i)%3)==1) {
+	   </tr> <tr>
+         % }
+
+           <td style="padding:5px">
+             "<a href="<%= url_for('students_show_quiz', quiz_id => $quiz->{quiz_id} ) %>" ><%= $quiz->{quiz_id} %></a>"
+             % if ($quiz->{date}) {
+                due date  <%= $quiz->{date} %>
+             % }
+
+             % if (! $quiz->{last_result}) {
+                not yet done
+             % } elsif ($quiz->{last_result} > 99) {
+                <img src='/static/img/check.png' alt='Done' /> 100 %
+             % } else {
+                  Your last result: <%= $quiz->{last_result} %> %
+             % }
+
+           </td>  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+         % }
+        </tr>
+     </table>
+
+</section> <!-- PAGE: students/show_quizzes.html.ep  -->

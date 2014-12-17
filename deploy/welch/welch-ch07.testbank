@@ -1,0 +1,144 @@
+::EQVERSION:: 1.0 -- not used.
+
+################################################################
+::NAME::  Welch, Chapter 7.
+
+::INSTRUCTOR:: -- not used
+
+::CREATED:: April 2011 by Welch Team -- not used
+
+::VERSION:: 1.0 -- not used
+
+::AREA:: Finance / Corporate Finance / Investments Basic Statistics
+
+::SHARING:: ok
+
+::INTRODUCTION::
+
+<div style="color:darkred">
+
+<h4>Quiz Status</h4>
+
+<p> Checked for Wording: Not Yet.</p>
+
+<p> Checked for Correct Answer: Not Yet.</p>
+
+<p> Checked for Comprehensive Chapter Coverage: Not Yet.</p>
+
+</div>
+
+::PS::
+
+<p>Don't forget to click the submit button below when you are done.</p>
+
+################################################################
+
+::START::
+
+:N: Q07.1
+
+:Q: In theory, would you expect the S&P 500 or the Dow Jones Average (30
+    Companies) to be the riskier investment if each component stock were
+    equally risky?
+
+:C: S&P 500 is riskier | Dow Jones is riskier
+
+:I: $ANS=2
+
+:L: The Dow Jones would theoretically be riskier, since the risk of each
+    individual stock is the same, but there are fewer stocks (30 vs.  500).
+    This implies greater variance and risk of the portfolio return.
+
+:T: 1
+
+:E:
+
+
+:N: Q07.2
+
+:Q: What is the 4 year total return on a stock that yields +50%, +100%,
++50%, and -100%, in successive years? (Report total rate of return as a decimal. i.e. 10% rate of return = .1)
+
+:I: $ANS=0
+
+:L: The total rate of return is -100%! You lose your entire investment in
+    the forth year; thus, no matter how well the stock did before this
+    point, your return is zero.  This is an additional argument for using a
+    geometric rate of return in referencing the return of an investment over
+    multiple periods.
+
+:T: 1
+
+:E:
+
+
+:N: Q07.3
+
+:Q: What is the 4 year average rate of return on a stock that yields +50%,
+    +100%, +50%, and -100%, in successive years? (Is this misleading in any
+    way?) (Report average rate of return as a decimal. i.e. 10% average rate of return = .1)
+
+:I: $ANS=0.25
+
+:L: Although this is not actually a useful computation, you should proceed
+    with the exercise to demonstrate how far from the correct geometric rate
+    of return an average return can be: Average rate of return = [0.5 + 1 +
+    0.5 + (-1)]/4 = 0.25.  In reality, you would have lost your entire
+    investment!
+
+:T: 2
+
+:E:
+
+
+:N: Q07.4
+
+:Q: Compute the difference between the geometric (the right way to compute
+    returns!) and arithmetic average return on a stock with the following
+    yearly rates of return: 0.13, -0.08, {$x}, {$x2}, -{$x}, 0.21. (Compute Geom - Arith as a decimal. i.e. 10% difference in rate of return = .1)
+
+:I: $x= rseq(.04,.1,.01); $x2=2*$x; $a=1+$x; $b=1+$x2; $z=1-$x; $G =(
+(1.13)*(0.92)*(1+$x)*(1+$x2)*($z)*(1.21))**(1/6) - 1; $A=
+((0.13)+(-0.08)+($x)+($x2)+(-$x)+(0.21)) / 6; $ANS=$G-$A;
+
+:L: Geometric return = [(1.13)(0.92)({$a})({$b})({$z})(1.21)] ^(1/6) - 1 =
+    {$G} .  Arithmetic return =
+    ((0.13)+(-0.08)+({$x})+({$x2})+(-{$x})+(0.21)) / 6 = {$A}.  Difference =
+    {$G} - {$A} = {$ANS}.
+
+:T: 3
+
+:E:
+
+
+:N: Q07.5
+
+:Q: When the market portfolio of stocks moves +50%, and Stock X moves
++{$x}%, what is the market beta of Stock X?
+
+:I: $x= rseq(5, 100, 5); $b= .02*$x;
+
+:S: $b
+
+:L: Beta of stock X = {$x}/50 = {$b}
+
+:T: 2
+
+:E:
+
+
+:N: Q07.6
+
+:Q: A stock with a yearly return of 10% has a market beta of {$x}.  What is
+    the market portfolio return?
+
+:I: $x= rseq(2,20 ,2); $ANS= 10/$x;
+
+:L: Beta = {$x} = 10/r.  r = 10/{$x} = {$ANS}
+
+:T: 2
+
+:E:
+
+
+::END::

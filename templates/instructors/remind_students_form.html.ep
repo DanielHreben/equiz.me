@@ -1,0 +1,42 @@
+% layout 'instructor';
+% title 'Remind students';
+
+<section>
+
+<table>
+<tr>
+<td>
+%= form_for 'remind_students_submit', enctype => 'multipart/form-data', method => 'POST' => begin
+<input type="hidden" name="type" value="upload" />
+
+Upload students list:
+</td>
+<td>
+<input name="f" type="file" />
+</td>
+<td>
+<input type="submit" value="Upload" />
+
+%= end;
+
+</td>
+</tr>
+<tr>
+<td>
+
+%= form_for 'remind_students_submit', method => 'POST' => begin
+<input type="hidden" name="type" value="download" />
+
+Download students list:
+</td>
+<td>
+<input name="url" />
+</td>
+<td>
+<input type="submit" value="Download from URL" />
+
+%= end;
+</td></tr>
+</table>
+
+</section>

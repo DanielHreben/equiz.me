@@ -1,0 +1,313 @@
+::EQVERSION:: 1.0 -- not used.
+
+################################################################
+::NAME::  Welch, Chapter 13.
+
+::INSTRUCTOR:: -- not used
+
+::CREATED:: April 2011 by Welch Team -- not used
+
+::VERSION:: 1.0 -- not used
+
+::AREA:: Finance / Corporate Finance / Financial Statements
+
+::SHARING:: ok
+
+::INTRODUCTION::
+
+<div style="color:darkred">
+
+<h4>Quiz Status</h4>
+
+<p> Checked for Wording: Not Yet.</p>
+
+<p> Checked for Correct Answer: Not Yet.</p>
+
+<p> Checked for Comprehensive Chapter Coverage: Not Yet.</p>
+
+</div>
+
+::PS::
+
+<p>Don't forget to click the submit button below when you are done.</p>
+
+################################################################
+
+::START::
+
+:N: Q13.1
+
+:Q: Which of the financial statements measure flows, and are thus most
+important in beginning a NPV analysis?
+
+
+:C: Income and owners equity statements |
+    Cash flow and income statements |
+    Balance sheet and Income statements |
+    Cash flow statement only |
+    Balance sheet and owners equity statement
+
+:I: $ANS=2
+
+:L: The correct answer is the cash flow and income statements.  Without the income
+    statement, you cannot easily figure out how much interest the firm paid.
+
+:T: 1
+
+:E:
+
+
+:N: Q13.2
+
+:Q: Your company must purchase two machines 1 and 2, which cost ${$x} and
+    ${$y}, respectively.  Machines 1 and 2 have depreciation periods of 5
+    and 10 years, respectively.  Using straight-line depreciation, what is
+    the combine total depreciation from machines 1 and 2 in each of the first {$t}
+    years?
+
+:I: $x= rseq(100, 200, 10); $y= rseq(100,200,10); $t= rseq(2,5);
+     $ANS=$x/5+$y/10; $xd5=$x/5; $yd10=$y/10
+
+:L: Each of the first 5 years, 1/5 of the cost of machine 1 will be
+   depreciated, or ${$xd5}.  Similarly, each of the first 10 years 1/10 of
+   the cost of machine 2 will be depreciated, or ${$yd10}.  Thus, since year
+   {$t} is within 5 years, the total depreciation in each of the first {$t}
+   years is simply ${$ANS}.
+
+
+:T: 2
+
+:E:
+
+
+:N: Q13.3
+
+:Q: Consider the example in the text on pages 381 and 382, as demonstrated
+in Exhibits 13.5 and 13.6.  What would be to your Net Income in Year 2 if
+the IRS decided your two machines should be depreciated over {$t} years
+instead of 3, holding all other aspects of the project constant?
+
+:I: $t= rseq(4,20); $eq1=75/$t; $eq2=2*$eq1; $eq3=60-$eq2; $eq4=$eq3-5; $eq5=0.6*$eq4;
+    $ANS=.6*(55-150/$t)
+
+:L: First compute the yearly depreciation amount using straight-line
+depreciation.  So, each machine will be depreciated by $75/{$t}={$eq1} for
+{$t} years.  In year 2, you will still be depreciating the first machine and
+have just begun to depreciate the second - thus, the total depreciation in
+year two is $2*{$eq1}={$eq2}.  So, your company's EBIT = $60 - ${$eq2} =
+${$eq3}.  So, your EBT = EBIT minus the interest expense, which is still $5.
+Thus EBT = ${$eq4}.  You only get to keep 60% of this as net income after
+paying 40% to uncle sam though: Thus, net income = .6*EBT = .6*${$eq4} =
+${$eq5}.
+
+:T: 3
+
+:E:
+
+
+:N: Q13.4
+
+:Q: Using the same cash flows from the NPV analysis in Exhibit 13.7 of the
+text, compute the NPV of the project if, instead of 12%, your firm had a
+{$r}% cost of capital on the tax liability.
+
+:I: $r= rseq(13, 15); $NPVtax=14/(1+$r/100) +
+2/(1+$r/100)**2 + 2/(1+$r/100)**3 + 12/(1+$r/100)**4 + 22/(1+$r/100)**5 +
+22/(1+$r/100)**6; $opir=1+$r/100;$ANS=119.93-$NPVtax
+
+:L: The tax liability cash flows are still $14, $2, $2, $12, $22, and $22 in
+years 1 through 6.  One must simply change the discount factor used to
+compute the NPV of the tax liability.  So, NPV of the tax liability =
+$14/{$opir} + $2/({$opir}^2) + $2/({$opir}^3) + $12/({$opir}^4) +
+$22/({$opir}^5) + $22/({$opir}^6) =${$NPVtax}.  Hence, project's
+NPV=$119.93-${$NPVtax}=${$ANS}
+
+:T: 4
+
+:E:
+
+
+:N: Q13.5
+
+:Q: Consider a project similar in structure to the one described in Exhibit
+13.6.  Now, assume that the machine costs $100 to purchase and can be
+depreciated for {$t} years.  Now, the COGS and SG&A are each ${$c} per year.
+If the machine can produce output of ${$y} per year and you purchase only
+one machine at year 1, what will your total EBIT or Operating Income be over
+the first 5 years of this project? Do not bother with NPV for this question
+- simply report the simple sum of Operating Income in the first 5 periods.
+
+
+:I: $c= rseq(2, 15); $t= rseq(5, 10); $y= rseq(60, 150,10);
+     $a= ($y-2*$c-100/$t); $eq1=$y-2*$c; $eq2=100/$t; $eq3=$eq1-$eq2;$eq4=5*$eq3;
+     $ANS=5*$a
+
+:L: First compute the EBITDA, or simply what is left after subtracting COGS
+and SG&A from the revenues: EBITDA = ${$y} - 2*${$c} = ${$eq1}.  Now,
+compute and net out the depreciation from the EBITDA to get the Operating
+Income in each year.  The depreciation will be a constant $100/{$t} =
+${$eq2} for {$t} years.  So, since this will be identical in each of the
+first 5 years, each year will have EBIT = EBITDA - ${$eq2} = ${$eq3}.  So,
+the total operating income over 5 years will be 5*${$eq3} = ${$eq4}.
+
+:T: 5
+
+:E:
+
+
+:N: Q13.6
+
+:Q: Consider Exhibit 13.6 on page 382 and the corresponding project detailed
+in the text.  The exhibit is computed using GAAP.  However, assume now that
+the IRS tax rules allow you to depreciate ${$k} of each machine's $75 cost
+in the year of purchase and requires you to depreciate the remaining
+${$left} evenly over the next {$t} years.  What would the cumulative
+deferred taxes - i.e.  the cumulative difference between GAAP and IRS taxes
+be after year 1 of this project?
+
+:I: $t= rseq(2,6); $k= rseq(30, 60, 5); $left=75-$k; $eq1=60-$k;$eq2=0.4*$eq1; $ANS= 14-$eq2
+
+:L: First, note that the GAAP computed income taxes, as found in Exhibit
+13.6, are $14 and $2 in years 1 and 2, respectively.  Next, compute the IRS
+tax payments based on the IRS rules of depreciation.  In each of the first
+two years, you may depreciate ${$k} when you purchase each machine.  So, in
+year 1, you will depreciate ${$k} from the first purchase, leaving
+$60-${$k}=${$eq1} to be taxed at 40%.  Thus, you actually pay the IRS
+.4*${$eq1} = ${$eq2} in taxes in year 1.  The difference, $14 - ${$eq2} =
+${$ANS} is the deferred tax from year 1.
+
+
+:T: 4
+
+:E:
+
+
+
+:N: Q13.7
+
+:Q: A firm reports deferred tax liabilities of ${$x} and ${$y} this year and
+last year, respectively.  You know that the GAAP after-tax cash flow was
+$1000 this year.  What is the actual after-tax cash flow this year?
+
+:I: $x= rseq(100,200); $y= rseq(201,300); $ymx=$y-$x; $ANS=1000-$ymx
+
+:L: The deferred tax liabilities decreased by ${$y}-${$x}=${$ymx} from last
+year to this year.  The interpretation of this is that the firm paid more
+taxes than is shown on the income statement, so the actual cash flow should
+be lower than $1000.  The real after-tax cash flow would be $1000-${$ymx} =
+${$ANS}.
+
+:T: 4
+
+:E:
+
+
+:N: Q13.8
+
+:Q: Consider the following table of a company's reported net income (i.e.
+reported sales) and accounts receivable.  Compute the cash flows in each of
+the three years and report the NPV of these cash flows.  Use a 10% discount
+rate.  Assume Accounts Receivable in year 0 is $0.
+<table>
+<tr> <td> Year </td> <td> 1 </td> <td> 2 </td> <td> 3 </td> <tr>
+<tr> <td> Net Income </td> <td> ${$x} </td> <td> ${$y} </td> <td> ${$z} </td> </tr>
+<tr> <td> Accounts Receivable </td> <td> ${$r} </td>  <td> ${$r2} <td/> <td> ${$r4} </td> </tr>
+</table>
+
+:I: $x= rseq(100, 350, 25); $y= rseq(100, 350, 25); $z= rseq(100, 350, 25); $r= rseq(100, 200);
+     $r2=2*$r; $r4=4*$r; $cf1=$x-$r; $cf2=$y-$r; $cf3=$z-2*$r; 
+     $ANS= ($x-$r)/1.1 + ($y-$r)/1.1**2 + ($z-2*$r)/1.1**3;
+
+:L: First, compute the change in accounts receivable in each period.  Then,
+    to infer the relevant cash flows for NPV analysis, subtract the change
+    in accounts receivable from the reported net income: 
+<table>
+<tr> <td> Year </td> <td> 1 </td> <td> 2 </td> <td> 3 </td> </tr>
+<tr> <td> Net Income </td> <td> ${$x} </td> <td> ${$y} </td> <td> ${$z} </td> </tr>
+<tr> <td> Accounts Receivable  </td> <td> ${$r} </td> <td> ${$r2} </td> <td> ${$r4} </td> </tr>
+<tr> <td> Change in Accts. Rec. </td> <td> ${$r} </td> <td> ${$r} </td> <td> ${$r2} </td> </tr>
+<tr> <td> Cash Flows </td> <td> ${$cf1} </td> <td> ${$cf2} </td> <td> ${$cf3} </td> </tr>
+</table>
+      NPV = ${$cf1}/1.1 + ${$cf2}/(1.1^2) + ${$cf3}/(1.1^3) = ${$ANS}
+
+:T: 7
+
+:E:
+
+
+:N: Q13.9
+
+:Q: A firm with yearly net income of ${$y} has only two customers, each of
+    whom makes identical purchases once per year.  Timely Tom makes his
+    purchase today and at the start of next year, while Late Louie makes his
+    purchase half a year from today and halfway into next year (18 months
+    from today).  Late Louie, however, always pays 6 months late, i.e.  at
+    year end.  What is the NPV of all cash flows to this firm in the next
+    two years? Assume a yearly discount rate of {$r}%.
+
+:I: $y= rseq(50, 150, 10); $r= rseq(5, 12); $rdec=$r/100;$yo2=$y/2; 
+    $ANS= ($y/2)+ ($y)/(1+$r/100)**1 + ($y/2)/(1+$r/100)**2;
+
+:L: Think of this problem as one with 4 periods, each of which is 1/2 year
+    in length.  To obtain the NPV of these semi-annual cash flows, however,
+    recall that each period the discount factor will be 1/(1+{$rdec})^0.5.
+    Each year, the firm earns ${$y}, ${$yo2} of which comes from each of
+    Louie and Tom.  Thus, the cash flows are actually quite easy to infer in
+    this case:
+<table>
+<tr> <td> Period </td> <td> 0 </td>  <td> 0.5 </td> <td> 1 </td> <td> 1.5 </td> <td> 2 </td> </tr>
+<tr> <td> Cash Flow </td> <td> ${$yo2} </td> <td> 0 </td> <td> 2*${$yo2} </td> <td> 0 </td> <td> ${$yo2} </td> </tr>
+</table>
+NPV = ${$yo2} + 2*${$yo2}/(1+{$rdec})^1 + ${$yo2}/(1+{$rdec})^2 = {$ANS}
+
+:T: 6
+
+:E:
+
+
+:N: Q13.10
+
+:Q: MACRS, or the Modified Accelerated Cost Recovery System is the current
+    tax decpreciation system in the US.  It assigns a schedule for yearly
+    depreciation, depending on the type of property.  Assume you are
+    considering the purchase of a new ${$x} laptop.  Computers are to be
+    depreciated as follows: 20% in year 1, 32% in year 2, 19.2% in year 3,
+    11.52% in years 4 and 5, and the final 5.76% in year 6.  How much will
+    your computer have been depreciated after year 2?
+
+:I: $x= rseq(800, 1500, 100); $eq1=0.2*$x; $eq2=0.32*$x; $ANS=.52*$x
+
+:L: The question is pretty straightforward - in year 1 you can depreciate
+    (.20)*{$x} = ${$eq1} and in year 2, you can depreciate (.32)*{$x} =
+    ${$eq2}.  So, in total you will have depreciated ${$ANS}.
+
+:T: 2
+
+:E:
+
+
+
+:N: Q13.11
+
+:Q: Company XYZ's balance sheet reports deferred income taxes of ${$x} in
+    2010 and deferred income taxes of ${$y} in 2009.  If the balance sheet
+    listed income tax payments for company XYZ were ${$z} in 2010, how much
+    did XYZ actually pay in taxes in 2010?
+
+:I: $x= rseq(1000,2000); $y= rseq(1500,2500); $z= rseq(2000,3000);
+    $ANS=$z-$x+$y; $xmy=$x-$y
+
+:L: First compute the change in the deferred taxes listed on the balance
+    sheet from 2009 to 2010.  This change is ${$x}-${$y}=${$xmy}.  So, to
+    obtain the actual flow of income tax payments from 2010, this difference
+    must be subtracted from the balance sheet payments ${$z}.  So, total
+    income tax paid = ${$z} - (${$xmy}) = ${$ANS}.
+
+:T: 3
+
+:E:
+
+
+
+
+::END::

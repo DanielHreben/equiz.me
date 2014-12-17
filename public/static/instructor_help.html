@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Instructor Help</title>
+<link href="/static/main.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="/static/instructor.css" media="screen" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+   
+<header>
+  <table class="hdr">
+    <tr>
+      <td> <span class='gravatar'> <img src='/static/equizavatar.jpg' alt='Gravatar' height='80' width='80' /> </span> &nbsp;&nbsp; </td>
+      <td> <span class="hdruid"> All Instructors </span>
+          <br />&nbsp;<br />
+          <span class="hdrfid"> Help </span> </td>
+    </tr>
+    <tr> <td colspan="2"> <span class="gravatarbottom">Equiz.Me</span>
+           <br />&nbsp;</td>
+    </tr>
+  </table>
+</header>
+
+<nav>
+<a href="/instructor/users/ivo.welch+t1@gmail.com/home">home</a> 
+|
+<a href="/fm">directory of files</a>
+|
+<a href="/instructor/users/ivo.welch+t1@gmail.com/edit">account settings</a> 
+|
+<a href="/instructor/logout">logout</a>
+</nav>
+
+<hr />
+
+<p>The FAQ is in the general <a href="http://www.equiz.me/static/help.html">help/faq</a> for all users (not just instructors).
+
+<h2>Typical Work Flow</h2>
+
+<ul>
+
+<li> Learn how to use the system.
+
+<ul>
+
+<li> Create an instructor account and two student test accounts.  (Google
+ignores everything including and after a plus sign in the user name.
+Thus, <u>myself+courseA@gmail.com</u> will send emails
+to <u>myself@gmail.com</u>.  You can then search or create filters to select
+only courseA related emails.</li>
+
+<li> Create a few silly quizzes as instructor, fill them out as a
+pretend-student. In the end, just delete the results.
+
+</ul>
+
+<li> Edit a testbank until you are satisfied.  Look at it via the "View
+Testbank" on the right side of the file manager.</li>
+
+<li> Rename the .testbank extension to a .quiz extension. </li>
+
+<li> Tell your students about the quiz.  You can do that in class or by setting the
+message for your students (in your account settings).</li>
+
+<li> Look at the results.  "Run Grade Analytics" at the bottom of your file
+manager to obtain grades-*.csv files, which you can download and
+analyze.</li>
+
+</ul> 
+
+<h3><a name="#file_manager_files">Notes on Formatting of Questions</a></h3>
+
+<p>Questions can include standard html.  Note that this means that an
+instructor can destroy a quiz, too, e.g., by adding a &lt;/form&gt; tag into
+a question.  Please don't.
+
+<p>Math: You can use any html code you wish.  Thus, a &lt;sup&gt;2&lt;/sup&gt; will produce a raised square (<sup>2</sup>).  Similarly, you can use other math symbols, such as &amp;int;, which should typeset into the integral sign, &amp;int;, provided your students' browsers understand it.  However, html is ultimately not particularly good at math.  (<a href="http://www.cs.tut.fi/~jkorpela/math/">some examples and an explanation.)  The W3C working group wrote <a href="http://www.w3.org/MarkUp/html3/maths.html">HTML Math</a> to consider how this should be done, but I don't think it went very far.  Fortunately, you can also include html &lt;img&gt; images that are created by latex, and they can be hosted anywhere.  Images are definitely a kludge, but they are also the only render-perfect kludges I know of, even though they are not resolution independent.
+
+
+
+<h2><a name="#file_manager_files">Notes on the File Manager</a></h2>
+
+<ul>
+
+<li>Edit-ing files copies the original (previous) version into "-previous".</li>
+
+<li>Delete-ing immediately removes all files that end in "-deleted" and
+"-previous".  They cannot be recovered!  All other files are only renamed to
+end in "-deleted".</li>
+
+</ul>
+
+<h2><a name="#file_manager_files">Notes on Settings</a></h2>
+
+
+</body>
+</html>

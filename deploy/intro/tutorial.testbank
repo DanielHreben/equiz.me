@@ -1,0 +1,325 @@
+::EQVERSION:: 1.0 -- not used.
+
+################################################################
+::NAME::  tutorial.testbank &mdash; A Simple Testbank to Show How To Create Quizzes
+
+::INSTRUCTOR:: Ivo Welch, You, Or Someone Else -- not used
+
+::CREATED:: April 2011 by Ivo Welch -- not used
+
+::VERSION:: 1.0 -- not used
+
+::AREA:: General / Introduction
+
+   The AREA field is free-form.  Please use '/' and hierarchies, such as
+	Math / Calculus / Introduction / Differences
+	Finance / Corporate Finance / Net Present Value
+	Biology / Molecular Genetics / Telomeres
+
+::SHARING:: ok (the default) 
+
+  This means that you allow other instructors to use questions from this
+  quiz (i.e., you share it with them).  put "no" instead of "ok" if you want
+  to keep your testbanks to yourself.  Eventually, if many instructors share
+  questions, we may be able to create libraries of questions.
+
+  --- not yet used.
+
+::RENDER:: Could indicate which questions to render -- not used
+
+::EMAIL:: ivo.welch@gmail.com
+
+
+::INTRODUCTION::
+
+  <p>The point of this tutorial is to give you a template for creating your
+  own quizzes. Creating your own quizzes is so easy that it takes longer to
+  explain it than it takes to show it to you.  So let me show you.
+
+  <p>Let's start with a first simple question.  Explanations of how
+  this question was designed will follow.
+
+
+
+::PS:: 
+
+<h4>More Features and Notes</h4>
+
+<p>Most likely you won't need a lot of the stuff that is explained on this
+page.  But it gives you extra flexibility, so it won't hurt you to scan it
+quickly.
+
+<ul> 
+
+<li>You can print this file by selecting "All Pages" at the top, and then using
+your browser's print button.</li>
+
+<li>Don't put too many questions into each .quiz file.  Instead, create
+multiple quizzes.  Your students cannot save the state of their quiz and
+return the following day.  It also reduces frustration if they hit "refresh"
+by accident.  Your students should be able to finish everything in one
+session, say 1 hour.</li>
+
+<li>You can set central passwords (for viewing or submitting) in your <a
+href="/instructor/users/ivo.welch+t1@gmail.com/edit">account settings</a>.
+Or you can simply choose a secret quiz-specific pin number and make this
+your first question.  you can then simply ignore answers from students that
+did not type in your quiz-specific pin number.</li>
+
+<li>To prevent ambiguity, <code>:A:</code> is <i>not</i> the tag to
+name an answer.  Instead, <code>:S:</code> is the tag for the short
+answer (that the student has to provide), and <code>:L:</code> is the
+tag for the long answer (that explains the answer in detail after the
+quiz has been submitted).</li>
+
+<li>Questions (<code>:Q:</code>), long answers (<code>:L:</code>),
+messages (<code>:M:</code>), and both introduction (::INTRODUCTION::)
+and postscript (::POSTSCRIPT::) can include HTML formatting (which is
+why you see lists, boldfacing, etc., here).  Thus, if you want to
+print the less-than sign, you must type <code>&amp;lt;</code> instead
+of <code>&lt;</code> ; and, of course, <code>&amp;gt;</code> instead
+of <code>&gt;</code>.</li>
+
+<li>If there is no :S: field, the system assumes you meant to insert
+a rather silent <code>:S: $ANS</code>.</li>
+
+<li>There is also a :C: field to be used to keep copyright information (and
+not otherwise used) and a :A: field used to describe unusual accuracy needs
+(e.g., 0.001, which means the answer has to be within 0.001; this is not yet
+implemented).  Neither causes an error.</li>
+
+<li>The <a href="http://www.equiz.me/fm/viewfile?f=equiz.css">equiz.css</a>
+file in your instructor directory controls the styling of your student
+quizzes.  You can change it, but please keep a backup of your modifications.
+If <a href="http://www.equiz.me/fm/viewfile?f=equiz.css">equiz.css</a> does
+not exist, the system will then look for <a
+href="http://www.equiz.me/fm/viewfile?f=equiz-default.css">equiz-default.css</a>
+.  This may be deleted, overwritten, or changed by the system with a
+moment's notice, so don't keep your own changes in this file!</li>
+
+<li>The language is mostly perl-like, which in turn is
+calculator-like. Separate statements with semi-colons.  Some additional
+functions have been predefined for your convenience:
+<ul style="font-size:small">
+<li class="myown"> <code>rseq( 50, 100 )</code> chooses a random number between 50 and 100. 
+  If you have a third argument, it is the increment.  (rseq will be the most common predefined function that you will use.)</li> 
+<li class="myown"> <code>pr( 1,4,10 )</code> picks randomly either 1, 4, or 10. </li> 
+<li class="myown"> <code>mean( 1,2,3,4,5 )</code> computes the mean.  the series is comma separated (here, 3). </li> 
+<li class="myown"> <code>var( 1,2,3,4,5 )</code> returns the variance (here, 2). </li> 
+<li class="myown"> <code>sd( 1,2,3,4,5 )</code> returns the standard deviation (here, 1.414). </li> 
+<li class="myown"> <code>min( 1,2,3,4,5 )</code> returns the minimum (here, 1).</li> 
+<li class="myown"> <code>max( 1,2,3,4,5 )</code> returns the maximum (here, 5).</li> 
+<li class="myown"> <code>BlackScholes( $S, $X, $T, $r, $sd )</code> returns the Black-Scholes value. </li> 
+<li class="myown"> <code>CumNorm( 0 )</code> returns the cumulative normal distribution value (here, 0.5). </li> 
+<li class="myown"> <code>ln( $x )</code> returns the natural log of $x. </li> 
+<li class="myown"> <code>pv(0.1, 10, 20)</code> returns the (net) present value, 10/1.1 + 20/1.1^2 (here, about 25.62). </li> 
+<li class="myown"> <code>npv(0.1, -10, 20)</code> returns the (net) present value, -10 + 20/1.1^1 (here, about 8.18). </li> 
+<li class="myown"> <code>irr(-10, 20, 30)</code> returns the IRR. </li> 
+<li class="myown"> <code>round( 1.2345, 2 )</code> rounds an expression, here returning 1.23. </li> 
+</ul>
+</li>
+
+<li>To post your finished quiz for your students, simply rename your
+file to end not with .testbank, but with .quiz.  The student answers
+will be collected in a (.csv) log file in your directory that you can open
+with Excel (or any other programs that understand .csv format).</li>
+
+<li>Note that you can insert html quite liberally&mdash;(for example,
+you could render the quiz non-functional by inserting a
+<code>&lt;/form&gt;</code>.  Please don't.  You are an instructor, after
+all.  We are putting some trust in you.)</li>
+
+<li>If you need html headings, e.g., in your postscript, start them at
+level h4.  h1 is the Equiz.Me at the top; h2 is the name of your quiz;
+h3 are the sectioning (Introduction, Questions, Postscript). h4 would
+be your own.  It is what I used for 'More Features and Notes' above.
+If this looks too small for you, you can restyle it yourself in
+ <a href="http://www.equiz.me/fm/viewfile?f=equiz.css">equiz.css</a>.</li>
+
+<li>If you wrap something in a &lt;div
+class="subpage"&gt;...&lt;div&gt; it will page.</li>
+
+<li>If you are having difficulties with the system, please let <a
+href="ivo.welch@gmail.com">me</a> know.  As of 2012, the system is
+still new, so it would not surprise me if you found a bug.</li>
+
+<li>If the <tt>::LICENSE::</tt> field in the preamble is skipped (or says
+SLEQL), questions are under the SLEQL (see <a
+href="http://www.equiz.me/static/legal.html">Legal</a>). This will
+facilitate in version 3 collaborative testbank development.  Also, do not
+forget to add an <tt>::EMAIL::</tt> field, so that your authorship is
+tracked along with the question.  The idea is that other users of a question
+can send you feedback (e.g., ambiguities).  To keep a testbank private, use
+<tt>::LICENSE:: PRIVATE</tt>, and the v3 search engine will skip your
+testbank. </li>
+
+
+<li style="font-size:smaller">If you have a linux or OSX system and are a
+perl wizard, I can also share with you the .pm file that parses the
+questions.  This way, you can even test out testbanks on your own machine.
+You have to be a real nerd to want to do this.</li>
+
+</ul>
+
+If you still have questions or something was unclear, please email <a
+href="mailto:ivo.welch@gmail.com">ivo welch</a>.  If I don't respond
+within 3 days, chances are that your email was stuck in my spam
+filter, and you probably want to try again.
+
+NOTE: some foreign email services have blocked us altogether.  In this case,
+students can create accounts on gmail or yahoo to register.
+
+
+
+::COMMENT:: This is a longer comment.  The preamble is done.  Now come
+the questions.  Everything in a comment is, of course, ignored.
+
+
+################################################################
+
+::START::
+
+:N: A simple algorithmic question 
+:Q: This is the first question.  X={$x} is a random integer number between
+    10 and 20.  Please calculate {$x}+1 and enter it as your answer.
+:I: $x= rseq(10,20); $ANS= $x+1
+:S: $ANS
+:L: When done, your students will see your long explanation, which can also use
+ your variables.  So, here, the first correct answer should be {$ANS}.
+:T: 1
+:E: 
+
+
+:M: 
+
+  <p>So, how was this first question written?
+
+  <p>Each question has a name (prefix '<code>:N:</code>'), a question
+  text ('<code>:Q:</code>'), an initialization section
+  ('<code>:I:</code>'), a short answer ('<code>:S:</code>') that the
+  student must provide, a long answer ('<code>:L:</code>') that
+  contains an explanation for the student, and optional time and
+  difficulty hints ('<code>:T:</code>') and ('<code>:D:</code>').  A
+  question (or message) must always end with ':E:'.  The
+  <code>:&lt;letter&gt;:</code> codes must appear at the start of the
+  line or they will be ignored.  Watch out that you don't accidentally
+  start a line with a code when you do not mean to.
+
+  <p>In the initialization (<code>:I:</code>) section, algebra works as you
+  would it expect it. For example, to initialize x with a random variable
+  with a value between 5 and 10, and then initialize y with x plus 5, use
+
+  <pre>   $x= rseq(5,10); $y=$x+5</pre>
+
+  <p>(<code>rseq()</code> is a function defined for you, which here chooses a
+  random integer between 5 and 10.  Statements are separated with
+  semicolons.  Variable names start with a dollar sign.)
+
+  <p>Then, in your question or long answer section, if you want to
+  refer to your $y variable, just embed it as <code>{$y}</code>, as in
+  <code>your intermediate answer is {$y}...blah blah</code>.
+
+  <p>So, here is the source for the first question: <pre style="margin-left:20px;color:black">
+
+   :N: A simple algorithmic question 
+   :I: $x= rseq(10,20); $ANS= $x+1
+   :Q: This is the first question.  X={$x} is a random integer number between
+       10 and 20.  Please calculate {$x}+1 and enter it as your answer.
+   :S: $ANS
+   :L: When done, your students will see your long explanation, which can also use
+       your variables.  So, here, the first correct answer should be {$ANS}.
+   :T: 1
+   :E:
+  </pre>
+
+  If there is no <code>:S:</code> statement, <code>:S: $ANS</code> is assumed.  so,
+  in this case, you could have omitted it.
+
+  Go back to the question to see how it looked.  Then go on.
+
+:E:
+
+
+:M:
+
+  <p>But how did I add the long explanation on the previous page?  It
+  wasn't a question.  Or, for that matter, how did I add the
+  explanation on this page?</p>
+
+  <p>Yes, you can also add interceding messages, e.g., to introduce
+  future questions.  This is actually what I (ab)used here.  Messages
+  begin with an <code>:M:</code> and must be closed with an
+  <code>:E:</code>, just like questions.
+
+  <p>So, this is how this page started: <pre style="margin-left:20px;color:black">
+
+   :M:
+       &lt;p&gt; But how did I ...
+   :E:
+  </pre>
+
+  <p>Advanced: And can you change the formatting of your messages and
+  quizzes?  Yes.  Just edit <a
+  href="http://www.equiz.me/fm/viewfile?f=equiz.css">equiz.css</a>
+  file.  Few people will want to do this, if you know css, then it's simple
+  and it allows you to give your quizzes your unique own look.
+
+  <p style="padding:2em">On to the next question, which shows off some more
+  capabilities.
+
+:E:
+
+
+################################################################
+
+:N: Multiple Variables and Formatting Control in Questions
+
+:Q: This is the second question.  It shows a calculation that involves
+  two (random) variables, and it shows how you can control the
+  rounding of displayed numbers.  (The default number of digits
+  attempts to be smart at formatting numbers.)  X={$x:8} (see the 8
+  digits? It was accomplished using &#123;$x:8&#125; instead of &#123;$x&#125;) 
+  is a random integer number between 1 and 10.  Y={$y:4}
+  (see the 4 digits?) is another random integer number between 1 and
+  10. What is {$x:2}+{$y:0} (see the 2 and 0 digits?)?
+
+:I: $x= rseq(1,100); $y= rseq(1,100); $ANS= ($x+$y)
+:S: $ANS
+:L: Your second correct answer should be {$ANS}.
+:T: 2
+:E: 
+
+
+
+:N: Multiple Choice Questions
+
+:Q:
+   <p>This is the third question.  It shows
+   <ul>
+   <li> how you can inform your students how difficult your question is (use <code>:D:</code>);</li>
+   <li> how $ANS is the default answer (in the source, there is no <code>:S:</code> field);</li>
+   <li> a multiple choice question.</li>
+   </ul>
+
+  <p>Your multiple choice answer ($ANS) must evaluate to 1 if the first answer
+  is correct, 2 if the second is correct, etc.  Typically, you would use
+  something like <code>$ANS = ($x&lt;50) ? 1 : ($x&lt;100) ? 2 : 3</code> to
+  select the right answer.  (This is based on the simple and obvious
+  if-then-else statement syntax, common in C, java, perl, etc.)  Now, here
+  it goes: <br />&nbsp;<br /> X=${$x} is again a random integer number
+  between 1 and 100, with a dollar sign prefix.  Y=${$y} is another random
+  integer number between 1 and 100, with a dollar sign prefix.  If
+  ${$x}+${$y} is less than $100, then please choose 'A'.  Otherwise, choose
+  'B'.  Never choose 'C'.
+
+:I: $x= rseq(1,100); $y= rseq(1,100); $ANS= ( ($x+$y) < 100) ? 1 : 2
+
+:C: A could be true | B might be true | C is never true
+:L: Your third correct answer should be {$ANS}.
+:D: Way Too Easy
+:T: 2
+:E: 
+
+::END:: 
+
+Everything after the end is ignored.

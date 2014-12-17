@@ -1,0 +1,51 @@
+
+/* equiz-default.css:  shows you all the defaults */
+/*    don't make changes here.  make them in equiz.css, instead */
+
+h1 { font-family:sans-serif; }
+
+h2.quizname { font-family:sans-serif; color:red }
+
+h3 { color:red; font-family:sans-serif }
+
+div.introduction { text-indent:20px; line-height:125%; color:black }
+
+div.qmsg { margin:20px; border:5px; padding:10px }
+
+
+div.qstn { background-color:#F0F0F0; margin:20px; border:5px solid #0076BA; padding:10px; color:black; }
+
+div.qstn p.qstnnum { font-family:sans-serif; color:darkred; }
+div.qstn span.qname { color:#0076BA }
+
+div.qstn p.qstn { font-size:large; line-height:200%; color:black; }
+
+/* the plain numerical answer input field */
+div.qstn p.inputanswerlist { color:darkred; font-weight:bold }
+/* the multiple choice answer input field */
+div.qstn input.studentanswerfieldm {  }
+
+div.qstn p.inputanswer { color:darkred; font-weight:bold; }
+
+div.qstn p.timehint { font-size:small; text-align:right; float:right; display:block; color:darkred; }
+
+div.qstn p.difficultyhint { font-size:small; text-align:right; float:right; display:block; color:darkred }
+
+div.quizsubmitbutton { margin:20px; border:5px; padding:10px; font-size:x-large; text-align:right; align:right; }
+input.quizsubmitbutton { }
+
+
+ul.li { padding:0px }
+
+li.mchoice { font-family:sans-serif; font-size:large }
+
+input { font-size:x-large}
+
+div.PS { font-size:small; line-height:140%;  }
+
+code { font-family:fixed; color:#0066AA }
+
+li.myown { padding:0px }
+
+table.navbar { style="padding:10px"; color:#0076BA; background-color:white }
+

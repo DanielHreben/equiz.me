@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Instructor Layout -->
+
+<head>
+<meta charset="utf-8" />
+
+<title><%= title %></title>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="/static/testbank.js"></script>
+<script type="text/javascript" src="/static/jquery.filedrop.js"></script>
+<script type="text/javascript" src="/static/chosen.jquery.js"></script>
+
+<!-- table sorting is used for csv files and directory -->
+<link href="/static/tablesorter/style.css" media="screen" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/static/tablesorter/jquery.tablesorter.js"></script>
+
+<!-- paging is used in quiz displays -->
+<script type="text/javascript" src="/static/jspager.js"></script>
+<link href="/static/jspager.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="/static/chosen.css" media="screen" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $(window).keydown(function(event){
+    if(event.keyCode == 13) {
+      if ( $(event.target).is('input:submit') ) {
+        event.preventDefault();
+        return false;  
+      }
+    }
+  });
+
+  $("select.searchable").each(function() {
+      $(this).chosen({allow_single_deselect:true});
+      console.log('foo');
+  });
+});
+</script>
+
+% if (current_route() eq 'file_manager_files' ) {
+
+<link href="/static/filemanager.css" media="screen" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+    $(document).ready(function() {
+        var filemanager = $("table.filemanager");
+        if (filemanager.length) {
+            filemanager.addClass('tablesorter');
+            if (filemanager.find('tr').length > 1 )
+                filemanager.tablesorter();
+        }
+
+        if (!!window.FileReader) {
+            function showError(error) {
+                $('#dropbox').html('<span style="color:red">' + error + '</span>');
+            }
+            function showMessage(message) {
+                $('#dropbox').html(message);
+            }
+            var form = $('#dropbox').children('form')[0];
+            var file = $(form).children('input[type=file]');
+            var csrftoken = $(form).children('input[name=csrftoken]')[0];
+            $('#dropbox').html('Drag-n-drop file here');
+            $('#dropbox').filedrop({
+                fallback_id: 'upload_button',
+                data: {
+                    csrftoken: $(csrftoken).attr('value')
+                },
+                url: $(form).attr('action'),
+                paramname: $(file).attr('name'),
+                error: function(err, file) {
+                    switch(err) {
+                        case 'BrowserNotSupported':
+                            showError();
+                            break;
+                        case 'TooManyFiles':
+                            showError('Too many files');
+                            break;
+                        case 'FileTooLarge':
+                            showError('File is too large');
+                            break;
+                        case 'FileTypeNotAllowed':
+                            showError('File type is not allowed');
+                        default:
+                            break;
+                    }
+                },
+                maxfiles: 1,
+                maxfilesize: 1024 / (1024 * 64),
+                drop: function() {
+                    showMessage('Uploading...');
+                },
+                afterAll: function() {
+                   document.location.reload(true);
+                }
+            });
+        }
+    }); 
+</script>
+
+    % }
+
+<link href="/static/main.css" media="screen" rel="stylesheet" type="text/css" />
+
+<link href="/static/instructor.css" media="screen" rel="stylesheet" type="text/css" />
+
+
+%= equiz_css session("user_id") if stash('is_include_instructor_css');
+
+
+</head>
+
+<body>
+
+    % if (stash('old_browser')) {
+    <div class="upgrade-notice"><h1>Please upgrade your browser</h1></div>
+    % }
+
+    <%= include '/instructors/menu' if user_data() %>
+
+    <hr />
+
+    <%= include 'msg' %> 
+	
+    <%= content %>
+
+    <hr />
+    
+    % if (current_route() eq 'file_manager_files' ) {
+       <p style="font-size:x-small">Colors: <span style="background-color:orange">Orange = Public</a>.  <span style="background-color:gray">Gray = Deleted.</span></p>
+       <table>
+       <tr> <th> Copy corporate finance template files into my directory: </th>
+        <%= form_for 'instructors_copy_deploy_files_form' => { user_id => stash("user_id") } =>  begin %>
+        <td> <input type="submit" value="Copy if not existing" /></td>
+        <% end %>
+       </tr>
+
+       <tr> <th> Remove (when unchanged) files from my directory: </th>
+        <%= form_for 'instructors_rm_all_files' => { user_id => stash("user_id") } =>  begin %>
+            <td> <input type="submit" value="Remove when unchanged" /> </td>
+        <% end %>
+       </tr>
+
+       <%= form_for 'instructors_make_grades' => { user_id => stash("user_id") } =>  begin %>
+         <tr> <th style="text-align:right"> Calculate current student grade analytics<br />to create grades-*.csv files in my directory: </th> <td> <input type="submit" value="Make Grade Sheet Files" /> </td> </tr>
+        <% end %>    
+       </table>              
+
+       <hr />
+    % }
+   
+<footer>
+
+<!--
+<aside>
+    % if ( current_route() ) {
+        % if ( user_data() ) {
+            <a target="_blank" href="/static/instructor_help.html#<%= current_route %>" >Help</a>
+        % } else {
+            <a target="_blank" href="/static/help.html#<%= current_route %>" >Help/FAQ</a>
+        %}
+	    |
+            <a target="_blank" href="/static/legal.html#<%= current_route %>" >Legal</a>
+    % }
+    
+    % unless ( user_data ) {
+        | For the student login page, click <a href="<%= url_for('auth_create_form', user_type=> 'student') %>">here</a>
+    %}
+<hr />
+
+</aside>
+-->
+
+<p><a href="/static/release-schedule.html" style="color:darkred; text-size:small">Release Status, Schedule and Future Plans</a></p>
+
+<p>Some email services, such as gmx.de or web.de have blocked the equiz.me confirmation email.  In this case, please register through a free U.S. yahoo or gmail account, instead.  Sorry&mdash;nothing we can do about this.  (If you have time, please request them to whitelist equiz.me.)</p>
+
+<p>Note that instructor accounts have to be approved first by yourself and then by the equiz.me administrator (Ivo Welch).  This may take a day.  The administrator can only admit instructors at valid institutions.  This is to keep the instructor site off-limits for students.</p>
+
+</footer>
+
+</body>
+</html>
+
+<!-- instructor.html.ep -->
