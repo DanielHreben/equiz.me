@@ -1,4 +1,5 @@
 Install system packages
+> sudo apt-get update
 > sudo apt-get install curl mysql-server libmysqlclient-dev libssl-dev libexpat1-dev libxml2-dev make git
 
 Install latest Carton with git support
@@ -6,6 +7,9 @@ Install latest Carton with git support
 
 Create equiz user
 > sudo useradd equiz -s /bin/bash -m
+
+Create password for quizzes protection
+> sudo sh -c 'echo `openssl rand -base64 32` > /etc/eq-passphrase.txt'
 
 Switch to quiz user
 > sudo su equiz
@@ -20,6 +24,7 @@ Install all project dependencies
 
 Copy and update default config
 > cp etc/eq.conf.sample  etc/eq.conf
+Update config
 
 All commands should be executed with "carton exec":
 > carton exec -- morbo  script/eq          # development server
