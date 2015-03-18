@@ -2,18 +2,17 @@ Install system packages
 > sudo apt-get install curl mysql-server libmysqlclient-dev libssl-dev libexpat1-dev libxml2-dev make git
 
 Install latest Carton with git support
-> curl -L cpanmin.us | perl - --sudo --dev Carton
-> curl -L cpanmin.us | perl - --sudo URI
+> curl -L cpanmin.us | perl - --sudo Carton
 
 Create equiz user
 > sudo useradd equiz -s /bin/bash -m
 
-Switch to quiz user 
+Switch to quiz user
 > sudo su equiz
 
 Clone repo to home folder
 > cd ~
-> https://github.com/Equiz/equiz.me.git
+> git clone https://github.com/Equiz/equiz.me.git
 
 Install all project dependencies
 > cd ~/equiz.me/

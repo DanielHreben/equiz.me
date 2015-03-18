@@ -23,10 +23,36 @@ requires 'Params::Util';
 requires 'Text::CSV';
 requires 'Try::Tiny';
 requires 'Validate::Tiny';
-
-requires 'Net::Amazon::S3'            => 0, git => 'git://github.com/SDSWanderer/net-amazon-s3.git'; #Version on Cpan hasn't fix https://github.com/pfig/net-amazon-s3/pull/45
-requires 'Hash::Storage'              => 0, git => 'git://github.com/koorchik/Hash-Storage.git';
-requires 'Query::Abstract'            => 0, git => 'git://github.com/koorchik/Query-Abstract.git';
-requires 'Hash::Storage::Driver::DBI' => 0, git => 'git://github.com/koorchik/Hash-Storage-Driver-DBI.git';
-
+requires 'Hash::Storage';
+requires 'Query::Abstract';
+requires 'Hash::Storage::Driver::DBI';
 requires 'experimental';
+
+# for Net::Amazon::S3:
+requires 'Data::Stream::Bulk::Callback';
+requires 'DateTime::Format::HTTP';
+requires 'Digest::HMAC_SHA1';
+requires 'Digest::MD5';
+requires 'Digest::MD5::File';
+requires 'File::Find::Rule';
+requires 'File::stat';
+requires 'Getopt::Long';
+requires 'HTTP::Date';
+requires 'HTTP::Status';
+requires 'IO::File';
+requires 'LWP::UserAgent::Determined';
+requires 'MIME::Base64';
+requires 'MIME::Types';
+requires 'Moose::Util::TypeConstraints';
+requires 'MooseX::StrictConstructor';
+requires 'MooseX::Types::DateTime::MoreCoercions';
+requires 'Path::Class';
+requires 'Pod::Usage';
+requires 'Regexp::Common';
+requires 'Term::Encoding';
+requires 'Term::ProgressBar::Simple';
+requires 'URI';
+requires 'URI::Escape';
+requires 'URI::QueryParam';
+requires 'XML::LibXML';
+requires 'XML::LibXML::XPathContext';
