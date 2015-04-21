@@ -1,4 +1,5 @@
 etc/eq.conf
+log/*.log
 local
 script/hypnotoad.pid
 *~
