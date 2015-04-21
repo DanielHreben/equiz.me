@@ -50,7 +50,7 @@ sub register {
     my $routes = $conf->{routes} || $app->routes;
 
     # Guest routes
-    my $fm_r = $routes->bridge('/fm')->to(
+    my $fm_r = $routes->under('/fm')->to(
         cb => sub {
             my $c = shift;
             return 0 unless $access_checker->($c);

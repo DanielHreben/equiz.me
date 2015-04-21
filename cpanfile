@@ -22,7 +22,7 @@ requires 'List::MoreUtils';
 requires 'Params::Util';
 requires 'Text::CSV';
 requires 'Try::Tiny';
-requires 'Validate::Tiny';
+requires 'Validate::Tiny' => '==1.005';
 requires 'Hash::Storage';
 requires 'Query::Abstract';
 requires 'Hash::Storage::Driver::DBI';
