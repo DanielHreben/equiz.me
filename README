@@ -26,6 +26,13 @@ Copy and update default config
 > cp etc/eq.conf.sample  etc/eq.conf
 Update config
 
+Make storage folders (paths from config sample)
+> mkdir /tmp/file_manager /tmp/user_manager
+
+Create db
+> mysqladmin -u root -p create eq
+> mysql -u root -p -D eq < deploy/db.sql
+
 All commands should be executed with "carton exec":
 > carton exec -- morbo  script/eq          # development server
 > carton exec -- hypnotoad script/eq       # production server
