@@ -224,7 +224,7 @@ sub register {
     $r->get('/:user_type/activation_by_admin/:activation_code', \@restrict )->to( 'users#activation_by_admin', namespace => $namespace ); # TODO use names
 
     # Authenticated routes
-    my $auth_r = $r->bridge("/:user_type/users/#user_id")->to( cb => sub {
+    my $auth_r = $r->under("/:user_type/users/#user_id")->to( cb => sub {
         my $c = shift;
         return $self->_check_session($c);
     });
@@ -242,7 +242,7 @@ sub register {
     $auth_r->get('/iplog')->to( 'users#iplog', namespace => $namespace )->name('user_iplog');
 
     # Admin routes
-    my $admin = $r->bridge("/admin")->to( user_type => 'instructor', cb => sub {
+    my $admin = $r->under("/admin")->to( user_type => 'instructor', cb => sub {
         my $c = shift;
 
         return unless $self->_check_session($c);
@@ -256,7 +256,7 @@ sub register {
 
     my @routes;
     foreach my $user_type ( map { $_->{user_type} } @configs ) {
-        my $user_r = $r->bridge("/$user_type/users/#user_id")->to(
+        my $user_r = $r->under("/$user_type/users/#user_id")->to(
             user_type  => $user_type,
             cb => sub {
                 my $c = shift;
