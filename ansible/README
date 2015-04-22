@@ -1,12 +1,10 @@
+# INSTALL ON REMOTE MASHINE
+
 ## Install deploy tools
-> sudo apt-get install vagrant ansible
+> sudo apt-get install ansible
 
 ## Install roles
 > sudo ansible-galaxy install -r galaxyfile --force
-
-## Deploy with vagrant
-> vagrant box add hashicorp/precise32 https://vagrantcloud.com/hashicorp/boxes/precise32/versions/1/providers/virtualbox.box
-> vagrant up
 
 ## Deploy project
 * Edit "default" inventory file on your needs. At least, you need setup connect credentials.
@@ -14,3 +12,12 @@
 
 * Run ansible task
 > ansible-playbook site.yml -i default
+
+
+# INSTALL ON LOCAL VIRTUAL MASHINE
+## Install deploy tools
+> sudo apt-get install vagrant virtualbox
+
+## Deploy with vagrant
+> vagrant box add hashicorp/precise32 https://vagrantcloud.com/hashicorp/boxes/precise32/versions/1/providers/virtualbox.box
+> vagrant up

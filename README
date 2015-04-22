@@ -1,6 +1,6 @@
 Install system packages
 > sudo apt-get update
-> sudo apt-get install curl mysql-server libmysqlclient-dev libssl-dev libexpat1-dev libxml2-dev make git
+> sudo apt-get install curl mysql-server libmysqlclient-dev exim4 libssl-dev libexpat1-dev libxml2-dev make git
 
 Install latest Carton with git support
 > curl -L cpanmin.us | perl - --sudo Carton
