@@ -16,7 +16,7 @@ equiz.me ansible_ssh_user=ubuntu ansible_sudo_pass=''
 [appservers:vars]
 # Replace "common_hostname" to your mashine hostname for configure Nginx, Exim, etc.
 # Set password which used for connect with Mysql db in mysql_user_password=''.
-# Set recaptha credentials.
+# Set recaptha credentials or leave it empty.
 
 common_hostname=equiz.me
 mysql_user_password=''

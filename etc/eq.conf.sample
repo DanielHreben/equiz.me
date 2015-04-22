@@ -16,8 +16,8 @@
         captcha       => 1,
     },
     recaptcha => {
-        public_key  => '6LcMF9ASAAAAANnyAnLMsi5OiVOFrI79PsgKracU',
-        private_key => '6LcMF9ASAAAAAO-D3EQkF7O68R1l4sexlbSGC4jb',
+        public_key  => '',
+        private_key => '',
         theme       => 'white'
     },
     gravatar => {

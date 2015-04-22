@@ -1,6 +1,6 @@
 Install system packages
 > sudo apt-get update
-> sudo apt-get install curl mysql-server libmysqlclient-dev exim4 libssl-dev libexpat1-dev libxml2-dev make git
+> sudo apt-get install curl mysql-server libmysqlclient-dev exim4 libperl-dev libssl-dev libexpat1-dev libxml2-dev make git
 
 Install latest Carton with git support
 > curl -L cpanmin.us | perl - --sudo Carton
@@ -29,7 +29,7 @@ Copy and update default config
 Make storage folders (paths from config sample)
 > mkdir -p ../eq_storage/file_manager ../eq_storage/user_manager
 
-Create db
+Create db (asks your Mysql "root" user password, if it empty, just omit "-p" option)
 > mysqladmin -u root -p create eq
 > mysql -u root -p -D eq < deploy/db.sql
 
