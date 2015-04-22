@@ -37,5 +37,3 @@ All commands should be executed with "carton exec":
 > carton exec -- morbo  script/eq          # development server
 > carton exec -- hypnotoad script/eq       # production server
 > carton exec -- bin/user_manager.pl list  # get users list
-
-
