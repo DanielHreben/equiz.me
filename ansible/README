@@ -1,10 +1,16 @@
+## Install deploy tools
+> sudo apt-get install vagrant ansible
+
 ## Install roles
-sudo ansible-galaxy install -r galaxyfile --force
+> sudo ansible-galaxy install -r galaxyfile --force
 
 ## Deploy with vagrant
-vagrant box add hashicorp/precise32 https://vagrantcloud.com/hashicorp/boxes/precise32/versions/1/providers/virtualbox.box
-vagrant up
+> vagrant box add hashicorp/precise32 https://vagrantcloud.com/hashicorp/boxes/precise32/versions/1/providers/virtualbox.box
+> vagrant up
 
 ## Deploy project
-# Edit "default" inventory file on your needs
-ansible-playbook site.yml -i default --ask-sudo-pass
+* Edit "default" inventory file on your needs. At least, you need setup connect credentials.
+> edit default
+
+* Run ansible task
+> ansible-playbook site.yml -i default

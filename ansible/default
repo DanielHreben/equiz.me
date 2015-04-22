@@ -1,8 +1,24 @@
+# ANSIBLE CONFIG SAMPLE
+
+# You can redefine here any variable.
+# See "group_vars/all.yml" file for complete variables list.
+
+# Also, here you can define important ansible options, such as "ansible_sudo_pass" or "ansible_ssh_user".
+# See "ansible --help".
+
 [appservers]
-equiz.me ansible_ssh_user=ubuntu
+# Replace "equiz.me" to your mashine IP or hostname for connect with ssh.
+# Replace "ubuntu" to privileged user (user allowed to execute "sudo") name on your mashine.
+# Set sudo password in ansible_sudo_pass=''.
+
+equiz.me ansible_ssh_user=ubuntu ansible_sudo_pass=''
 
 [appservers:vars]
+# Replace "common_hostname" to your mashine hostname for configure Nginx, Exim, etc.
+# Set password which used for connect with Mysql db in mysql_user_password=''.
+# Set recaptha credentials.
+
 common_hostname=equiz.me
+mysql_user_password=''
 recapcha_public_key=''
 recapcha_private_key=''
-mysql_user_password=''

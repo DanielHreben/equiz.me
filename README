@@ -23,11 +23,11 @@ Install all project dependencies
 > carton install
 
 Copy and update default config
-> cp etc/eq.conf.sample  etc/eq.conf
-Update config
+> cp etc/eq.conf.sample etc/eq.conf
+> edit etc/eq.conf
 
 Make storage folders (paths from config sample)
-> mkdir /tmp/file_manager /tmp/user_manager
+> mkdir -p ../eq_storage/file_manager ../eq_storage/user_manager
 
 Create db
 > mysqladmin -u root -p create eq

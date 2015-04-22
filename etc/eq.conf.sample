@@ -1,15 +1,15 @@
 {
     mail => {
-    	
+
     },
-    
+
     file_manager  => {
-        root_dir => '/tmp/file_manager',
+        root_dir => '../eq_storage/file_manager',
     },
     user_manager  => {
         admin_confirm => 0,
         email_confirm => 0,
-        admin_email   => 'viktor@webbylab.com',
+        admin_email   => 'eq@equiz.me',
         site_url      => 'http://localhost:3000',
         captcha       => 1,
     },
@@ -19,7 +19,7 @@
         theme       => 'white'
     },
     gravatar => {
-    	default => 'http://equiz.me/static/img/equizavatar.jpg'
+        default => 'http://equiz.me/static/img/equizavatar.jpg'
     },
     hypnotoad => {
         listen  => [ 'http://*:8080' ],
@@ -31,9 +31,9 @@
         site_url          => 'http://localhost:3000',
     },
     model => {
-        instructors_root => '/tmp/file_manager',
+        instructors_root => '../eq_storage/file_manager',
         storage_driver => 'Files',
-        storage_root => '/tmp/user_manager',
+        storage_root => '../eq_storage/user_manager',
         storage_db => {
             dsn      => 'dbi:mysql:eq',
             username => 'root',
