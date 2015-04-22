@@ -1,0 +1,50 @@
+---
+- name: Install eq prerequsites
+  apt: pkg={{item}} state=present
+  with_items:
+    - curl
+    - mysql-client
+    - libmysqlclient-dev
+    - libssl-dev
+    - libexpat1-dev
+    - libxml2-dev
+    - make
+
+- name: Reconfigure exim
+  sudo: yes
+  command: dpkg-reconfigure exim4-config -f noninteractive
+
+- name: Carton install without develop
+  sudo: yes
+  sudo_user: eq
+  command: carton install --without develop chdir={{app_root}}
+
+- name: Copy eq configuration
+  sudo: yes
+  sudo_user: eq
+  template: src=eq.conf dest={{app_root}}/etc/eq.conf
+
+- name: Create eq passphrase
+  sudo: yes
+  shell: echo `openssl rand -base64 32` > /etc/eq-passphrase.txt creates=/etc/eq-passphrase.txt
+
+- name: Create storage folders
+  sudo: yes
+  sudo_user: eq
+  file: path={{eq_storage_folder}}/{{item}} state=directory
+  with_items:
+    - file_manager
+    - user_manager
+
+- name: Create database
+  sudo: yes
+  sudo_user: eq
+  mysql_db: name={{mysql_db_name}} state=present target={{app_root}}/deploy/db.sql
+
+- name: Start eq
+  sudo: yes
+  sudo_user: eq
+  command: carton exec -- hypnotoad script/eq chdir={{app_root}}
+
+- name: Start Nginx
+  service: name=nginx state=restarted enabled=true

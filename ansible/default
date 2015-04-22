@@ -1,0 +1,8 @@
+[appservers]
+equiz.me ansible_ssh_user=ubuntu
+
+[appservers:vars]
+common_hostname=equiz.me
+recapcha_public_key=''
+recapcha_private_key=''
+mysql_user_password=''

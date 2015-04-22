@@ -1,0 +1,13 @@
+---
+- hosts: appservers
+  remote_user: "{{remote_user}}"
+  sudo: yes
+  roles:
+    - webbylab.common
+    - { role: webbylab.exim4-sender, exim4_sender_hostname: '{{common_hostname}}' }
+    - webbylab.mysql
+    - webbylab.perl
+    - webbylab.nginx-proxy
+    - { role: webbylab.sources, sources_repo: 'https://github.com/Equiz/equiz.me.git' }
+    - webbylab.logrotate
+    - eq

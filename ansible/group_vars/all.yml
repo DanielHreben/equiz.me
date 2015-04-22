@@ -1,0 +1,51 @@
+---
+# common
+app_name: eq
+app_user: eq
+app_root: "/home/{{app_user}}/{{app_name}}"
+
+common_timezone: Europe/CEST
+common_hostname: equiz.me
+site_url: "http://{{common_hostname}}"
+remote_user: root
+
+# nginx_proxy
+nginx_proxy_listen_port: 80
+nginx_proxy_hostname: "{{common_hostname}}"
+nginx_proxy_static_locations: [
+    {location: '/static', root: '{{app_root}}/public'}
+]
+nginx_proxy_pass_locations: [
+    {location: '/', proxy_pass: 'http://127.0.0.1:3000'}
+]
+
+# recaptcha
+recapcha_public_key: ''
+recapcha_private_key: ''
+
+# mysql
+mysql_user_name: '{{app_user}}'
+mysql_user_password: ''
+mysql_db_name: '{{app_name}}'
+mysql_host: localhost
+
+mysql_users:
+-   name:     '{{mysql_user_name}}'
+    password: '{{mysql_user_password}}'
+    db:       '{{mysql_db_name}}'
+    host:     '{{mysql_host}}'
+
+# eq
+eq_hypnotoad_workers: 4
+eq_storage_folder: "/home/{{app_user}}/{{app_name}}_storage"
+
+# sources
+sources_target_user: "{{app_user}}"
+sources_git_pem: ~/.ssh/id_rsa.pub
+sources_target_dir: "{{app_root}}"
+
+# logrotate
+logrotate_name: "{{app_name}}"
+logrotate_logfile: "{{app_root}}/logs/production.log"
+logrotate_user: "{{app_user}}"
+logrotate_group: "{{app_user}}"

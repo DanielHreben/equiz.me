@@ -1,0 +1,10 @@
+## Install roles
+sudo ansible-galaxy install -r galaxyfile --force
+
+## Deploy with vagrant
+vagrant box add hashicorp/precise32 https://vagrantcloud.com/hashicorp/boxes/precise32/versions/1/providers/virtualbox.box
+vagrant up
+
+## Deploy project
+# Edit "default" inventory file on your needs
+ansible-playbook site.yml -i default --ask-sudo-pass
